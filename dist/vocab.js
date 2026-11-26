@@ -1,0 +1,5692 @@
+const GENEVA_VOCAB = [
+  {
+    "text": "Secretariat",
+    "type": "word",
+    "phonetic": "[ˌsekrəˈteəriət]",
+    "translation": "秘书处",
+    "roots": "secret：秘密/机密；-ariat：机构后缀 → 秘书处",
+    "extension": "Administrative organ of the United Nations.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "Please submit the report to the Secretariat before Friday.",
+    "exampleZh": "请在周五前将报告提交给秘书处。"
+  },
+  {
+    "text": "Delegate",
+    "type": "word",
+    "phonetic": "[ˈdelɪɡət]",
+    "translation": "代表",
+    "roots": "de-：离开；leg：派遣/法律 → 被派出的代表",
+    "extension": "A person sent or authorized to represent others.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "Each delegate must register at the reception desk.",
+    "exampleZh": "每位代表须在前台登记。"
+  },
+  {
+    "text": "Delegation",
+    "type": "word",
+    "phonetic": "[ˌdelɪˈɡeɪʃn]",
+    "translation": "代表团",
+    "roots": "delegate：代表；-ion：名词后缀 → 代表团",
+    "extension": "A body of delegates representing a state or group.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "The Chinese delegation arrived at the Palais des Nations this morning.",
+    "exampleZh": "中国代表团今早抵达万国宫。"
+  },
+  {
+    "text": "Ambassador",
+    "type": "word",
+    "phonetic": "[æmˈbæsədə(r)]",
+    "translation": "大使",
+    "roots": "源自拉丁语 ambactus（仆人/使者）→ 大使",
+    "extension": "An accredited diplomat sent by a country as its official representative.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "The ambassador will deliver opening remarks at the plenary.",
+    "exampleZh": "大使将在全体会议上致开幕辞。"
+  },
+  {
+    "text": "Dignitary",
+    "type": "word",
+    "phonetic": "[ˈdɪɡnɪtəri]",
+    "translation": "贵宾/要员",
+    "roots": "dignity：尊严/地位；-ary：人 → 要员",
+    "extension": "A person considered important because of high rank or office.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "Security screened every dignitary entering the gallery.",
+    "exampleZh": "安保对进入展厅的每位要员进行了安检。"
+  },
+  {
+    "text": "Envoy",
+    "type": "word",
+    "phonetic": "[ˈenvɔɪ]",
+    "translation": "特使/使节",
+    "roots": "en-：使；voy：路/行程 → 使节",
+    "extension": "A messenger or representative, especially one on a diplomatic mission.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "A special envoy was sent to facilitate the talks.",
+    "exampleZh": "特使被派往促成会谈。"
+  },
+  {
+    "text": "Protocol",
+    "type": "word",
+    "phonetic": "[ˈprəʊtəkɒl]",
+    "translation": "礼宾/协议",
+    "roots": "proto-：最初；col：粘贴/条款 → 礼宾/协议",
+    "extension": "Official procedure or system of rules governing diplomatic etiquette.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "Please follow protocol when greeting the guests of honor.",
+    "exampleZh": "迎接贵宾时请遵守礼宾规范。"
+  },
+  {
+    "text": "Liaison",
+    "type": "word",
+    "phonetic": "[liˈeɪzn]",
+    "translation": "联络员",
+    "roots": "源自法语 lier（连接）→ 联络",
+    "extension": "Communication or cooperation which facilitates a close working relationship.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "We need close liaison between security and the project team.",
+    "exampleZh": "安保与项目组之间需要保持密切联络。"
+  },
+  {
+    "text": "Liaison Officer",
+    "type": "phrase",
+    "phonetic": "[liˈeɪzn ˈɒfɪsə(r)]",
+    "translation": "联络官",
+    "roots": "liaison：联络；officer：官员 → 联络官",
+    "extension": "Person who coordinates between two organizations.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "Contact the liaison officer if access is delayed.",
+    "exampleZh": "若准入延误，请联系联络官。"
+  },
+  {
+    "text": "Contractor",
+    "type": "word",
+    "phonetic": "[kənˈtræktə(r)]",
+    "translation": "承包商/施工方",
+    "roots": "contract：合同；-or：人 → 承包商",
+    "extension": "A person or company that undertakes a contract to provide materials or labor.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "The contractor must comply with all site restrictions.",
+    "exampleZh": "承包商必须遵守所有现场限制规定。"
+  },
+  {
+    "text": "Director",
+    "type": "word",
+    "phonetic": "[dəˈrektə(r)]",
+    "translation": "局长/主管",
+    "roots": "direct：指导；-or：人 → 主管",
+    "extension": "A person in charge of a department or project division.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "The director approved the revised construction schedule.",
+    "exampleZh": "主管批准了修订后的施工进度。"
+  },
+  {
+    "text": "Supervisor",
+    "type": "word",
+    "phonetic": "[ˈsuːpəvaɪzə(r)]",
+    "translation": "监工/主管",
+    "roots": "super-：在上；vise：看 → 监工/主管",
+    "extension": "A person who oversees a act, process, or site operation.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "The supervisor inspected the loading dock after lunch.",
+    "exampleZh": "监工在午饭后检查了卸货台。"
+  },
+  {
+    "text": "Security",
+    "type": "word",
+    "phonetic": "[sɪˈkjʊərəti]",
+    "translation": "安保处",
+    "roots": "secure：安全；-ity：名词后缀",
+    "extension": "Procedures or department responsible for maintaining safety.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "Security will check badges at every gate.",
+    "exampleZh": "安保将在每个大门核查胸牌。"
+  },
+  {
+    "text": "Curator",
+    "type": "word",
+    "phonetic": "[kjʊˈreɪtə(r)]",
+    "translation": "策展人",
+    "roots": "cure：照管；-ator：人 → 策展人",
+    "extension": "A keeper or custodian of a museum or artwork exhibit.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "The curator guided visitors through the heritage exhibit.",
+    "exampleZh": "策展人带领访客参观遗产展。"
+  },
+  {
+    "text": "Representative",
+    "type": "word",
+    "phonetic": "[ˌreprɪˈzentətɪv]",
+    "translation": "代表",
+    "roots": "re-：再次；present：呈现；-ative：人 → 代表",
+    "extension": "A person chosen to speak and act for others.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "A permanent representative spoke during the session.",
+    "exampleZh": "常驻代表在会期中发言。"
+  },
+  {
+    "text": "Mission",
+    "type": "word",
+    "phonetic": "[ˈmɪʃn]",
+    "translation": "代表团/使馆",
+    "roots": "mit/miss：送出 → 使团/任务",
+    "extension": "A diplomatic organization established in a foreign country.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "Our mission coordinated logistics for the ceremony.",
+    "exampleZh": "我方代表团协调了典礼后勤。"
+  },
+  {
+    "text": "Observer",
+    "type": "word",
+    "phonetic": "[əbˈzɜːvə(r)]",
+    "translation": "观察员",
+    "roots": "observe：观察；-er：人 → 观察员",
+    "extension": "A delegate who attends a meeting to observe without speaking/voting.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "An observer attended the meeting without voting rights.",
+    "exampleZh": "观察员列席会议但无投票权。"
+  },
+  {
+    "text": "Escort",
+    "type": "word",
+    "phonetic": "[ˈeskɔːt]",
+    "translation": "陪同/护卫；护送/陪同",
+    "roots": "源自拉丁语 excorrigere（引导）→ 陪同/护卫",
+    "extension": "A person or group accompanying another for protection or courtesy.（UNOG / 外交场合常用；一、 机构、身份与人际称谓） Accompany someone to provide protection or courtesy.",
+    "example": "Please escort the guests from the gate to the chamber.",
+    "exampleZh": "请将嘉宾从大门护送至议事厅。"
+  },
+  {
+    "text": "Official",
+    "type": "word",
+    "phonetic": "[əˈfɪʃl]",
+    "translation": "官员",
+    "roots": "office：职务；-ial：形容词/名词 → 官员",
+    "extension": "A person holding public office or having official duties.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "Only authorized officials may enter the vault area.",
+    "exampleZh": "仅获授权官员可进入保险库区域。"
+  },
+  {
+    "text": "Personnel",
+    "type": "word",
+    "phonetic": "[ˌpɜːsəˈnel]",
+    "translation": "人员/员工",
+    "roots": "person：人；-nel：集合名词 → 人员",
+    "extension": "People employed in an organization or engaged in an operation.（UNOG / 外交场合常用；一、 机构、身份与人际称谓）",
+    "example": "All personnel must complete screening before access.",
+    "exampleZh": "所有人员准入前须完成安检。"
+  },
+  {
+    "text": "Clearance",
+    "type": "word",
+    "phonetic": "[ˈklɪərəns]",
+    "translation": "安保审查/许可；报关/清关",
+    "roots": "clear：清除/批准；-ance：名词 → 许可/清关",
+    "extension": "Official authorization to enter a restricted area.（UNOG / 外交场合常用；二、 场地、通道与安保审查） Official authorization for goods to enter a territory.",
+    "example": "Workers need clearance before entering the restricted zone.",
+    "exampleZh": "工人进入限制区域前需要许可。"
+  },
+  {
+    "text": "Pass",
+    "type": "word",
+    "phonetic": "[pɑːs]",
+    "translation": "通行证",
+    "roots": "通行/通过",
+    "extension": "A paper or badge authorizing entry to a site or building.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Show your pass at the barrier to enter the site.",
+    "exampleZh": "在屏障处出示通行证方可进入现场。"
+  },
+  {
+    "text": "Badge",
+    "type": "word",
+    "phonetic": "[bædʒ]",
+    "translation": "胸牌",
+    "roots": "身份标识/胸牌",
+    "extension": "A small piece of metal or plastic worn to show security status.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Wear your badge visibly at all times on site.",
+    "exampleZh": "在现场请始终明显佩戴胸牌。"
+  },
+  {
+    "text": "Screening",
+    "type": "word",
+    "phonetic": "[ˈskriːnɪŋ]",
+    "translation": "安检",
+    "roots": "screen：筛查；-ing：过程 → 安检",
+    "extension": "The evaluation or inspection of people or luggage for safety.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Luggage screening takes place at Gate 3.",
+    "exampleZh": "行李安检在 3 号门进行。"
+  },
+  {
+    "text": "Curfew",
+    "type": "word",
+    "phonetic": "[ˈkɜːfjuː]",
+    "translation": "禁令/宵禁",
+    "roots": "源自法语 couvre-feu（熄火令）→ 宵禁",
+    "extension": "A regulation requiring people to stay indoors during specified hours.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "A temporary curfew applies around the venue tonight.",
+    "exampleZh": "今晚场馆周边实施临时宵禁。"
+  },
+  {
+    "text": "Restriction",
+    "type": "word",
+    "phonetic": "[rɪˈstrɪkʃn]",
+    "translation": "限制",
+    "roots": "restrict：限制；-ion：名词",
+    "extension": "A limiting condition or measure on site activities.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "There is a restriction on vehicle access during the event.",
+    "exampleZh": "活动期间对车辆准入有限制。"
+  },
+  {
+    "text": "Heritage",
+    "type": "word",
+    "phonetic": "[ˈherɪtɪdʒ]",
+    "translation": "遗迹/遗产",
+    "roots": "heredit：继承 → 遗产",
+    "extension": "Valued objects, historic buildings, and qualities passed down.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "The renovation must protect the building's heritage value.",
+    "exampleZh": "翻新工程必须保护建筑遗产价值。"
+  },
+  {
+    "text": "Barrier",
+    "type": "word",
+    "phonetic": "[ˈbæriə(r)]",
+    "translation": "屏障/隔离栅",
+    "roots": "bar：栏杆 → 屏障",
+    "extension": "A fence or obstacle that prevents movement or access.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "A temporary barrier was installed along the perimeter.",
+    "exampleZh": "沿周界安装了临时隔离屏障。"
+  },
+  {
+    "text": "Evacuation",
+    "type": "word",
+    "phonetic": "[ɪˌvækjuˈeɪʃn]",
+    "translation": "撤离/疏散",
+    "roots": "e-：出；vac：空 → 撤离",
+    "extension": "The action of evacuating a hall or building in emergency.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Follow the evacuation route posted in each corridor.",
+    "exampleZh": "请沿各走廊张贴的疏散路线撤离。"
+  },
+  {
+    "text": "Perimeter",
+    "type": "word",
+    "phonetic": "[pəˈrɪmɪtə(r)]",
+    "translation": "外围/周界",
+    "roots": "peri-：周围；meter：测量 → 周界",
+    "extension": "The boundary or outer limit of a security area.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Guards patrol the perimeter throughout the night.",
+    "exampleZh": "警卫通宵巡逻周界。"
+  },
+  {
+    "text": "Gate",
+    "type": "word",
+    "phonetic": "[ɡeɪt]",
+    "translation": "大门/通道",
+    "roots": "大门/通道",
+    "extension": "A point of entry in a wall or security fence.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Delegates should enter through Gate A after screening.",
+    "exampleZh": "代表安检后应从 A 门进入。"
+  },
+  {
+    "text": "Dock",
+    "type": "word",
+    "phonetic": "[dɒk]",
+    "translation": "卸货台",
+    "roots": "码头/卸货台",
+    "extension": "A platform for loading and unloading trucks.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Materials will be unloaded at the service dock.",
+    "exampleZh": "物资将在服务卸货台卸载。"
+  },
+  {
+    "text": "Access",
+    "type": "word",
+    "phonetic": "[ˈækses]",
+    "translation": "准入/通道",
+    "roots": "ac-：向；cess：走 → 准入",
+    "extension": "Means of entering or approaching a place or facility.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Authorized access is required for the assembly hall.",
+    "exampleZh": "进入大会堂需要授权准入。"
+  },
+  {
+    "text": "Quarantine",
+    "type": "word",
+    "phonetic": "[ˈkwɒrəntiːn]",
+    "translation": "隔离区",
+    "roots": "源自意大利语 quaranta（四十）→ 隔离",
+    "extension": "A state, period, or place of isolation for security/safety.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Damaged packages were held in quarantine overnight.",
+    "exampleZh": "破损包裹被隔离存放过夜。"
+  },
+  {
+    "text": "Vault",
+    "type": "word",
+    "phonetic": "[vɔːlt]",
+    "translation": "库房/保险室",
+    "roots": "拱顶/保险库",
+    "extension": "A secure room or cellar used for storage of valuables.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Archive materials are stored in the vault.",
+    "exampleZh": "档案材料存放在保险库中。"
+  },
+  {
+    "text": "Corridor",
+    "type": "word",
+    "phonetic": "[ˈkɒrɪdɔː(r)]",
+    "translation": "走廊/通道",
+    "roots": "corrido：奔跑 → 走廊",
+    "extension": "A long passage in a building from which doors lead into rooms.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Please keep the corridor clear during evacuation drills.",
+    "exampleZh": "疏散演练期间请保持走廊畅通。"
+  },
+  {
+    "text": "Gallery",
+    "type": "word",
+    "phonetic": "[ˈɡæləri]",
+    "translation": "画廊/展厅",
+    "roots": "展厅/画廊",
+    "extension": "A room or building for the display or sale of works of art.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "The unveiling will take place in the main gallery.",
+    "exampleZh": "揭幕仪式将在主展厅举行。"
+  },
+  {
+    "text": "Assembly",
+    "type": "word",
+    "phonetic": "[əˈsembli]",
+    "translation": "大会/集合",
+    "roots": "as-：向；sembl：聚集 → 大会/集合",
+    "extension": "A group of people gathered together in one place for a purpose.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "The assembly will convene at ten o'clock sharp.",
+    "exampleZh": "大会将于十点整召开。"
+  },
+  {
+    "text": "Chamber",
+    "type": "word",
+    "phonetic": "[ˈtʃeɪmbə(r)]",
+    "translation": "议事厅",
+    "roots": "房间/议事厅",
+    "extension": "A large room used for formal or public meetings.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "Negotiations continued late in the council chamber.",
+    "exampleZh": "谈判在理事厅持续到很晚。"
+  },
+  {
+    "text": "Permit",
+    "type": "word",
+    "phonetic": "[ˈpɜːmɪt]",
+    "translation": "许可证",
+    "roots": "per-：通过；mit：允许 → 许可证",
+    "extension": "An official document giving authorization to perform a task.（UNOG / 外交场合常用；二、 场地、通道与安保审查）",
+    "example": "You must obtain a permit before installing equipment.",
+    "exampleZh": "安装设备前必须取得许可证。"
+  },
+  {
+    "text": "Unveiling",
+    "type": "word",
+    "phonetic": "[ʌnˈveɪlɪŋ]",
+    "translation": "揭幕",
+    "roots": "un-：揭开；veil：面纱 → 揭幕",
+    "extension": "The official public showing of a new artwork or monument.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "The unveiling of the artwork is scheduled for noon.",
+    "exampleZh": "艺术品揭幕定于中午举行。"
+  },
+  {
+    "text": "Inauguration",
+    "type": "word",
+    "phonetic": "[ɪˌnɔːɡjəˈreɪʃn]",
+    "translation": "启用/揭幕仪式",
+    "roots": "in-：进入；augur：预示 → 启用仪式",
+    "extension": "The formal beginning or introduction of a new space/art.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "The inauguration ceremony begins after the briefing.",
+    "exampleZh": "启用仪式在简报会后开始。"
+  },
+  {
+    "text": "Ceremony",
+    "type": "word",
+    "phonetic": "[ˈserəməni]",
+    "translation": "典礼",
+    "roots": "正式典礼",
+    "extension": "A formal religious or public occasion celebrating a landmark.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Protocol staff prepared seating for the ceremony.",
+    "exampleZh": "礼宾人员为典礼准备了座位。"
+  },
+  {
+    "text": "Session",
+    "type": "word",
+    "phonetic": "[ˈseʃn]",
+    "translation": "会议/会期",
+    "roots": "sed/sess：坐 → 会期",
+    "extension": "A formal meeting of a deliberative body to conduct business.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "The afternoon session will address compliance issues.",
+    "exampleZh": "下午会期将讨论合规问题。"
+  },
+  {
+    "text": "Forum",
+    "type": "word",
+    "phonetic": "[ˈfɔːrəm]",
+    "translation": "论坛",
+    "roots": "古罗马广场 → 论坛",
+    "extension": "A meeting or medium where ideas and views can be exchanged.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Experts exchanged views at the open forum.",
+    "exampleZh": "专家在公开论坛交流观点。"
+  },
+  {
+    "text": "Plenary",
+    "type": "word",
+    "phonetic": "[ˈpliːnəri]",
+    "translation": "全体会议",
+    "roots": "plen：满 → 全体会议",
+    "extension": "A meeting to be attended by all participants or members.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "All members are expected to attend the plenary.",
+    "exampleZh": "全体成员均应出席全体会议。"
+  },
+  {
+    "text": "Keynote",
+    "type": "word",
+    "phonetic": "[ˈkiːnəʊt]",
+    "translation": "主旨",
+    "roots": "key：关键；note：基调 → 主旨",
+    "extension": "A prevailing tone, central idea, or primary speech.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "The keynote address focused on multilateral cooperation.",
+    "exampleZh": "主旨演讲聚焦多边合作。"
+  },
+  {
+    "text": "Reception",
+    "type": "word",
+    "phonetic": "[rɪˈsepʃn]",
+    "translation": "招待会",
+    "roots": "re-：回；cept：接受 → 招待会",
+    "extension": "A formal social occasion to welcome someone or celebrate an event.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "A reception will follow the inauguration.",
+    "exampleZh": "启用仪式后将举行招待会。"
+  },
+  {
+    "text": "Precedence",
+    "type": "word",
+    "phonetic": "[ˈpresɪdəns]",
+    "translation": "位次/次序",
+    "roots": "pre-：在前；ced：走 → 位次",
+    "extension": "The condition of being considered more important or senior.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Seating is arranged according to diplomatic precedence.",
+    "exampleZh": "座位按外交位次安排。"
+  },
+  {
+    "text": "Press",
+    "type": "word",
+    "phonetic": "[pres]",
+    "translation": "媒体",
+    "roots": "媒体/新闻界",
+    "extension": "Newspapers and journalists, or broadcast media.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "The press will be briefed after the resolution is adopted.",
+    "exampleZh": "决议通过后将向媒体通报。"
+  },
+  {
+    "text": "Briefing",
+    "type": "word",
+    "phonetic": "[ˈbriːfɪŋ]",
+    "translation": "简报会",
+    "roots": "brief：简要；-ing：过程 → 简报会",
+    "extension": "A meeting for giving information or instructions.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Please join the security briefing at 08:30.",
+    "exampleZh": "请于 08:30 参加安保简报会。"
+  },
+  {
+    "text": "Resolution",
+    "type": "word",
+    "phonetic": "[ˌrezəˈluːʃn]",
+    "translation": "决议/方案",
+    "roots": "re-：再次；solut：解开 → 决议",
+    "extension": "A formal expression of opinion or intention agreed by a vote.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "The committee adopted the resolution by consensus.",
+    "exampleZh": "委员会以协商一致通过决议。"
+  },
+  {
+    "text": "Event",
+    "type": "word",
+    "phonetic": "[ɪˈvent]",
+    "translation": "活动",
+    "roots": "e-：出；ven：来 → 活动/事件",
+    "extension": "A planned public or social occasion.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Logistics for the evening event are now finalized.",
+    "exampleZh": "晚间活动的后勤现已敲定。"
+  },
+  {
+    "text": "Bilateral",
+    "type": "word",
+    "phonetic": "[ˌbaɪˈlætərəl]",
+    "translation": "双边",
+    "roots": "bi-：二；lateral：边 → 双边",
+    "extension": "Involving two parties, especially two countries or delegations.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "A bilateral meeting was held between the two missions.",
+    "exampleZh": "双方代表团举行了双边会晤。"
+  },
+  {
+    "text": "Multilateral",
+    "type": "word",
+    "phonetic": "[ˌmʌltiˈlætərəl]",
+    "translation": "多边",
+    "roots": "multi-：多；lateral：边 → 多边",
+    "extension": "Involving several countries or foreign parties.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Multilateral talks resumed after the lunch break.",
+    "exampleZh": "多边会谈在午休后恢复。"
+  },
+  {
+    "text": "Diplomatic",
+    "type": "word",
+    "phonetic": "[ˌdɪpləˈmætɪk]",
+    "translation": "外交的",
+    "roots": "diploma：公文；-atic：形容词 → 外交的",
+    "extension": "Relating to international relations or tactful communication.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Use diplomatic language in all written remarks.",
+    "exampleZh": "所有书面致辞请使用外交措辞。"
+  },
+  {
+    "text": "Agenda",
+    "type": "word",
+    "phonetic": "[əˈdʒendə]",
+    "translation": "议程",
+    "roots": "ag：做；-enda：应做之事 → 议程",
+    "extension": "A list of items to be discussed at a formal meeting.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Please circulate the agenda before tomorrow's session.",
+    "exampleZh": "请在明日会期前分发议程。"
+  },
+  {
+    "text": "Address",
+    "type": "word",
+    "phonetic": "[əˈdres]",
+    "translation": "致辞/演说",
+    "roots": "ad-：向；dress：引导 → 致辞",
+    "extension": "A formal speech delivered to an audience.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "The ambassador will address the assembly at midday.",
+    "exampleZh": "大使将于正午向大会致辞。"
+  },
+  {
+    "text": "Remark",
+    "type": "word",
+    "phonetic": "[rɪˈmɑːk]",
+    "translation": "致辞/话语",
+    "roots": "re-：再次；mark：标记 → 评论/致辞",
+    "extension": "A written or spoken comment expressing a thought or greeting.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Her closing remark emphasized mutual respect.",
+    "exampleZh": "她的结束语强调了相互尊重。"
+  },
+  {
+    "text": "Accord",
+    "type": "word",
+    "phonetic": "[əˈkɔːd]",
+    "translation": "协定/协议",
+    "roots": "ac-：向；cord：心 → 协定",
+    "extension": "An official agreement or treaty between nations.（UNOG / 外交场合常用；三、 外交程序、会议与活动）",
+    "example": "Both parties signed the accord this afternoon.",
+    "exampleZh": "双方于今日下午签署协定。"
+  },
+  {
+    "text": "Compliance",
+    "type": "word",
+    "phonetic": "[kəmˈplaɪəns]",
+    "translation": "合规",
+    "roots": "com-：共同；ply：折/服从 → 合规",
+    "extension": "The action or fact of complying with a rule or standard.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "The contractor confirmed full compliance with guidelines.",
+    "exampleZh": "承包商确认完全符合规范。"
+  },
+  {
+    "text": "Approval",
+    "type": "word",
+    "phonetic": "[əˈpruːvl]",
+    "translation": "批准",
+    "roots": "ap-：向；prove：证明 → 批准",
+    "extension": "The belief that someone or something is good or acceptable.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "We are awaiting approval from the director.",
+    "exampleZh": "我们正在等待主管批准。"
+  },
+  {
+    "text": "Authorization",
+    "type": "word",
+    "phonetic": "[ˌɔːθəraɪˈzeɪʃn]",
+    "translation": "授权",
+    "roots": "author：权威；-ization：过程 → 授权",
+    "extension": "Official permission or approval to perform an action.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "No work may start without written authorization.",
+    "exampleZh": "未经书面授权不得开工。"
+  },
+  {
+    "text": "Agreement",
+    "type": "word",
+    "phonetic": "[əˈɡriːmənt]",
+    "translation": "协议",
+    "roots": "agree：同意；-ment：名词 → 协议",
+    "extension": "A negotiated and typically legally binding arrangement.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "The agreement outlines liability and insurance terms.",
+    "exampleZh": "协议明确了责任与保险条款。"
+  },
+  {
+    "text": "Certificate",
+    "type": "word",
+    "phonetic": "[səˈtɪfɪkət]",
+    "translation": "证书",
+    "roots": "cert：确定；-ficate：使成为 → 证书",
+    "extension": "An official document attesting a certain fact or compliance.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Submit the safety certificate with your application.",
+    "exampleZh": "请随申请一并提交安全证书。"
+  },
+  {
+    "text": "Contract",
+    "type": "word",
+    "phonetic": "[ˈkɒntrækt]",
+    "translation": "合同",
+    "roots": "con-：共同；tract：拉 → 合同",
+    "extension": "A written or spoken agreement that is intended to be enforceable by law.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Review the contract before you finalize the schedule.",
+    "exampleZh": "敲定进度前请审阅合同。"
+  },
+  {
+    "text": "Liability",
+    "type": "word",
+    "phonetic": "[ˌlaɪəˈbɪləti]",
+    "translation": "责任/债务",
+    "roots": "liable：有责任的；-ity：名词 → 责任",
+    "extension": "The state of being responsible for something by law.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Insurance covers liability for on-site accidents.",
+    "exampleZh": "保险涵盖现场事故责任。"
+  },
+  {
+    "text": "Insurance",
+    "type": "word",
+    "phonetic": "[ɪnˈʃʊərəns]",
+    "translation": "保险",
+    "roots": "in-：使；sure：确定 → 保险",
+    "extension": "Coverage by contract whereby one party undertakes to indemnify another.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Valid insurance is required for every contractor.",
+    "exampleZh": "每位承包商均须持有有效保险。"
+  },
+  {
+    "text": "Donation",
+    "type": "word",
+    "phonetic": "[dəʊˈneɪʃn]",
+    "translation": "捐赠",
+    "roots": "don：给予；-ation：名词 → 捐赠",
+    "extension": "Something given to a charity, cause, or organization.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "The plaque acknowledges a private donation.",
+    "exampleZh": "铭牌致谢一笔私人捐赠。"
+  },
+  {
+    "text": "Plaque",
+    "type": "word",
+    "phonetic": "[plæk]",
+    "translation": "铭牌",
+    "roots": "铭牌/饰板",
+    "extension": "A flat tile or plate attached to a wall in memory of an event/person.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "A commemorative plaque will be installed after unveiling.",
+    "exampleZh": "揭幕后将安装纪念铭牌。"
+  },
+  {
+    "text": "Copyright",
+    "type": "word",
+    "phonetic": "[ˈkɒpiraɪt]",
+    "translation": "版权",
+    "roots": "copy：复制；right：权利 → 版权",
+    "extension": "The exclusive legal right given to an originator to print or publish.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Respect copyright when reproducing exhibition images.",
+    "exampleZh": "复制展览图像时请尊重版权。"
+  },
+  {
+    "text": "Royalty",
+    "type": "word",
+    "phonetic": "[ˈrɔɪəlti]",
+    "translation": "版税/使用费",
+    "roots": "royal：王室的 → 版税",
+    "extension": "A sum paid to a patentee/artist for the use of a work.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Royalty fees apply to commercial use of the artwork.",
+    "exampleZh": "商业使用该艺术品需支付版税。"
+  },
+  {
+    "text": "Directive",
+    "type": "word",
+    "phonetic": "[dəˈrektɪv]",
+    "translation": "指令",
+    "roots": "direct：指导；-ive：名词 → 指令",
+    "extension": "An official or authoritative instruction guiding site actions.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Follow the latest directive from the Secretariat.",
+    "exampleZh": "请遵照秘书处最新指令。"
+  },
+  {
+    "text": "Standard",
+    "type": "word",
+    "phonetic": "[ˈstændəd]",
+    "translation": "标准",
+    "roots": "stand：站立 → 标准",
+    "extension": "An required level of quality or attainment in engineering/design.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "All installations must meet the safety standard.",
+    "exampleZh": "所有安装须符合安全标准。"
+  },
+  {
+    "text": "Guideline",
+    "type": "word",
+    "phonetic": "[ˈɡaɪdlaɪn]",
+    "translation": "指南/规范",
+    "roots": "guide：引导；line：线 → 指南",
+    "extension": "A general rule, principle, or piece of advice for a process.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "This guideline explains how to request access.",
+    "exampleZh": "本指南说明如何申请准入。"
+  },
+  {
+    "text": "Exemption",
+    "type": "word",
+    "phonetic": "[ɪɡˈzempʃn]",
+    "translation": "豁免",
+    "roots": "ex-：出；empt：拿 → 豁免",
+    "extension": "The process of freeing someone from an obligation or liability.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "An exemption was granted for emergency deliveries.",
+    "exampleZh": "紧急送货获准豁免。"
+  },
+  {
+    "text": "Immunity",
+    "type": "word",
+    "phonetic": "[ɪˈmjuːnəti]",
+    "translation": "特权/豁免",
+    "roots": "im-：不；mun：义务 → 豁免权",
+    "extension": "Protection or exemption from something, especially legal action.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Diplomatic immunity does not waive site safety rules.",
+    "exampleZh": "外交豁免并不免除现场安全规定。"
+  },
+  {
+    "text": "Logistics",
+    "type": "word",
+    "phonetic": "[ləˈdʒɪstɪks]",
+    "translation": "物流",
+    "roots": "logo：计算/安排 → 物流",
+    "extension": "The detailed organization and implementation of a complex operation.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Logistics teams coordinated transport to the dock.",
+    "exampleZh": "后勤团队协调了至卸货台的运输。"
+  },
+  {
+    "text": "Schedule",
+    "type": "word",
+    "phonetic": "[ˈʃedjuːl]",
+    "translation": "日程/进度",
+    "roots": "源自拉丁语 schedula（小纸条）→ 日程",
+    "extension": "A plan for carrying out a process or procedure.（UNOG / 外交场合常用；四、 商务、合规与法律文书）",
+    "example": "Update the schedule after each inspection.",
+    "exampleZh": "每次检验后请更新进度表。"
+  },
+  {
+    "text": "Align",
+    "type": "word",
+    "phonetic": "[əˈlaɪn]",
+    "translation": "对齐/一致",
+    "roots": "a-：向；line：线 → 对齐/一致",
+    "extension": "Place or arrange in a straight line or in agreement with standards.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Align the drawings with the approved floor plan.",
+    "exampleZh": "请将图纸与已批准平面图对齐。"
+  },
+  {
+    "text": "Coordinate",
+    "type": "word",
+    "phonetic": "[kəʊˈɔːdɪneɪt]",
+    "translation": "协调",
+    "roots": "co-：共同；ordin：秩序 → 协调",
+    "extension": "Bring the different elements of a complex activity into relationship.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Please coordinate delivery times with security.",
+    "exampleZh": "请与安保协调交货时间。"
+  },
+  {
+    "text": "Facilitate",
+    "type": "word",
+    "phonetic": "[fəˈsɪlɪteɪt]",
+    "translation": "促成/协助",
+    "roots": "facil：容易；-ate：使 → 促成",
+    "extension": "Make an action or process easy or easier to execute.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "The liaison officer will facilitate guest access.",
+    "exampleZh": "联络官将协助嘉宾准入。"
+  },
+  {
+    "text": "Verify",
+    "type": "word",
+    "phonetic": "[ˈverɪfaɪ]",
+    "translation": "核实",
+    "roots": "ver：真实；-ify：使 → 核实",
+    "extension": "Make sure or demonstrate that something is true, accurate, or justified.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Verify badge numbers before opening the gate.",
+    "exampleZh": "开门前请核实胸牌编号。"
+  },
+  {
+    "text": "Authorize",
+    "type": "word",
+    "phonetic": "[ˈɔːθəraɪz]",
+    "translation": "批准/授权",
+    "roots": "author：权威；-ize：使 → 授权",
+    "extension": "Give official permission for or approval to an undertaking.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Only the director can authorize overtime work.",
+    "exampleZh": "仅主管可批准加班。"
+  },
+  {
+    "text": "Inspect",
+    "type": "word",
+    "phonetic": "[ɪnˈspekt]",
+    "translation": "检验",
+    "roots": "in-：向内；spect：看 → 检验",
+    "extension": "Look at closely in order to assess condition or quality.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Inspect the barrier before guests arrive.",
+    "exampleZh": "嘉宾到达前请检查隔离屏障。"
+  },
+  {
+    "text": "Handover",
+    "type": "word",
+    "phonetic": "[ˈhændəʊvə(r)]",
+    "translation": "交接",
+    "roots": "hand：手；over：移交 → 交接",
+    "extension": "The act of transferring control or responsibility of a space.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "The handover of the gallery is planned for Monday.",
+    "exampleZh": "展厅交接计划于周一进行。"
+  },
+  {
+    "text": "Request",
+    "type": "word",
+    "phonetic": "[rɪˈkwest]",
+    "translation": "请求",
+    "roots": "re-：再；quest：寻求 → 请求",
+    "extension": "An act of politely or formally asking for something.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Submit a written request for additional passes.",
+    "exampleZh": "请提交书面申请以获取更多通行证。"
+  },
+  {
+    "text": "Approve",
+    "type": "word",
+    "phonetic": "[əˈpruːv]",
+    "translation": "通过",
+    "roots": "ap-：向；prove：证明 → 批准",
+    "extension": "Officially accept as satisfactory or compliant.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "The supervisor will approve the revised permit.",
+    "exampleZh": "监工将批准修订后的许可证。"
+  },
+  {
+    "text": "Expedite",
+    "type": "word",
+    "phonetic": "[ˈekspədaɪt]",
+    "translation": "加急/加快",
+    "roots": "ex-：出；ped：脚 → 加快",
+    "extension": "Make an action or process happen more quickly.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Can you expedite clearance for the visiting envoy?",
+    "exampleZh": "能否加快来访特使的许可？"
+  },
+  {
+    "text": "Defer",
+    "type": "word",
+    "phonetic": "[dɪˈfɜː(r)]",
+    "translation": "推迟/顺延",
+    "roots": "de-：离开；fer：携带 → 推迟",
+    "extension": "Put off an action or event to a later time; postpone.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "We may defer the ceremony if screening is delayed.",
+    "exampleZh": "若安检延误，我们可能顺延典礼。"
+  },
+  {
+    "text": "Acknowledge",
+    "type": "word",
+    "phonetic": "[əkˈnɒlɪdʒ]",
+    "translation": "确认收到",
+    "roots": "ac-：向；knowledge：知道 → 确认收到",
+    "extension": "Accept or admit the existence, truth, or receipt of something.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Please acknowledge receipt of the directive.",
+    "exampleZh": "请确认已收到该指令。"
+  },
+  {
+    "text": "Respect",
+    "type": "word",
+    "phonetic": "[rɪˈspekt]",
+    "translation": "尊重",
+    "roots": "re-：回；spect：看 → 尊重",
+    "extension": "Due regard for the feelings, wishes, rights, or traditions of others.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Respect the heritage restrictions in this wing.",
+    "exampleZh": "请尊重本翼楼的遗产限制。"
+  },
+  {
+    "text": "Comply",
+    "type": "word",
+    "phonetic": "[kəmˈplaɪ]",
+    "translation": "遵照",
+    "roots": "com-：共同；ply：折服 → 遵照",
+    "extension": "Act in accordance with a wish, command, or site rule.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "All staff must comply with the curfew notice.",
+    "exampleZh": "全体员工必须遵照宵禁通知。"
+  },
+  {
+    "text": "Submit",
+    "type": "word",
+    "phonetic": "[səbˈmɪt]",
+    "translation": "提交/呈报",
+    "roots": "sub-：在下；mit：送 → 提交",
+    "extension": "Present a document or proposal for consideration or judgment.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Submit your documents to the protocol office.",
+    "exampleZh": "请将文件提交至礼宾办公室。"
+  },
+  {
+    "text": "Finalize",
+    "type": "word",
+    "phonetic": "[ˈfaɪnəlaɪz]",
+    "translation": "定稿/敲定",
+    "roots": "final：最终；-ize：使 → 定稿",
+    "extension": "Complete the last part of a plan, contract, or design.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Finalize the guest list before printing badges.",
+    "exampleZh": "印制胸牌前请敲定嘉宾名单。"
+  },
+  {
+    "text": "Restrict",
+    "type": "word",
+    "phonetic": "[rɪˈstrɪkt]",
+    "translation": "限制",
+    "roots": "re-：回；strict：收紧 → 限制",
+    "extension": "Put a limit on, keep under control, or prohibit.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "Security will restrict access during the plenary.",
+    "exampleZh": "全体会议期间安保将限制准入。"
+  },
+  {
+    "text": "Guarantee",
+    "type": "word",
+    "phonetic": "[ˌɡærənˈtiː]",
+    "translation": "保证/担保",
+    "roots": "源自法语 garantir → 保证",
+    "extension": "Provide a formal assurance or promise that conditions will be met.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "The contract must guarantee timely handover.",
+    "exampleZh": "合同必须保证按时交接。"
+  },
+  {
+    "text": "Signify",
+    "type": "word",
+    "phonetic": "[ˈsɪɡnɪfaɪ]",
+    "translation": "表示/预示",
+    "roots": "sign：标记；-ify：使 → 表示",
+    "extension": "Be an indication of, express, or make known.（UNOG / 外交场合常用；五、 PM沟通态度、修辞与核心动作）",
+    "example": "A raised flag will signify that the session has begun.",
+    "exampleZh": "升旗表示会期已经开始。"
+  },
+  {
+    "text": "Classical Garden Motif",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "中国古典园林意象",
+    "roots": "",
+    "extension": "Design motifs inspired by traditional Chinese gardens (e.g., borrowing views).（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The artwork layout incorporates a classical garden motif to create a flowing spatial sequence.",
+    "exampleZh": "该艺术品布局融入古典园林母题，以营造流畅的空间序列。"
+  },
+  {
+    "text": "Borrowed Scenery / Borrowed View",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "借景",
+    "roots": "",
+    "extension": "Traditional Chinese landscape technique linking interior and exterior views.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "We designed the screen frame opening to achieve a borrowed view of the outer courtyard.",
+    "exampleZh": "我们设计了屏风框景开口，以借景外庭院。"
+  },
+  {
+    "text": "Framing Scenery / Framed View",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "框景",
+    "roots": "",
+    "extension": "Architectural framing technique isolating specific visual elements.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The brushed metal portal creates a framed view of the central dynamic visual installation.",
+    "exampleZh": "拉丝金属门廊为中央动态视觉装置框出一幅景致。"
+  },
+  {
+    "text": "Step-by-Step Spatial Transition",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "步移景异",
+    "roots": "",
+    "extension": "Spatial design allowing views to change dynamically as one walks.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The curved wall arrangement encourages a step-by-step spatial transition through the China Room.",
+    "exampleZh": "弧形墙体布局引导人们在中国厅内逐步完成空间过渡。"
+  },
+  {
+    "text": "Blue-Green Landscape Color Palette",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "青绿山水色系",
+    "roots": "",
+    "extension": "Traditional Chinese color schema of mineral blues and greens.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The dynamic display is calibrated to accurately reproduce the subtle tones of a blue-green landscape color palette.",
+    "exampleZh": "动态显示屏经校准，可准确再现青绿山水色调的细微层次。"
+  },
+  {
+    "text": "Xiang Embroidery Texture",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "湘绣纹理/绣纹",
+    "roots": "",
+    "extension": "Intricate traditional silk embroidery texture and stitching patterns.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "Dynamic lighting highlights the fine relief details of the Xiang Embroidery texture panel.",
+    "exampleZh": "动态照明凸显湘绣纹理面板上精细的浮雕细节。"
+  },
+  {
+    "text": "Silk Thread Rendering",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "丝线质感/光泽",
+    "roots": "",
+    "extension": "Reflective and tactile qualities of fine silk threads under accent lights.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "Spotlights are angled at 30 degrees to optimize the natural silk thread rendering on the wall artwork.",
+    "exampleZh": "射灯以三十度角照射，以优化墙面艺术品上丝线的自然呈现效果。"
+  },
+  {
+    "text": "Lacquerware Panel",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "漆器挂板/大漆饰面",
+    "roots": "",
+    "extension": "Traditional multi-layered polished natural lacquer surface finish.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "Protect the handcrafted lacquerware panels from high humidity during wall drilling.",
+    "exampleZh": "墙面钻孔期间，须保护手工漆器面板免受高湿度影响。"
+  },
+  {
+    "text": "Lattice Work / Trellis",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "中式花格/窗棂",
+    "roots": "",
+    "extension": "Intricate wooden or metal decorative geometric screening.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "Stainless steel lattice work surrounds the display screen to blend technology with tradition.",
+    "exampleZh": "不锈钢镂空花格环绕显示屏，使科技与传统相融合。"
+  },
+  {
+    "text": "Partition Screen",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "隔断屏风",
+    "roots": "",
+    "extension": "Free-standing or fixed spatial divider defining room zones.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The motorized partition screen can be retracted during large bilateral diplomatic meetings.",
+    "exampleZh": "大型双边外交会议期间，电动隔断屏风可收起。"
+  },
+  {
+    "text": "Wood Carving / Joinery",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "木雕/榫卯构件",
+    "roots": "",
+    "extension": "Traditional timber craftsmanship using interlocking joint systems.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "Custom mounting brackets were designed to support heavy timber wood carvings without visible screws.",
+    "exampleZh": "定制安装支架用于承托沉重的木雕，且不露出螺丝。"
+  },
+  {
+    "text": "Mortise and Tenon Joint",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "榫卯结构",
+    "roots": "",
+    "extension": "Traditional interlocking joint method avoiding metal fasteners.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The timber frame utilizes a reinforced mortise and tenon joint structure for cultural authenticity.",
+    "exampleZh": "木框架采用加强榫卯结构，以体现文化原真性。"
+  },
+  {
+    "text": "Mineral Pigment",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "矿物颜料饰面",
+    "roots": "",
+    "extension": "Natural stone-derived paints providing low-saturation matte finishes.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "Ensure no solvent cleaners are used on surfaces coated with natural mineral pigment.",
+    "exampleZh": "确保涂有天然矿物颜料的表面不使用溶剂类清洁剂。"
+  },
+  {
+    "text": "Calligraphy Plaque",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "书法匾额/铭牌",
+    "roots": "",
+    "extension": "Horizontal wooden or metal plaque inscribed with calligraphic characters.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The commemorative calligraphy plaque will be mounted at the primary entrance portal.",
+    "exampleZh": "纪念书法匾额将安装在主入口门廊处。"
+  },
+  {
+    "text": "Bamboo Slats / Weave",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "竹编/竹饰面",
+    "roots": "",
+    "extension": "Woven bamboo or timber slats providing subtle organic texture.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "Flame-retardant bamboo slats cover the acoustic insulation backing along the east wall.",
+    "exampleZh": "阻燃竹条覆于东墙声学隔音背衬之上。"
+  },
+  {
+    "text": "Ceramic Tile Cladding",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "陶瓷饰面/陶板挂板",
+    "roots": "",
+    "extension": "Polished or matte ceramic panels used for feature wall cladding.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "Use diamond-tipped drill bits when making anchor holes in the custom ceramic tile cladding.",
+    "exampleZh": "在定制陶瓷贴面中钻孔时，须使用金刚石钻头。"
+  },
+  {
+    "text": "Inlay Detail",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "嵌丝/嵌螺钿工艺",
+    "roots": "",
+    "extension": "Decorative technique where metallic or shell pieces are embedded in wood/stone.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The brass inlay detail along the frame margin requires hand-polishing before final handover.",
+    "exampleZh": "框架边缘的黄铜嵌饰细节须在最终移交前手工抛光。"
+  },
+  {
+    "text": "Relief Sculpture",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "浮雕艺术构件",
+    "roots": "",
+    "extension": "Raised artwork projecting from a flat background panel.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The central relief sculpture is mounted on a heavy-duty steel subframe behind the drywall.",
+    "exampleZh": "中央浮雕安装在石膏板后方的重型钢制副框架上。"
+  },
+  {
+    "text": "Traditional Roof Ridge Motif",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "飞檐/屋脊线条",
+    "roots": "",
+    "extension": "Architectural curves echoing classical Chinese rooflines.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "The top trim features a stylized traditional roof ridge motif in brushed dark bronze.",
+    "exampleZh": "顶部收边饰有拉丝深青铜色的传统屋脊纹样。"
+  },
+  {
+    "text": "Jade/Stone Veneer",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "玉石/奢石薄片",
+    "roots": "",
+    "extension": "Translucent natural stone veneer backlit for atmospheric glow.（UNOG China Room Fit-Out；一、 中国厅传统文化元素、园林意象与现代工艺）",
+    "example": "LED backlighting behind the stone veneer creates a serene, warm glow in the China Room.",
+    "exampleZh": "石材薄片后的LED背光在中国厅营造出宁静温暖的光晕。"
+  },
+  {
+    "text": "Heritage Conservation Officer",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "历史建筑保护官",
+    "roots": "",
+    "extension": "UN official enforcing preservation rules on historic structures.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "The Heritage Conservation Officer inspected our wall anchor depth to protect original masonry.",
+    "exampleZh": "文物保护官员检查了我们的墙锚深度，以保护原有砌体。"
+  },
+  {
+    "text": "Non-Destructive Mounting",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "无损挂装/可逆固定",
+    "roots": "",
+    "extension": "Installation methods that leave no permanent damage to original walls.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "All artwork frames utilize non-destructive mounting techniques as required by SHP guidelines.",
+    "exampleZh": "所有艺术品框架均按SHP指南要求采用无损安装技术。"
+  },
+  {
+    "text": "Historical Masonry",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "历史砖石墙体",
+    "roots": "",
+    "extension": "Original structural stone or brickwork in Palais des Nations.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Drilling into historical masonry requires prior written authorization and precise depth stops.",
+    "exampleZh": "在历史砌体上钻孔须事先取得书面授权，并使用精确的深度限位。"
+  },
+  {
+    "text": "Original Plasterwork",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "原结构石膏雕饰",
+    "roots": "",
+    "extension": "Historic decorative ceiling or wall plaster moldings.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Build a protective barrier around original plasterwork before erecting scaffolding.",
+    "exampleZh": "搭设脚手架前，须在原有灰泥饰面周围设置防护屏障。"
+  },
+  {
+    "text": "Reversible Installation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "可逆性安装",
+    "roots": "",
+    "extension": "Design concept allowing full removal of new elements without trace.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "The entire dynamic screen subframe is a 100% reversible installation.",
+    "exampleZh": "整套动态屏幕副框架为百分之百可逆安装。"
+  },
+  {
+    "text": "Load Distribution Plate",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "荷载分散垫板/钢底板",
+    "roots": "",
+    "extension": "Baseplate spreading heavy structural loads across stone floors.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Place a steel load distribution plate under the crane outriggers to protect the historic floor.",
+    "exampleZh": "在起重机支腿下放置钢制荷载分散板，以保护历史地面。"
+  },
+  {
+    "text": "Heritage Buffer Zone",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "历史保护缓冲区",
+    "roots": "",
+    "extension": "Designated perimeter around historic features restricting construction.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "No heavy power tools may be operated within the 2-meter Heritage Buffer Zone.",
+    "exampleZh": "在两米文化遗产缓冲区内不得使用重型电动工具。"
+  },
+  {
+    "text": "Dust Containment Tent",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "全封闭防尘帐篷",
+    "roots": "",
+    "extension": "Fully sealed enclosure with negative pressure to trap dust.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Erect a dust containment tent with HEPA filtration around the wall chasing area.",
+    "exampleZh": "在墙面开槽区域周围搭设带高效空气过滤的防尘围帐。"
+  },
+  {
+    "text": "Micro-Vibration Monitoring",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "微震动监测",
+    "roots": "",
+    "extension": "Sensor tracking real-time structural vibrations during drilling.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Micro-vibration monitoring devices are attached to adjacent antique moldings during core drilling.",
+    "exampleZh": "取芯钻孔期间，微振动监测装置安装在相邻的古董线脚上。"
+  },
+  {
+    "text": "Historic Timber Flooring",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "历史木地板/拼花地板",
+    "roots": "",
+    "extension": "Original parquet or solid wood flooring in UN halls.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Cover all historic timber flooring with two layers of flame-retardant rubber matting.",
+    "exampleZh": "所有历史木地板须铺设两层阻燃橡胶垫。"
+  },
+  {
+    "text": "Structural Soundness",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "结构完好性/不破坏原构件",
+    "roots": "",
+    "extension": "Integrity of existing building elements under new loads.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "An independent survey verified the structural soundness of the ceiling beam before rigging.",
+    "exampleZh": "吊装前，独立勘测确认了天花梁的结构完好性。"
+  },
+  {
+    "text": "Conservation Guidelines",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "文物/遗迹保护指南",
+    "roots": "",
+    "extension": "Strict rules governing modifications in Palais des Nations.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "All material selections must strictly comply with UNOG Conservation Guidelines.",
+    "exampleZh": "所有材料选型须严格遵守联合国日内瓦办事处文物保护指南。"
+  },
+  {
+    "text": "Surface Protection Film",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "表面防损胶膜",
+    "roots": "",
+    "extension": "Temporary protective film applied over delicate historic stone.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Apply low-tack surface protection film over the marble door casings.",
+    "exampleZh": "在大理石门套上贴覆低粘性表面保护膜。"
+  },
+  {
+    "text": "Non-Invasive Anchor",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "非侵入式紧固件",
+    "roots": "",
+    "extension": "Clamping or tension-based fasteners avoiding hole drilling.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "We used non-invasive anchor clamps to attach the upper cable guides to the steel I-beam.",
+    "exampleZh": "我们使用非侵入式锚固夹具将上部线缆导轨固定在钢工字梁上。"
+  },
+  {
+    "text": "Ambient Humidity Control",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "环境湿度控制",
+    "roots": "",
+    "extension": "Maintaining stable moisture levels to protect wood and silk.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Keep ambient humidity control units running 24/7 during the artwork acclimatization phase.",
+    "exampleZh": "艺术品适应环境阶段，环境湿度控制设备须全天候运行。"
+  },
+  {
+    "text": "Temperature Fluctuation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "温度波动",
+    "roots": "",
+    "extension": "Thermal variation affecting timber expansion and LED cooling.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Screen thermal sensors will log temperature fluctuation inside the wall cavity.",
+    "exampleZh": "屏幕热传感器将记录墙腔内的温度波动。"
+  },
+  {
+    "text": "Historical Paint Layer",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "历史漆层/墙面涂层",
+    "roots": "",
+    "extension": "Original paint coats requiring preservation beneath new panels.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Do not apply adhesive tapes directly onto any exposed historical paint layer.",
+    "exampleZh": "不得将胶带直接贴在任何裸露的历史漆层上。"
+  },
+  {
+    "text": "Restorative Mortar",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "修缮专有砂浆",
+    "roots": "",
+    "extension": "Specialized mortar for patching stone without chemical corrosion.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "Use approved restorative mortar to fill temporary fixing holes after dismantling.",
+    "exampleZh": "拆除后，使用经批准的修复砂浆填补临时固定孔。"
+  },
+  {
+    "text": "Architectural Survey",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "精细建筑测绘",
+    "roots": "",
+    "extension": "3D laser scanning mapping exact dimensions of historic rooms.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "The 3D architectural survey revealed a 12mm wall tilt in the west corner of China Room.",
+    "exampleZh": "三维建筑勘测显示中国厅西角墙体倾斜十二毫米。"
+  },
+  {
+    "text": "Structural Load Limit",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "结构允许荷载上限",
+    "roots": "",
+    "extension": "Maximum weight permitted per square meter on historic floors.（UNOG China Room Fit-Out；二、 联合国万国宫（Palais des Nations）历史建筑与保护规范）",
+    "example": "The total artwork weight is well within the 350kg/m² structural load limit.",
+    "exampleZh": "艺术品总重量远低于每平方米三百五十千克的结构荷载限值。"
+  },
+  {
+    "text": "Swiss Customs Clearance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "瑞士海关清关",
+    "roots": "",
+    "extension": "Import procedures for bringing equipment into Geneva.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Swiss Customs Clearance was expedited using the official UN diplomatic exemption form.",
+    "exampleZh": "凭借联合国官方外交豁免表格，瑞士海关清关得以加快办理。"
+  },
+  {
+    "text": "Carnet ATA",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "暂准进口单证册",
+    "roots": "",
+    "extension": "International customs document for temporary duty-free import of exhibition gear.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Ensure all LED cabinets and art pieces are listed accurately on the Carnet ATA.",
+    "exampleZh": "确保所有LED箱体和艺术品均准确列入ATA单证册。"
+  },
+  {
+    "text": "Gate 8 Unloading Bay",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "万国宫8号门卸货区",
+    "roots": "",
+    "extension": "Main access gate for freight trucks at Palais des Nations.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "The flatbed truck carrying the display subframe will arrive at Gate 8 Unloading Bay at 08:00.",
+    "exampleZh": "运载显示屏副框架的平板卡车将于八点抵达八号门卸货区。"
+  },
+  {
+    "text": "Security Escort Vehicle",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "安保护送车辆",
+    "roots": "",
+    "extension": "UN security vehicle guiding delivery trucks on UN grounds.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "A Security Escort Vehicle will lead the material transport truck from Gate 8 to Sector C.",
+    "exampleZh": "安保护送车辆将引领物资运输卡车从八号门前往C区。"
+  },
+  {
+    "text": "Temporary Freight Elevator",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "临时施工货梯",
+    "roots": "",
+    "extension": "Lift designated for moving construction materials.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Check maximum dimensions of the temporary freight elevator before crating the 3-meter tiles.",
+    "exampleZh": "在包装三米长瓷砖前，须核对临时货运电梯的最大尺寸。"
+  },
+  {
+    "text": "Escorted Contractor Pass",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "需陪同施工通行证",
+    "roots": "",
+    "extension": "Security pass requiring a UN staff escort at all times.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "All overseas technicians were issued Escorted Contractor Passes for the first week.",
+    "exampleZh": "所有海外技术人员在第一周获发陪同承包商通行证。"
+  },
+  {
+    "text": "Unescorted Access Badge",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "无须陪同通行证/高阶胸牌",
+    "roots": "",
+    "extension": "Security clearance allowing unguided movement in Sector C.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "The PM obtained an Unescorted Access Badge after completing the UN security background check.",
+    "exampleZh": "项目经理完成联合国安保背景审查后取得无陪同出入证。"
+  },
+  {
+    "text": "Security Sweeping / K9 Inspection",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "",
+    "roots": "",
+    "extension": "Security team and sniffer dog inspection of crates.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "All shipping crates must undergo security sweeping before entering the China Room hall.",
+    "exampleZh": "所有运输木箱进入中国厅大厅前须接受安检扫查。"
+  },
+  {
+    "text": "Staging Area",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "临时构件中转/拼装区",
+    "roots": "",
+    "extension": "Designated indoor space for unboxing and pre-assembling modules.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Room C-102 will serve as our primary staging area for LED cabinet pre-assembly.",
+    "exampleZh": "C-102室将作为LED箱体预组装的主要集结区。"
+  },
+  {
+    "text": "Material Dispatch Schedule",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "物资进场排期表",
+    "roots": "",
+    "extension": "Time-phased log governing when items arrive at Gate 8.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Update the material dispatch schedule to avoid conflicts with ongoing HRC diplomatic sessions.",
+    "exampleZh": "更新物资发运时间表，以避免与正在进行的人权理事外交会议冲突。"
+  },
+  {
+    "text": "Off-Peak Delivery",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "非高峰时段送货",
+    "roots": "",
+    "extension": "Unloading scheduled early morning or late night to avoid traffic/events.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "We scheduled off-peak delivery between 06:00 and 08:00 AM to minimize hall disruption.",
+    "exampleZh": "我们安排在早六点至八点的非高峰时段交货，以尽量减少对大厅的干扰。"
+  },
+  {
+    "text": "Packaging Debris Removal",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "包装垃圾清运",
+    "roots": "",
+    "extension": "Removal of wooden crates and foam from UN grounds.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "All packaging debris removal must be completed by the end of each evening shift.",
+    "exampleZh": "所有包装废弃物清理须在每班晚班结束前完成。"
+  },
+  {
+    "text": "Bonded Warehouse",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "保税仓库",
+    "roots": "",
+    "extension": "Secure storage facility for goods awaiting customs clearance.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Spare screen tiles are held in a bonded warehouse near Geneva Airport.",
+    "exampleZh": "备用屏幕模块存放于日内瓦机场附近的保税仓库。"
+  },
+  {
+    "text": "Driver Security Clearance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "运输司机安保报备",
+    "roots": "",
+    "extension": "Advance submission of truck driver passport details.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Driver security clearance must be submitted 48 hours prior to vehicle arrival at Gate 8.",
+    "exampleZh": "司机安保许可须在车辆抵达八号门前四十八小时提交。"
+  },
+  {
+    "text": "Crate Inspection",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "木质包装箱检疫/安检",
+    "roots": "",
+    "extension": "Checking wooden crates for ISPM-15 heat-treat stamps and safety.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Swiss customs rejected crate #3 because it lacked the required ISPM-15 heat-treat stamp.",
+    "exampleZh": "瑞士海关拒收三号木箱，因其缺少所需的ISPM-15热处理标识。"
+  },
+  {
+    "text": "Storage Bay Allocation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "仓储区划拨/配额",
+    "roots": "",
+    "extension": "Designated square meters allocated for tool storage.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Our storage bay allocation in Sector C basement is restricted to 15 square meters.",
+    "exampleZh": "我们在C区地下室的仓储位分配仅限十五平方米。"
+  },
+  {
+    "text": "Material Transit Path",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "物资搬运指定路线",
+    "roots": "",
+    "extension": "Approved floor route for moving crates through Palais des Nations.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Follow the marked material transit path to avoid rolling heavy carts over decorative stone tiles.",
+    "exampleZh": "沿标示的物资转运路径通行，避免重型推车碾压装饰石材地面。"
+  },
+  {
+    "text": "Diplomatic Pouch / Courier",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "外交邮袋/外交特快",
+    "roots": "",
+    "extension": "Secure transport channel for sensitive documents/items.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Updated architectural drawings were sent via the Permanent Mission's diplomatic courier.",
+    "exampleZh": "更新后的建筑图纸通过常驻代表团外交信使送达。"
+  },
+  {
+    "text": "Night Shift Access Permit",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "夜间施工准入许可",
+    "roots": "",
+    "extension": "Special authorization for working after 19:00.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Apply for a Night Shift Access Permit to complete screen calibration before the ceremony.",
+    "exampleZh": "申请夜班出入许可，以便在仪式前完成屏幕校准。"
+  },
+  {
+    "text": "Vehicle Height Clearance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "车辆限高",
+    "roots": "",
+    "extension": "Maximum vertical limit for trucks entering UN gates/tunnels.（UNOG China Room Fit-Out；三、 日内瓦现场入场、安保、海关与物控）",
+    "example": "Verify truck vehicle height clearance before entering the Sector C underground service tunnel.",
+    "exampleZh": "进入C区地下服务隧道前，核实卡车车辆限高。"
+  },
+  {
+    "text": "Acoustic Insulation / Acoustic Batts",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "隔音棉/吸音衬垫",
+    "roots": "",
+    "extension": "Sound-absorbing material placed behind panels.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Install high-density acoustic insulation behind the perforated metal screen casing.",
+    "exampleZh": "在穿孔金属屏罩后方安装高密度吸音隔热材料。"
+  },
+  {
+    "text": "Fire-Stop Sealant / Fire Barrier",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "防火封堵胶/防火屏障",
+    "roots": "",
+    "extension": "Intumescent material sealing wall penetrations.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Apply fire-stop sealant around all power cable penetrations through the fire-rated wall.",
+    "exampleZh": "对穿过防火墙的所有电源线穿线处涂抹防火密封胶。"
+  },
+  {
+    "text": "Cable Concealment / Chasing",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "暗埋线槽/墙面开槽",
+    "roots": "",
+    "extension": "Hiding cables within walls or behind joinery.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "All fiber optic and power lines use recessed cable concealment behind the wooden dado.",
+    "exampleZh": "所有光纤和电源线均采用暗藏布线，隐蔽于木质墙裙后方。"
+  },
+  {
+    "text": "Joint Alignment / Seam Tolerance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "拼缝对齐/接缝公差",
+    "roots": "",
+    "extension": "Precision matching of adjacencies across materials.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Cross-check the joint alignment between the LED cabinet edge and the stone cladding trim.",
+    "exampleZh": "交叉核对应LED箱体边缘与石材饰面收边之间的接缝对齐。"
+  },
+  {
+    "text": "Flush Electrical Box",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "暗装底盒/齐平接线盒",
+    "roots": "",
+    "extension": "Switch or socket box installed level with wall surfaces.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "The AV control socket must be housed in a flush electrical box within the wooden skirting.",
+    "exampleZh": "影音控制插座须装入木质踢脚线内的嵌入式电气盒。"
+  },
+  {
+    "text": "Recessed LED Channel",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "嵌入式灯槽",
+    "roots": "",
+    "extension": "Aluminum extrusion housing light strips flush inside panels.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Install a recessed LED channel along the perimeter trim to create indirect wash lighting.",
+    "exampleZh": "沿周边收边安装嵌入式LED灯槽，以营造间接洗墙照明。"
+  },
+  {
+    "text": "Structural Subframe Welding",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "结构次骨架焊接",
+    "roots": "",
+    "extension": "Joining steel profiles to form screen support structures.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Structural subframe welding is strictly limited to hours when Hot Work Permits are active.",
+    "exampleZh": "结构副框架焊接严格限于热工作业许可证有效时段。"
+  },
+  {
+    "text": "Laser Leveling Grid",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "激光找平网格",
+    "roots": "",
+    "extension": "Projected laser grid used to calibrate cabinet planarity.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Project a 3D laser leveling grid to verify verticality across the 8-meter wall span.",
+    "exampleZh": "投射三维激光找平网格，以核验八米墙面跨度的垂直度。"
+  },
+  {
+    "text": "Plumb Line Calibration",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "垂直度校准/铅锤校核",
+    "roots": "",
+    "extension": "Ensuring vertical alignment perpendicular to floor.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Perform plumb line calibration before clamping the top row of screen brackets.",
+    "exampleZh": "在夹紧顶排屏幕支架前进行铅垂校准。"
+  },
+  {
+    "text": "Shim Plate Adjustment",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "微调垫片校正",
+    "roots": "",
+    "extension": "Inserting thin stainless shims to align uneven brackets.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Fine-tune bracket depth using 0.5mm shim plate adjustment for seamless module mounting.",
+    "exampleZh": "使用零点五毫米垫片微调支架深度，以实现模块无缝安装。"
+  },
+  {
+    "text": "Expansion Gap",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "热胀冷缩伸缩缝",
+    "roots": "",
+    "extension": "Allowance for material expansion caused by ambient heat.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Leave a 2mm expansion gap between the brushed metal frame and adjacent timber panels.",
+    "exampleZh": "在拉丝金属框架与相邻木饰面板之间预留两毫米伸缩缝。"
+  },
+  {
+    "text": "Conduit Routing",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电线管敷设走向",
+    "roots": "",
+    "extension": "Planning paths for rigid or flexible electrical piping.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Submit the conduit routing plan to the UN electrical inspector before closing the drywall.",
+    "exampleZh": "封闭石膏板前，将导管布线路由图提交联合国电气检查员。"
+  },
+  {
+    "text": "Cable Tie / Cord Organizer",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "扎带/理线梳",
+    "roots": "",
+    "extension": "Fasteners organizing power and data looms neatly.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Bundle all signal cables with flame-retardant cable ties inside the rear service channel.",
+    "exampleZh": "在后部检修通道内用阻燃扎带捆扎所有信号线缆。"
+  },
+  {
+    "text": "Terminal Block Inspection",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "接线端子排检查",
+    "roots": "",
+    "extension": "Verifying firm screw connections in electrical boxes.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "The chief electrician conducted a terminal block inspection prior to primary power-on.",
+    "exampleZh": "首席电工在主电源接通前进行了端子排检查。"
+  },
+  {
+    "text": "Surface Flatness Deviation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "表面平整度偏差",
+    "roots": "",
+    "extension": "Measured depth variation across assembled screens.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Surface flatness deviation across adjacent modules must be kept under 0.2mm.",
+    "exampleZh": "相邻模块之间的表面平整度偏差须控制在零点二毫米以内。"
+  },
+  {
+    "text": "Subfloor Leveling Compound",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "自流平水泥/基层找平",
+    "roots": "",
+    "extension": "Floor preparation ensuring flat base plates.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Apply fast-drying subfloor leveling compound under the base structure mounting feet.",
+    "exampleZh": "在底座结构安装脚下方涂抹快干找平砂浆。"
+  },
+  {
+    "text": "Dust Extraction System",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "防尘吸尘系统",
+    "roots": "",
+    "extension": "Vacuum attachment on tools trapping drill dust at source.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "All angle grinders and rotary drills must be fitted with an active dust extraction system.",
+    "exampleZh": "所有角磨机和旋转钻机均须配备主动吸尘系统。"
+  },
+  {
+    "text": "Structural Anchor Pull-Out Test",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "锚栓拉拔力测试",
+    "roots": "",
+    "extension": "Testing holding force of anchors in stone/concrete.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Conduct a structural anchor pull-out test to verify 5kN load capacity per fixing point.",
+    "exampleZh": "进行结构锚栓拉拔试验，以验证每个固定点五千牛顿的承载力。"
+  },
+  {
+    "text": "Scaffolding Wheel Lock",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "脚手架刹车/脚轮锁",
+    "roots": "",
+    "extension": "Locking mechanism securing mobile scaffold towers.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Verify that every scaffolding wheel lock is engaged before technicians climb the tower.",
+    "exampleZh": "技术人员攀上脚手架前，确认每个脚轮锁均已锁紧。"
+  },
+  {
+    "text": "Temporary Power Junction",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "临时施工用电接线箱",
+    "roots": "",
+    "extension": "Site distribution box supplying power tools.（UNOG China Room Fit-Out；四、 现场多工种交叉配合、施工沟通与技术协调）",
+    "example": "Connect all power tools to the temporary power junction equipped with 30mA RCD breakers.",
+    "exampleZh": "所有电动工具须接入配备三十毫安漏电保护断路器的临时电源接线箱。"
+  },
+  {
+    "text": "Variation Order (VO) / Change Request",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "工程变更单/变更申请",
+    "roots": "",
+    "extension": "Document authorizing budget or design edits.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Any alteration to the China Room light fixture layout requires an executed Variation Order.",
+    "exampleZh": "对中国厅灯具布局的任何改动均须办理已签署的变更指令。"
+  },
+  {
+    "text": "Protocol Clearance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "礼仪司审批文件",
+    "roots": "",
+    "extension": "Official approval from UN Protocol regarding art appearance.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Final artwork positioning is pending protocol clearance from the Chief of Protocol.",
+    "exampleZh": "艺术品最终定位尚待礼宾司司长的礼宾核准。"
+  },
+  {
+    "text": "Cultural Sensitivity Review",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "文化敏感度审查",
+    "roots": "",
+    "extension": "Evaluation verifying artwork imagery suits diplomacy.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "The exhibition theme successfully passed the UN Cultural Sensitivity Review.",
+    "exampleZh": "展览主题顺利通过联合国文化敏感性审查。"
+  },
+  {
+    "text": "Unveiling Ceremony",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "揭幕典礼/启幕仪式",
+    "roots": "",
+    "extension": "Formal event where the installed artwork is revealed.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "The Unveiling Ceremony will be attended by permanent representatives and UN dignitaries.",
+    "exampleZh": "揭幕仪式将有常驻代表及联合国要员出席。"
+  },
+  {
+    "text": "Commemorative Plaque",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "纪念铭牌/捐赠牌",
+    "roots": "",
+    "extension": "Metal or stone plaque describing the artwork and donor.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Mount the bronze commemorative plaque 1.5 meters above floor level beside the portal.",
+    "exampleZh": "将青铜纪念铭牌安装在门廊旁距地面一点五米处。"
+  },
+  {
+    "text": "Practical Completion Certificate",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "阶段性完工证书",
+    "roots": "",
+    "extension": "Document marking physical construction finish.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "The UN project director signed the Practical Completion Certificate following light testing.",
+    "exampleZh": "联合国项目主任在灯具测试后签署了实际竣工证书。"
+  },
+  {
+    "text": "Snagging Walkthrough / Punch Listing",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "瑕疵整改联合巡查",
+    "roots": "",
+    "extension": "Joint site walkthrough listing minor fixes.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "We identified three minor paint scuffs during yesterday's snagging walkthrough.",
+    "exampleZh": "在昨天的缺陷查验巡视中，我们发现了三处轻微油漆擦痕。"
+  },
+  {
+    "text": "Defect Liability Period (DLP) / Warranty",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "缺陷责任期/质保期",
+    "roots": "",
+    "extension": "Contract period covering free repairs.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "A 24-month Defect Liability Period applies to all power supplies and LED tiles in China Room.",
+    "exampleZh": "中国厅内所有电源和LED模组适用二十四个月缺陷责任期。"
+  },
+  {
+    "text": "Certificate of Donation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "捐赠证书/艺术品交接凭证",
+    "roots": "",
+    "extension": "Official document transferring artwork to UN.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "The Permanent Mission will present the Certificate of Donation during the inauguration.",
+    "exampleZh": "常驻代表团将在落成典礼上递交捐赠证书。"
+  },
+  {
+    "text": "As-Built Documentation Package",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "竣工图纸与技术文档全集",
+    "roots": "",
+    "extension": "Complete set of final drawings and manuals.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Hand over the As-Built Documentation Package to the UN Facility Management Directorate.",
+    "exampleZh": "将竣工文件包移交联合国设施管理司。"
+  },
+  {
+    "text": "Maintenance Manual",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "日常维护保养手册",
+    "roots": "",
+    "extension": "Instructions on cleaning and operating the artwork system.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "The maintenance manual specifies using micro-fiber cloths for cleaning matte screen covers.",
+    "exampleZh": "维护手册规定使用超细纤维布清洁哑光屏幕罩面。"
+  },
+  {
+    "text": "Spare Parts Allocation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "备品备件划拨额度",
+    "roots": "",
+    "extension": "Dedicated stock of extra tiles and modules for backup.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Store a 5% spare parts allocation inside the UN Sector C climate-controlled storage room.",
+    "exampleZh": "将百分之五的备件配额存放于联合国C区恒温恒湿库房。"
+  },
+  {
+    "text": "Operational Handover",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "运维移交/操作交接",
+    "roots": "",
+    "extension": "Formal training and transfer of system control to UN IT.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Operational handover to the UN AV team will take place two days before the inauguration.",
+    "exampleZh": "向联合国影音团队的运营移交将在落成典礼前两天进行。"
+  },
+  {
+    "text": "Final Sign-off Form",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "最终验收签字表",
+    "roots": "",
+    "extension": "Document signifying full contractual satisfaction.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Ensure all punch list items are rectified before presenting the Final Sign-off Form.",
+    "exampleZh": "提交最终签收表前，确保整改清单上的所有项目均已纠正。"
+  },
+  {
+    "text": "Non-Disclosure Compliance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "保密协议遵从声明",
+    "roots": "",
+    "extension": "Formal confirmation that no sensitive photos leaked.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "All installation personnel signed the Non-Disclosure Compliance form upon project finish.",
+    "exampleZh": "项目结束时，所有安装人员均签署了保密合规表格。"
+  },
+  {
+    "text": "Certificate of Insurance (COI)",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "公众责任保险凭证",
+    "roots": "",
+    "extension": "Proof of contractor's liability coverage.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Maintain a valid Certificate of Insurance covering up to 5 million CHF throughout site work.",
+    "exampleZh": "在整个现场施工期间保持有效的保险凭证，承保金额最高达五百万瑞士法郎。"
+  },
+  {
+    "text": "Press & Media Accreditation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "媒体采访认证",
+    "roots": "",
+    "extension": "Security passes issued for journalists during ceremony.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Media accreditation for the unveiling ceremony is managed by the UN Information Service.",
+    "exampleZh": "揭幕仪式的媒体采访证由联合国新闻处负责管理。"
+  },
+  {
+    "text": "VIP Route Clearance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "贵宾通行路线安检确认",
+    "roots": "",
+    "extension": "Security approval of pathing used by dignitaries.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "Security completed VIP route clearance from Gate 8 through to the China Room entrance.",
+    "exampleZh": "安保部门已完成从8号门至中国厅入口的贵宾路线清障。"
+  },
+  {
+    "text": "Goodwill Handover",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "友好合作交付",
+    "roots": "",
+    "extension": "Conceptual term for successful completion strengthening ties.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "The project stands as a symbol of goodwill handover between the donor state and the UN.",
+    "exampleZh": "该项目是捐赠国与联合国之间善意移交的象征。"
+  },
+  {
+    "text": "Warranty Bond",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "质保保证金/履约保函",
+    "roots": "",
+    "extension": "Financial security held during the Defect Liability Period.（UNOG China Room Fit-Out；五、 商务变更、外交礼仪、阶段验收与交付）",
+    "example": "The warranty bond will be released upon completion of the 24-month DLP inspection.",
+    "exampleZh": "保修保函将在二十四个月缺陷责任期检查完成后予以解除。"
+  },
+  {
+    "text": "Textured Finish",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "纹理饰面",
+    "roots": "",
+    "extension": "Surface texture added to screens or frames for visual depth.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "The textured finish on the screen frame seamlessly blends with the marble wall.",
+    "exampleZh": "屏幕边框的纹理饰面与大理石墙面无缝融合。"
+  },
+  {
+    "text": "Matte Coating",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "哑光涂层",
+    "roots": "",
+    "extension": "Non-glossy surface treatment reducing ambient light glare.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "We applied a matte coating on the display surface to prevent reflections during daytime sessions.",
+    "exampleZh": "我们在显示表面涂覆了哑光涂层，以防止日间会议期间出现反光。"
+  },
+  {
+    "text": "Anti-Glare",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "防眩光",
+    "roots": "",
+    "extension": "Optical treatment designed to diffuse direct light sources.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Anti-glare glass is specified for all dynamic screens installed in the glass atrium.",
+    "exampleZh": "安装于玻璃中庭的所有动态屏幕均按规定采用防眩光玻璃。"
+  },
+  {
+    "text": "Perforated Panel",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "穿孔板/微孔板",
+    "roots": "",
+    "extension": "Panel with small holes for acoustic transparency or ventilation.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Acoustic fabric is placed behind the perforated panel to absorb sound.",
+    "exampleZh": "穿孔面板后方铺设吸音织物以吸收声音。"
+  },
+  {
+    "text": "Translucent Membrane",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "透光膜/软膜",
+    "roots": "",
+    "extension": "Flexible stretch ceiling or screen cover that diffuses light.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "The backlight behind the translucent membrane creates a soft, uniform ambient glow.",
+    "exampleZh": "半透明膜后的背光营造出柔和均匀的环境光效。"
+  },
+  {
+    "text": "Diffusion Layer",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "漫反射层/扩散层",
+    "roots": "",
+    "extension": "Layer used to spread light evenly without visible hotspots.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Check if the optical diffusion layer is clean before securing the top cover.",
+    "exampleZh": "固定顶盖前，请检查光学扩散层是否清洁。"
+  },
+  {
+    "text": "Brushed Aluminum",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "拉丝铝材",
+    "roots": "",
+    "extension": "Aluminum with a subtle parallel line texture for modern aesthetics.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "The outer bezel is made of brushed aluminum to match the architectural trims.",
+    "exampleZh": "外框采用拉丝铝材，以与建筑饰条相匹配。"
+  },
+  {
+    "text": "Anodized Surface",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "阳极氧化表面",
+    "roots": "",
+    "extension": "Chemically treated metal surface for enhanced durability and tone.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "The anodized surface of the mounting bracket resists corrosion and oxidation.",
+    "exampleZh": "安装支架的阳极氧化表面可抵御腐蚀和氧化。"
+  },
+  {
+    "text": "Convex Curve",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "凸面弧度",
+    "roots": "",
+    "extension": "Outward-curving screen configuration.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "The texture screen features a convex curve designed to wrap around the central pillar.",
+    "exampleZh": "纹理屏幕呈凸面弧形，设计用于环绕中央立柱。"
+  },
+  {
+    "text": "Concave Curve",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "凹面弧度",
+    "roots": "",
+    "extension": "Inward-curving display structure.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Adjust the interlocking pins to lock the cabinets into a tight concave curve.",
+    "exampleZh": "调整互锁销，将箱体锁定为紧凑的凹面弧形。"
+  },
+  {
+    "text": "Flexible Tile",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "柔性显示模组",
+    "roots": "",
+    "extension": "Bendable LED module for curved or irregular shapes.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Flexible tiles allow us to mount dynamic visuals onto cylindrical columns.",
+    "exampleZh": "柔性模组使我们能够将动态影像安装到圆柱上。"
+  },
+  {
+    "text": "Seamless Edge",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "无缝边缘",
+    "roots": "",
+    "extension": "Screen border engineered to minimize visible joints.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Ensure the seamless edge alignment is within a 0.5mm tolerance across all tiles.",
+    "exampleZh": "确保所有模组的无缝边缘对齐误差控制在0.5毫米以内。"
+  },
+  {
+    "text": "Flush Mount",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "齐平嵌入安装",
+    "roots": "",
+    "extension": "Installation style where the screen face sits level with the wall.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "The design calls for a flush mount installation into the existing stone cladding.",
+    "exampleZh": "设计要求将屏幕齐平安装于现有石材饰面中。"
+  },
+  {
+    "text": "Relief Texture",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "浮雕纹理",
+    "roots": "",
+    "extension": "Raised surface design providing 3D tactile depth.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Dynamic video content aligns with the physical relief texture of the art panel.",
+    "exampleZh": "动态视频内容与艺术面板的实体浮雕纹理相对齐。"
+  },
+  {
+    "text": "Bezel-less",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "无边框的",
+    "roots": "",
+    "extension": "Design lacking a prominent border around the display area.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Bezel-less cabinets are required to create a continuous panoramic visual.",
+    "exampleZh": "需采用无边框箱体以呈现连续的全景视觉效果。"
+  },
+  {
+    "text": "Grayscale Transition",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "灰度过渡",
+    "roots": "",
+    "extension": "Smooth gradient performance between dark and bright areas.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Superior grayscale transition ensures subtle texture details remain visible in dark scenes.",
+    "exampleZh": "出色的灰度过渡确保暗场画面中细微的纹理细节依然清晰可见。"
+  },
+  {
+    "text": "Color Uniformity",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "色彩均匀度",
+    "roots": "",
+    "extension": "Consistency of color display across the entire surface.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "We conducted color uniformity calibration under low-light gallery conditions.",
+    "exampleZh": "我们在低照度展厅条件下进行了色彩均匀性校准。"
+  },
+  {
+    "text": "Viewing Angle",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "视角",
+    "roots": "",
+    "extension": "Maximum angle at which a display can be viewed with acceptable performance.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "The screen boasts a 160-degree wide viewing angle for delegates seated at the sides.",
+    "exampleZh": "该屏幕拥有160度宽视角，方便坐在两侧的代表观看。"
+  },
+  {
+    "text": "Opacity",
+    "type": "word",
+    "phonetic": "",
+    "translation": "不透明度",
+    "roots": "",
+    "extension": "Degree to which light is blocked by the texture material.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "Adjust the fabric opacity to balance backlighting and front projection.",
+    "exampleZh": "调整织物不透明度，以平衡背光照明与正面投影。"
+  },
+  {
+    "text": "Haze Level",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "雾度/防反射指数",
+    "roots": "",
+    "extension": "Measure of light diffusion on the protective screen sheet.（UNOG Texture Screen Installation；一、 屏幕材质、纹理与表面饰面）",
+    "example": "A low haze level maintains high visual clarity while cutting room glare.",
+    "exampleZh": "低雾度可在削减室内眩光的同时保持高视觉清晰度。"
+  },
+  {
+    "text": "Magnetic Attachment",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "磁吸固定",
+    "roots": "",
+    "extension": "Securing modules using high-strength magnets.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Magnetic attachment allows front-service access for rapid module replacement.",
+    "exampleZh": "磁吸安装方式支持正面维护，便于快速更换模组。"
+  },
+  {
+    "text": "Front Maintenance / Front Service",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "前维护",
+    "roots": "",
+    "extension": "Servicing screen components from the front face.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Since there is no rear hallway, the entire screen system must support front service.",
+    "exampleZh": "由于没有后侧通道，整个屏幕系统必须支持正面维护。"
+  },
+  {
+    "text": "Interlocking Mechanism",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "互锁机构",
+    "roots": "",
+    "extension": "Mechanical locks connecting adjacent cabinets tightly.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Engage the dual interlocking mechanism to eliminate vertical gaps between tiles.",
+    "exampleZh": "接合双重互锁机构，以消除模组之间的垂直缝隙。"
+  },
+  {
+    "text": "Alignment Pin",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "定位销/导向针",
+    "roots": "",
+    "extension": "Precision pin ensuring exact positioning between modules.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Damaged alignment pins can cause visible seam lines on the texture display.",
+    "exampleZh": "损坏的定位销可能导致纹理显示屏上出现可见接缝。"
+  },
+  {
+    "text": "Shimming / Shim Plate",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "垫片/微调垫片",
+    "roots": "",
+    "extension": "Thin metal spacers used to level structural brackets.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Use stainless steel shimming to compensate for unevenness in the brick substrate.",
+    "exampleZh": "使用不锈钢垫片来补偿砖基层的不平整。"
+  },
+  {
+    "text": "Custom Bracket",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "定制支架",
+    "roots": "",
+    "extension": "Tailor-made mounting hardware for non-standard wall shapes.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "The custom bracket holds the curved screen 50mm off the historic wall.",
+    "exampleZh": "定制支架将弧形屏幕固定在距历史墙面50毫米处。"
+  },
+  {
+    "text": "Quick-Lock Latch",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "快锁结构",
+    "roots": "",
+    "extension": "Tool-free locking system for fast cabinet splicing.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Ensure every quick-lock latch is fully engaged before releasing the hoist.",
+    "exampleZh": "在松开吊具前，确保每个快锁卡扣已完全锁紧。"
+  },
+  {
+    "text": "Structural Subframe",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "结构次骨架",
+    "roots": "",
+    "extension": "Secondary metal framework supporting the display modules.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "We welded a light-gauge steel structural subframe directly behind the cladding.",
+    "exampleZh": "我们在饰面正后方焊接了轻钢结构副框架。"
+  },
+  {
+    "text": "Expansion Joint",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "伸缩缝",
+    "roots": "",
+    "extension": "Gap allowing thermal expansion without structural warping.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Leave a 3mm expansion joint between the metal frame and marble tiles.",
+    "exampleZh": "在金属框架与大理石瓷砖之间预留3毫米伸缩缝。"
+  },
+  {
+    "text": "Chemical Anchor",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "化学膨胀螺栓",
+    "roots": "",
+    "extension": "High-strength adhesive anchor used in masonry or stone.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Secure the main load-bearing beam using M12 chemical anchors in the concrete slab.",
+    "exampleZh": "使用M12化学锚栓将主承重梁固定于混凝土楼板上。"
+  },
+  {
+    "text": "Corner Cabinet",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "转角箱体",
+    "roots": "",
+    "extension": "Specially designed cabinet for 90-degree outer corners.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Corner cabinets ensure a sharp, continuous image wrap around wall edges.",
+    "exampleZh": "转角箱体确保画面在墙角处清晰连贯地环绕显示。"
+  },
+  {
+    "text": "Service Tool / Vacuum Suction Tool",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "前维护真空吸盘",
+    "roots": "",
+    "extension": "Tool used to extract front-access tiles.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "The technician used a vacuum suction tool to remove the faulty LED module.",
+    "exampleZh": "技术人员使用真空吸盘工具拆下了故障LED模组。"
+  },
+  {
+    "text": "Flatness Adjustment",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "平整度调节",
+    "roots": "",
+    "extension": "Fine-tuning cabinet depth to form a perfectly flat plane.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Spend extra time on flatness adjustment to prevent shadow lines across seams.",
+    "exampleZh": "多花时间进行平整度调节，以防止接缝处出现阴影线。"
+  },
+  {
+    "text": "Structural Tolerance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "结构变形公差",
+    "roots": "",
+    "extension": "Maximum allowable structural shift under load.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "The total structural tolerance must not exceed 2mm along the entire 10-meter span.",
+    "exampleZh": "沿整个10米跨度，结构总公差不得超过2毫米。"
+  },
+  {
+    "text": "Cantilever Mount",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "悬臂挂架",
+    "roots": "",
+    "extension": "Overhanging bracket supporting forward-projecting screens.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "The cantilever mount extends the dynamic artwork 30cm away from the back wall.",
+    "exampleZh": "悬臂支架将动态艺术品伸出后墙30厘米。"
+  },
+  {
+    "text": "Safety Cable",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "安全防坠钢丝绳",
+    "roots": "",
+    "extension": "Secondary steel wire preventing components from falling.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Attach a safety cable between each heavy cabinet and the primary truss.",
+    "exampleZh": "在每个重型箱体与主桁架之间连接安全钢索。"
+  },
+  {
+    "text": "Vibration Isolator",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "减震垫/橡胶隔离垫",
+    "roots": "",
+    "extension": "Rubber or spring device damping mechanical vibration.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Vibration isolators prevent HVAC duct tremors from shaking the delicate screen.",
+    "exampleZh": "隔振器可防止暖通空调管道颤动影响精密屏幕。"
+  },
+  {
+    "text": "Recessed Housing",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "壁龛底盒",
+    "roots": "",
+    "extension": "Enclosed cavity built into walls to house equipment.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "The recessed housing must have top and bottom ventilation cutouts.",
+    "exampleZh": "嵌入式外壳必须设有顶部和底部通风开口。"
+  },
+  {
+    "text": "Counterbore / Countersunk Hole",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "沉头孔",
+    "roots": "",
+    "extension": "Hole enabling bolt heads to sit flush with surfaces.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Use countersunk screws so the frame surface remains completely smooth.",
+    "exampleZh": "使用沉头螺钉，使框架表面保持完全平整。"
+  },
+  {
+    "text": "Thread Locker",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "螺纹锁固胶/防松胶",
+    "roots": "",
+    "extension": "Chemical compound applied to thread fasteners to prevent loosening.（UNOG Texture Screen Installation；二、 模组、拼接与精细机械固定）",
+    "example": "Apply medium-strength thread locker to all bolts subject to structural vibration.",
+    "exampleZh": "对所有承受结构振动的螺栓涂抹中等强度螺纹锁固剂。"
+  },
+  {
+    "text": "Pixel Mapping",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "像素映射",
+    "roots": "",
+    "extension": "Aligning video content pixels precisely with physical screen layouts.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Precise pixel mapping is crucial for non-standard, custom-shaped texture screens.",
+    "exampleZh": "精确的像素映射对于非标准定制异形纹理屏幕至关重要。"
+  },
+  {
+    "text": "Content Renderer",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "内容渲染器",
+    "roots": "",
+    "extension": "High-performance server processing dynamic visual graphics.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "The content renderer generates real-time generative art matching ambient light.",
+    "exampleZh": "内容渲染器实时生成与环境光相匹配的生成艺术。"
+  },
+  {
+    "text": "Video Splicer",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "视频拼接器",
+    "roots": "",
+    "extension": "Hardware dividing one high-resolution video into multiple screen feeds.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "The 8K video splicer distributes video outputs across four receiving controllers.",
+    "exampleZh": "该8K视频拼接器将视频输出分配至四台接收控制器。"
+  },
+  {
+    "text": "Signal Redundancy",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "信号冗余/双路备份",
+    "roots": "",
+    "extension": "Backup signal cabling preventing blackout upon line failure.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Dual-loop signal redundancy guarantees unbroken playback during diplomatic events.",
+    "exampleZh": "双环路信号冗余可确保外交活动期间播放不中断。"
+  },
+  {
+    "text": "HDMI Extender / HDBaseT",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "HDMI信号延长器",
+    "roots": "",
+    "extension": "Transceiver transmitting HD signals over network cables.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Use HDBaseT extenders to carry 4K signals from the control room to the screen.",
+    "exampleZh": "使用HDBaseT延长器将4K信号从控制室传输至屏幕。"
+  },
+  {
+    "text": "Optical Fiber Transceiver",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "光纤收发器",
+    "roots": "",
+    "extension": "Converts electrical signals to optical for long distances.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Optical fiber transceivers transmit data across the 150-meter hall without latency.",
+    "exampleZh": "光纤收发器可在150米大厅内无延迟传输数据。"
+  },
+  {
+    "text": "Frame Synchronization",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "帧同步",
+    "roots": "",
+    "extension": "Locking multi-screen refresh cycles to eliminate screen tearing.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Frame synchronization is essential when pairing dynamic screens with camera broadcasts.",
+    "exampleZh": "将动态屏幕与摄像机转播配合使用时，帧同步至关重要。"
+  },
+  {
+    "text": "EDID Emulation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "EDID数据仿真",
+    "roots": "",
+    "extension": "Forcing constant resolution data between media servers and screens.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Set up EDID emulation to prevent display resolution resets during power cycles.",
+    "exampleZh": "设置EDID仿真，以防止通断电循环时显示分辨率被重置。"
+  },
+  {
+    "text": "Test Pattern",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "测试图样/彩条图",
+    "roots": "",
+    "extension": "Grid or color patterns used to verify screen alignment and color.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Display a white grid test pattern to check for seam misalignments or dead pixels.",
+    "exampleZh": "显示白色网格测试图案，以检查接缝错位或坏点。"
+  },
+  {
+    "text": "Color Calibration",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "色彩校准",
+    "roots": "",
+    "extension": "Adjusting screen color output to match industry standards.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Professional color calibration ensures accurate reproduction of artistic visuals.",
+    "exampleZh": "专业色彩校准可确保艺术视觉内容的准确还原。"
+  },
+  {
+    "text": "Brightness Sensor",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "光敏传感器/自动调光",
+    "roots": "",
+    "extension": "Sensor adjusting screen brightness based on room light.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "An automated brightness sensor dims the display when hall lights are turned off.",
+    "exampleZh": "当大厅灯光关闭时，自动亮度传感器会调暗显示屏。"
+  },
+  {
+    "text": "Bit Depth",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "位深/色彩深度",
+    "roots": "",
+    "extension": "Number of color bits per channel defining color gradation.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "10-bit color bit depth provides smooth gradient transitions without color banding.",
+    "exampleZh": "10比特色深可实现平滑的渐变过渡，避免色带现象。"
+  },
+  {
+    "text": "Latency Compensation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "延迟补偿",
+    "roots": "",
+    "extension": "Adjusting audio or video timing to synchronize playback.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Apply latency compensation to keep ambient audio in sync with screen visuals.",
+    "exampleZh": "应用延迟补偿，使环境音频与屏幕画面保持同步。"
+  },
+  {
+    "text": "Custom Resolution",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "自定义分辨率",
+    "roots": "",
+    "extension": "Non-standard canvas pixel size tailored to unique screen shapes.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "The media server is configured with a custom resolution of 3840x1080 pixels.",
+    "exampleZh": "媒体服务器已配置为3840×1080像素的自定义分辨率。"
+  },
+  {
+    "text": "Hot Swappable",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "支持热插拔的",
+    "roots": "",
+    "extension": "Components that can be replaced without shutting down power.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Receiving cards are hot swappable to allow instant field maintenance during shows.",
+    "exampleZh": "接收卡支持热插拔，便于演出期间即时现场维护。"
+  },
+  {
+    "text": "Color Gamut Mapping",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "色域映射",
+    "roots": "",
+    "extension": "Translating source video color space to screen color space.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Perform color gamut mapping to preserve accurate tones on DCI-P3 displays.",
+    "exampleZh": "执行色域映射，以在DCI-P3显示器上保持准确色调。"
+  },
+  {
+    "text": "Signal Loss",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "信号衰减/丢失",
+    "roots": "",
+    "extension": "Reduction in signal strength over long cable runs.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Using high-quality Cat6A STP cables prevents signal loss caused by interference.",
+    "exampleZh": "使用高质量Cat6A屏蔽双绞线可防止干扰导致的信号损耗。"
+  },
+  {
+    "text": "Loop-Through",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "环路输出",
+    "roots": "",
+    "extension": "Signal output pass-through allowing daisy-chaining of devices.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Connect the video feed using the loop-through ports on adjacent controllers.",
+    "exampleZh": "通过相邻控制器上的环通端口连接视频信号。"
+  },
+  {
+    "text": "Display Canvas",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "显示画布",
+    "roots": "",
+    "extension": "Total pixel area managed by the media server layout.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Position the texture elements anywhere within the 8K display canvas.",
+    "exampleZh": "可在8K显示画布内任意位置放置纹理元素。"
+  },
+  {
+    "text": "Black Level",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "纯黑暗场表现",
+    "roots": "",
+    "extension": "Screen's ability to display deep, true black levels.（UNOG Texture Screen Installation；三、 显控系统、像素映射与信号处理）",
+    "example": "Excellent black level performance helps dynamic artwork blend seamlessly into shadows.",
+    "exampleZh": "出色的黑电平表现有助于动态艺术品与阴影无缝融合。"
+  },
+  {
+    "text": "Power Distribution Unit / PDU",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电源分配单元/配电柜",
+    "roots": "",
+    "extension": "Device regulating electrical power to screens.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "The PDU manages timed sequential power-up for all 12 display cabinets.",
+    "exampleZh": "配电单元管理全部12个显示箱体的定时顺序上电。"
+  },
+  {
+    "text": "Sequential Power-On",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "顺序延时时序开机",
+    "roots": "",
+    "extension": "Staggered equipment boot-up to prevent power surges.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Configure sequential power-on to protect venue circuit breakers from tripping.",
+    "exampleZh": "配置顺序上电，以防场馆断路器跳闸。"
+  },
+  {
+    "text": "Inrush Surge Protection",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "抗浪涌冲击保护",
+    "roots": "",
+    "extension": "Electrical protection absorbing sudden current peaks.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Inrush surge protection is installed on the main 3-phase power line.",
+    "exampleZh": "主三相电源线路上已安装浪涌冲击保护装置。"
+  },
+  {
+    "text": "Heat Dissipation Channel",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "散热风道",
+    "roots": "",
+    "extension": "Engineered airflow path for cooling internal electronics.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Leave a 100mm heat dissipation channel behind the wall cladding.",
+    "exampleZh": "在墙面饰面后方预留100毫米散热通道。"
+  },
+  {
+    "text": "Convection Cooling",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "自然对流散热",
+    "roots": "",
+    "extension": "Fanless cooling relying on natural air circulation.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Convection cooling keeps the screen silent during quiet diplomatic speeches.",
+    "exampleZh": "对流冷却使屏幕在安静的外交演讲期间保持静音运行。"
+  },
+  {
+    "text": "Thermal Sensor",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "温度传感器",
+    "roots": "",
+    "extension": "Sensor monitoring internal temperature to trigger cooling.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Thermal sensors will trigger warning alerts if cabinet temperatures exceed 65°C.",
+    "exampleZh": "若箱体温度超过65°C，热传感器将触发预警。"
+  },
+  {
+    "text": "Power Load Calculation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "用电功率负载计算",
+    "roots": "",
+    "extension": "Summing total wattage to determine cable sizes.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Our power load calculation indicates a peak consumption of 15 kilowatts.",
+    "exampleZh": "我们的电力负荷计算显示峰值功耗为15千瓦。"
+  },
+  {
+    "text": "Voltage Drop Compensation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电压降补偿",
+    "roots": "",
+    "extension": "Using larger cables to ensure stable end voltage.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Increase cable cross-section for voltage drop compensation over long runs.",
+    "exampleZh": "在长距离布线中增大电缆截面积，以补偿电压降。"
+  },
+  {
+    "text": "Equipotential Bonding",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "等电位接地联结",
+    "roots": "",
+    "extension": "Connecting all metal frames to earth for shock safety.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Connect the aluminum structure to the building's equipotential bonding system.",
+    "exampleZh": "将铝结构接入建筑物的等电位联结系统。"
+  },
+  {
+    "text": "Residual Current Breaker",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "漏电断路器",
+    "roots": "",
+    "extension": "Safety device cutting power upon detecting current leakage.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "UN facility rules mandate a 30mA residual current breaker on all temporary feeds.",
+    "exampleZh": "联合国设施规定要求所有临时供电线路安装30毫安剩余电流动作断路器。"
+  },
+  {
+    "text": "Phase Load Balancing",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "三相负载平衡",
+    "roots": "",
+    "extension": "Distributing electrical power evenly across three phases.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Perform phase load balancing across L1, L2, and L3 to avoid neutral line overload.",
+    "exampleZh": "在L1、L2和L3之间进行相负荷平衡，以避免中性线过载。"
+  },
+  {
+    "text": "Uninterruptible Power Supply / UPS",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "不间断电源",
+    "roots": "",
+    "extension": "Battery backup maintaining system power.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "The media server is powered via an online 5kVA UPS unit.",
+    "exampleZh": "媒体服务器由在线式5千伏安不间断电源供电。"
+  },
+  {
+    "text": "Flame Retardant",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "阻燃的",
+    "roots": "",
+    "extension": "Material treated to resist burning and withstand heat.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "All internal power cables and fabric membranes must be certified flame retardant.",
+    "exampleZh": "所有内部电源电缆和织物膜材必须通过阻燃认证。"
+  },
+  {
+    "text": "IP Rating",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "外壳防护等级",
+    "roots": "",
+    "extension": "Standard defining sealing effectiveness against dust and moisture.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "An IP54 rating protects the screen from dust accumulation in high-traffic corridors.",
+    "exampleZh": "IP54防护等级可保护屏幕免受高流量走廊中灰尘积聚的影响。"
+  },
+  {
+    "text": "Power Consumption Peak",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "用电峰值",
+    "roots": "",
+    "extension": "Maximum electrical power drawn at full brightness.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Verify that the temporary site power feed can handle the power consumption peak.",
+    "exampleZh": "核实临时现场供电能够承受功耗峰值。"
+  },
+  {
+    "text": "Cable Management Duct",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "理线槽/梳线架",
+    "roots": "",
+    "extension": "Enclosed trough organizing and protecting wiring.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Route all high-voltage cables through the dedicated cable management duct.",
+    "exampleZh": "将所有高压电缆敷设于专用电缆管理线槽内。"
+  },
+  {
+    "text": "Derating Factor",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "降额系数",
+    "roots": "",
+    "extension": "Safe operating margin applied to power supplies in hot zones.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Apply a 20% derating factor to power supplies to prolong operational lifespan.",
+    "exampleZh": "对电源施加20%降额系数，以延长使用寿命。"
+  },
+  {
+    "text": "Terminal Crimp",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "端子冷压接",
+    "roots": "",
+    "extension": "Secure mechanical connection of wire ends with copper ferrules.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Use insulated ferrules for every terminal crimp inside the power box.",
+    "exampleZh": "电源箱内每处端子压接均应使用绝缘线鼻子。"
+  },
+  {
+    "text": "Ground Resistance Test",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "接地电阻测试",
+    "roots": "",
+    "extension": "Testing earthing connections to ensure low resistance.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Pass the ground resistance test before energizing the master control board.",
+    "exampleZh": "在为主控制板通电前，须通过接地电阻测试。"
+  },
+  {
+    "text": "Power Cable Gauge",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "线缆线径/AWG",
+    "roots": "",
+    "extension": "Thickness standard of copper conductors.（UNOG Texture Screen Installation；四、 电气与散热系统）",
+    "example": "Select the appropriate power cable gauge based on total current requirements.",
+    "exampleZh": "根据总电流需求选择合适的电源电缆线径。"
+  },
+  {
+    "text": "As-Built Survey",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "竣工实际测绘",
+    "roots": "",
+    "extension": "Precise site measurements taken after structural work.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Perform an as-built survey of the stone wall before fabricating custom brackets.",
+    "exampleZh": "在制作定制支架前，对石墙进行竣工实测。"
+  },
+  {
+    "text": "Working at Height Permit",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "高空作业许可证",
+    "roots": "",
+    "extension": "Official permit required for high platform installations.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Submit technician certifications to obtain the Working at Height Permit.",
+    "exampleZh": "提交技术人员资质证明以办理高空作业许可证。"
+  },
+  {
+    "text": "Hot Work Permit",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "动火作业许可证",
+    "roots": "",
+    "extension": "Safety permit required for welding or metal grinding.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Apply for a Hot Work Permit before grinding steel frames in the exhibition hall.",
+    "exampleZh": "在展览厅内打磨钢框架前，须申请动火作业许可证。"
+  },
+  {
+    "text": "Site Readiness Inspection",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "施工准备就绪度检查",
+    "roots": "",
+    "extension": "Verifying site conditions before team entry.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Conduct a site readiness inspection to confirm main power availability.",
+    "exampleZh": "进行现场就绪检查，确认主电源可用。"
+  },
+  {
+    "text": "Dust Containment Enclosure",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "防尘隔离屏障",
+    "roots": "",
+    "extension": "Temporary plastic barrier containing construction dust.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Erect a dust containment enclosure to protect nearby historical oil paintings.",
+    "exampleZh": "搭建防尘围挡，以保护附近的历史油画。"
+  },
+  {
+    "text": "Noise Level Restriction",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "施工噪音分贝限制",
+    "roots": "",
+    "extension": "Limits on heavy drilling during active meetings.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Comply with noise level restrictions by scheduling drilling between 07:00 and 09:00 AM.",
+    "exampleZh": "遵守噪声限制规定，将钻孔作业安排在上午7:00至9:00之间。"
+  },
+  {
+    "text": "Floor Load Limit",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "地面承重限制",
+    "roots": "",
+    "extension": "Maximum allowed weight per square meter on venue floors.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Check floor load limits before driving heavy cherry pickers across marble tiles.",
+    "exampleZh": "在大理石地面上驾驶重型高空作业车前，检查楼面荷载限值。"
+  },
+  {
+    "text": "Risk Assessment Document",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "风险评估文件",
+    "roots": "",
+    "extension": "Document identifying hazards and safety steps.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "The UN Safety Officer approved our Risk Assessment Document for overhead rigging.",
+    "exampleZh": "联合国安全官员已批准我们关于高空吊装的风险评估文件。"
+  },
+  {
+    "text": "Material Safety Data Sheet / MSDS",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "化学品安全技术说明书",
+    "roots": "",
+    "extension": "Safety sheets for adhesives and paints.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Keep MSDS forms on site for all silicon sealants and chemical anchors.",
+    "exampleZh": "现场须备齐所有硅酮密封胶和化学锚栓的材料安全数据表。"
+  },
+  {
+    "text": "Delivery Window",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "送货入场窗口期",
+    "roots": "",
+    "extension": "Scheduled time slot for trucks to unload at Gate 8.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Our delivery window at Gate 8 loading dock is strictly set from 14:00 to 16:00.",
+    "exampleZh": "我们在8号门装卸区的送货时段严格限定为14:00至16:00。"
+  },
+  {
+    "text": "Structural Sign-Off",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "结构安全签字确认",
+    "roots": "",
+    "extension": "Official approval of mounting safety by an engineer.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "We must obtain structural sign-off before mounting the 800kg dynamic screen.",
+    "exampleZh": "在安装800公斤动态屏幕之前，我们必须获得结构验收签字。"
+  },
+  {
+    "text": "Snag List / Punch List",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "缺陷整改清单",
+    "roots": "",
+    "extension": "List of minor cosmetic or technical fixes.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "The client added a slightly loose trim to the final snag list.",
+    "exampleZh": "客户将一处略松的饰条列入了最终缺陷清单。"
+  },
+  {
+    "text": "Practical Completion",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "阶段性竣工验收",
+    "roots": "",
+    "extension": "Milestone indicating the system is ready for use.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "We achieved Practical Completion two days prior to the official inauguration.",
+    "exampleZh": "我们在正式启用仪式前两天达到了实际竣工。"
+  },
+  {
+    "text": "Defect Liability Period / DLP",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "质保期/缺陷责任期",
+    "roots": "",
+    "extension": "Contractual warranty period for repairs.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Our contract guarantees a 24-month Defect Liability Period for all screen modules.",
+    "exampleZh": "我们的合同保证所有屏幕模块享有24个月的缺陷责任期。"
+  },
+  {
+    "text": "Variation Order / VO",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "工程变更单",
+    "roots": "",
+    "extension": "Signed agreement for scope or design changes.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Adding extra accent lights requires a Variation Order signed by the client.",
+    "exampleZh": "增设额外重点照明需要客户签署的变更指令。"
+  },
+  {
+    "text": "Handover Certificate",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "交付验收证书",
+    "roots": "",
+    "extension": "Official document confirming client acceptance.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "The UN project director signed the Handover Certificate after final testing.",
+    "exampleZh": "最终测试完成后，联合国项目主任签署了移交证书。"
+  },
+  {
+    "text": "Operational Training",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "操作维护培训",
+    "roots": "",
+    "extension": "Training site staff to operate and maintain equipment.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Conduct operational training for UN technicians before leaving the site.",
+    "exampleZh": "离场前为联合国技术人员开展操作培训。"
+  },
+  {
+    "text": "Certificate of Insurance / COI",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "保险凭证",
+    "roots": "",
+    "extension": "Proof of liability insurance for contractors.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "Submit a valid COI covering third-party liability to the UN administration.",
+    "exampleZh": "向联合国行政部门提交涵盖第三方责任的有效保险证明。"
+  },
+  {
+    "text": "Method Statement",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "施工方案说明书",
+    "roots": "",
+    "extension": "Step-by-step document explaining installation methods.（UNOG Texture Screen Installation；五、 现场施工、协同与商务交接）",
+    "example": "The Method Statement outlines how the screen will be safely hoisted into place.",
+    "exampleZh": "施工方法说明概述了如何将屏幕安全吊装就位。"
+  },
+  {
+    "text": "Excellency",
+    "type": "word",
+    "phonetic": "",
+    "translation": "阁下",
+    "roots": "",
+    "extension": "阁下（对大使、部长级及国际组织高官的正式尊称）（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "We are honored to welcome Your Excellency to inspect the progress in the China Room.",
+    "exampleZh": "我们荣幸欢迎阁下视察中国厅工程进展。"
+  },
+  {
+    "text": "Permanent Representative",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "常驻代表/大使",
+    "roots": "",
+    "extension": "Head of a diplomatic mission to UNOG.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "The Permanent Representative of China will host the unveiling ceremony.",
+    "exampleZh": "中国常驻代表将主持揭幕仪式。"
+  },
+  {
+    "text": "Director-General",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "总干事",
+    "roots": "",
+    "extension": "Highest-ranking administrative official of UNOG.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "The Director-General will deliver opening remarks at the inauguration.",
+    "exampleZh": "总干事将在启用仪式上致开幕词。"
+  },
+  {
+    "text": "Chief of Protocol",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "礼宾司司长",
+    "roots": "",
+    "extension": "UN official overseeing diplomatic etiquette and ceremony procedures.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "All seating charts and entrance routes must be submitted to the Chief of Protocol.",
+    "exampleZh": "所有座位图和入场路线必须提交礼宾司长。"
+  },
+  {
+    "text": "Delegation Head / Head of Delegation",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "代表团团长",
+    "roots": "",
+    "extension": "Senior official leading a national delegation.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "The Head of Delegation will participate in the ceremonial ribbon-cutting.",
+    "exampleZh": "代表团团长将参加仪式性剪彩。"
+  },
+  {
+    "text": "Side Event",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "边会/伴随活动",
+    "roots": "",
+    "extension": "An official exhibition or meeting held alongside main UN sessions.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "The artwork unveiling is organized as a high-level side event during the council session.",
+    "exampleZh": "艺术品揭幕被安排为理事会会议期间的一场高级别配套活动。"
+  },
+  {
+    "text": "Cultural Attaché",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "文化参赞",
+    "roots": "",
+    "extension": "Diplomat responsible for cultural affairs and exchanges.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "Our team maintains daily communication with the Cultural Attaché regarding art transport.",
+    "exampleZh": "我们团队就艺术品运输与文化专员保持每日沟通。"
+  },
+  {
+    "text": "Bilateral Meeting",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "双边会谈",
+    "roots": "",
+    "extension": "Formal meeting between representatives of two states or entities.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "Construction will pause briefly to accommodate a high-level bilateral meeting nearby.",
+    "exampleZh": "施工将短暂暂停，以配合附近一场高级别双边会晤。"
+  },
+  {
+    "text": "Plenary Session",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "全体会议",
+    "roots": "",
+    "extension": "Full assembly meeting attended by all member delegations.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "Heavy drilling is prohibited while the Plenary Session is in progress in the main hall.",
+    "exampleZh": "主厅全体会议进行期间禁止重型钻孔作业。"
+  },
+  {
+    "text": "Permanent Mission",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "常驻代表团",
+    "roots": "",
+    "extension": "The official diplomatic mission representing a state at UNOG.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "The project schedule has been coordinated closely with the Permanent Mission.",
+    "exampleZh": "项目进度已与常驻代表团密切协调。"
+  },
+  {
+    "text": "Official Host",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "官方主办方",
+    "roots": "",
+    "extension": "Entity hosting a diplomatic reception or ceremony.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "The Permanent Mission will act as the official host for the evening reception.",
+    "exampleZh": "常驻代表团将担任晚间招待会的正式东道主。"
+  },
+  {
+    "text": "Observer State / Delegation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "观察员国/观察员代表团",
+    "roots": "",
+    "extension": "Non-member entity granted observer status.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "Invitations were extended to representatives from member states and observer delegations.",
+    "exampleZh": "已向各成员国代表及观察员代表团发出邀请。"
+  },
+  {
+    "text": "Keynote Speaker",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "主旨演讲人",
+    "roots": "",
+    "extension": "Primary speaker delivering the main address at an event.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "The Keynote Speaker will highlight the cultural exchange represented by the China Room.",
+    "exampleZh": "主旨发言人将强调中国厅所体现的文化交流。"
+  },
+  {
+    "text": "Goodwill Ambassador",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "亲善大使",
+    "roots": "",
+    "extension": "Prominent individual representing UN cultural initiatives.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "A UN Goodwill Ambassador will attend the cultural exhibition in the China Room.",
+    "exampleZh": "一位联合国亲善大使将出席中国厅的文化展览。"
+  },
+  {
+    "text": "Press Attaché",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "新闻参赞/外交发言人",
+    "roots": "",
+    "extension": "Official managing press releases and media relations.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "All media statements regarding the inauguration must be reviewed by the Press Attaché.",
+    "exampleZh": "所有关于启用仪式的媒体声明必须经新闻专员审核。"
+  },
+  {
+    "text": "High-Level Segment",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "高级别会议环节",
+    "roots": "",
+    "extension": "Senior diplomatic portion of a major conference.（UNOG China Room Diplomatic & Commercial；一、 称谓、礼宾与外交身份）",
+    "example": "Final handover must be completed prior to the opening of the High-Level Segment.",
+    "exampleZh": "最终移交必须在高级别会议开始前完成。"
+  },
+  {
+    "text": "Memorandum of Understanding / MOU",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "谅解备忘录",
+    "roots": "",
+    "extension": "Formal agreement defining partner roles.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "The MOU clearly defines the maintenance responsibilities between the UN and the donor.",
+    "exampleZh": "谅解备忘录明确规定了联合国与捐赠方之间的维护责任。"
+  },
+  {
+    "text": "Scope of Work / SOW",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "工作范围说明书",
+    "roots": "",
+    "extension": "Document detailing specific project deliverables.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "Additional lighting installations exceed our contractually agreed Scope of Work.",
+    "exampleZh": "增设照明安装超出了合同约定的工作范围。"
+  },
+  {
+    "text": "Bill of Quantities / BOQ",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "工程量清单",
+    "roots": "",
+    "extension": "Itemized list of materials, parts, and labor costs.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "We cross-checked all delivered brass trims against the approved Bill of Quantities.",
+    "exampleZh": "我们对照批准的工程量清单核对了所有已交付的黄铜饰条。"
+  },
+  {
+    "text": "Non-Disclosure Agreement / NDA",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "保密协议",
+    "roots": "",
+    "extension": "Agreement protecting confidential design details.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "All installation personnel signed the NDA regarding site security layouts.",
+    "exampleZh": "所有安装人员就现场安保布局签署了保密协议。"
+  },
+  {
+    "text": "Risk Assessment / RA",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "风险评估报告",
+    "roots": "",
+    "extension": "Document analyzing potential site hazards and safety steps.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "A comprehensive Risk Assessment was approved before setting up scaffolding.",
+    "exampleZh": "搭设脚手架前已批准全面的风险评估。"
+  },
+  {
+    "text": "As-Built Documentation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "竣工图纸及技术文档",
+    "roots": "",
+    "extension": "Complete set of updated drawings reflecting actual build.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "The As-Built Documentation package was handed over to the UN Facility Directorate.",
+    "exampleZh": "竣工文件包已移交联合国设施管理局。"
+  },
+  {
+    "text": "Certificate of Acceptance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "验收合格证书",
+    "roots": "",
+    "extension": "Formal document confirming client satisfaction and handover.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "The UN Project Manager signed the Certificate of Acceptance after trial runs.",
+    "exampleZh": "试运行后，联合国项目经理签署了验收证书。"
+  },
+  {
+    "text": "Request for Approval / RFA",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "呈报审批单",
+    "roots": "",
+    "extension": "Formal written submission seeking client consent.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "We submitted an RFA for the modified mounting bracket structure this morning.",
+    "exampleZh": "我们今早提交了关于修改后安装支架结构的审批申请。"
+  },
+  {
+    "text": "Subcontractor Agreement",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "分包商协议",
+    "roots": "",
+    "extension": "Contract governing specialized local trade work.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "The local electrician was hired under a standard UN-compliant Subcontractor Agreement.",
+    "exampleZh": "当地电工是根据符合联合国要求的标准分包协议聘用的。"
+  },
+  {
+    "text": "Letter of Intent / LOI",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "意向书",
+    "roots": "",
+    "extension": "Preliminary document expressing intent to enter a contract.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "Work commenced under a Letter of Intent while the master contract was finalized.",
+    "exampleZh": "主合同仍在敲定时，工程已依据意向书开工。"
+  },
+  {
+    "text": "Formal Sign-Off",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "正式签字确认",
+    "roots": "",
+    "extension": "Written approval validating completed project phases.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "We require your formal sign-off on the electrical testing report today.",
+    "exampleZh": "我们今天需要您对电气测试报告作出正式签字确认。"
+  },
+  {
+    "text": "Contractual Compliance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "合同合规性",
+    "roots": "",
+    "extension": "Strict adherence to contract terms and standards.（UNOG China Room Diplomatic & Commercial；二、 商务公文、合规与授权表达）",
+    "example": "All material choices are in full contractual compliance with UN heritage rules.",
+    "exampleZh": "所有材料选型均完全符合联合国遗产保护规定的合同要求。"
+  },
+  {
+    "text": "Inauguration Ceremony",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "揭幕典礼/启用仪式",
+    "roots": "",
+    "extension": "Formal event celebrating project completion.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "The Inauguration Ceremony of the China Room is scheduled for Friday morning.",
+    "exampleZh": "中国厅启用仪式定于周五上午举行。"
+  },
+  {
+    "text": "Cultural Heritage Preservation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "文化遗产保护",
+    "roots": "",
+    "extension": "Respecting and safeguarding historic architecture.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "Our installation methods strictly prioritize cultural heritage preservation.",
+    "exampleZh": "我们的安装方法严格优先考虑文化遗产保护。"
+  },
+  {
+    "text": "Cultural Sensitivity",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "文化敏感度",
+    "roots": "",
+    "extension": "Awareness and respect for cultural and political nuances.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "The design theme was carefully reviewed to ensure full cultural sensitivity.",
+    "exampleZh": "设计主题经过仔细审核，以确保充分的文化敏感性。"
+  },
+  {
+    "text": "Photo Opportunity / Photo Op",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "官方合影环节",
+    "roots": "",
+    "extension": "Designated time for media and VIP photos.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "A photo op is scheduled in front of the dynamic screen after the speeches.",
+    "exampleZh": "讲话结束后，将在动态屏幕前安排拍照环节。"
+  },
+  {
+    "text": "Opening Remarks",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "开幕致辞/欢迎词",
+    "roots": "",
+    "extension": "Formal introductory speech delivered at an event.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "The Ambassador will deliver opening remarks to welcome the visiting delegates.",
+    "exampleZh": "大使将致开幕词，欢迎来访代表。"
+  },
+  {
+    "text": "Ribbon-Cutting",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "剪彩仪式",
+    "roots": "",
+    "extension": "Ceremonial cutting of a ribbon to mark official opening.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "Gold scissors have been prepared for the ceremonial ribbon-cutting.",
+    "exampleZh": "已为仪式性剪彩准备好金色剪刀。"
+  },
+  {
+    "text": "Cultural Exchange",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "文化交流",
+    "roots": "",
+    "extension": "Sharing ideas and art between nations and organizations.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "The renovated China Room stands as a testament to international cultural exchange.",
+    "exampleZh": "翻新后的中国厅是国际文化交流的见证。"
+  },
+  {
+    "text": "Press Release",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "官方新闻稿",
+    "roots": "",
+    "extension": "Official written statement distributed to news media.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "A joint press release will be issued by the UN and the Permanent Mission.",
+    "exampleZh": "联合国与常驻代表团将联合发布新闻稿。"
+  },
+  {
+    "text": "Official Reception",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "官方招待会",
+    "roots": "",
+    "extension": "Formal social gathering hosted for guests and VIPs.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "An official reception will follow the unveiling ceremony in the adjacent lounge.",
+    "exampleZh": "揭幕仪式后将在相邻休息厅举行正式招待会。"
+  },
+  {
+    "text": "Guest of Honor",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "特邀主宾",
+    "roots": "",
+    "extension": "The primary distinguished guest at a ceremony or dinner.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "The Director-General of UNOG will be the Guest of Honor at the inauguration.",
+    "exampleZh": "联合国日内瓦办事处总干事将担任启用仪式的主宾。"
+  },
+  {
+    "text": "Expressing Gratitude",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "表达诚挚谢意",
+    "roots": "",
+    "extension": "Diplomatic phrasing used to thank partners and officials.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "We express our profound gratitude to the SHP team for their guidance.",
+    "exampleZh": "我们对SHP团队的指导深表感谢。"
+  },
+  {
+    "text": "Fostering Collaboration",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "促进国际合作",
+    "roots": "",
+    "extension": "Encouraging cooperative working relationships.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "The project execution reflects our shared commitment to fostering collaboration.",
+    "exampleZh": "项目实施体现了我们促进协作的共同承诺。"
+  },
+  {
+    "text": "Symbolic Handover",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "象征性移交",
+    "roots": "",
+    "extension": "Ceremonial act of handing over keys or symbolic gifts.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "A symbolic handover of the room key will be featured during the ceremony.",
+    "exampleZh": "仪式上将安排象征性的房间钥匙移交环节。"
+  },
+  {
+    "text": "Formal Acknowledgement",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "官方确认与感谢",
+    "roots": "",
+    "extension": "Written or spoken appreciation of support.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "We extend formal acknowledgement to the UN security division for their support.",
+    "exampleZh": "我们正式感谢联合国安保部门给予的支持。"
+  },
+  {
+    "text": "High-Level Delegation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "高级别代表团",
+    "roots": "",
+    "extension": "Delegation comprising senior government officials.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "A high-level delegation from the ministry will inspect the finished installation.",
+    "exampleZh": "部委高级别代表团将视察已完成的安装工程。"
+  },
+  {
+    "text": "Diplomatic Protocol",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "外交礼仪规范",
+    "roots": "",
+    "extension": "Rules governing diplomatic conduct and rank.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "All site personnel must respect diplomatic protocol when meeting delegates.",
+    "exampleZh": "所有现场人员在会见代表时必须遵守外交礼宾规范。"
+  },
+  {
+    "text": "Exchange of Gifts",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "国礼/纪念品交换",
+    "roots": "",
+    "extension": "Formal presentation of gifts between dignitaries.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "An exchange of gifts will take place in the VIP lounge following the ceremony.",
+    "exampleZh": "仪式结束后将在贵宾休息厅进行赠礼。"
+  },
+  {
+    "text": "Mutual Understanding",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "相互理解与共识",
+    "roots": "",
+    "extension": "Shared agreement and respect between entities.（UNOG China Room Diplomatic & Commercial；三、 外交礼仪、仪式与文化沟通）",
+    "example": "Close dialogue has built strong mutual understanding between our teams.",
+    "exampleZh": "密切对话在我们双方团队之间建立了牢固的相互理解。"
+  },
+  {
+    "text": "Security Clearance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "安保准入审查",
+    "roots": "",
+    "extension": "Authorization required to enter restricted UN zones.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "All installation technicians have successfully passed UN Security Clearance.",
+    "exampleZh": "所有安装技术人员均已顺利通过联合国安保审查。"
+  },
+  {
+    "text": "Working Hours Restriction",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "施工时间限制",
+    "roots": "",
+    "extension": "Limits placed on noisy or heavy work on site.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "We strictly observe working hours restrictions during diplomatic conferences.",
+    "exampleZh": "外交会议期间，我们严格遵守工时限制。"
+  },
+  {
+    "text": "Ground Pass / Access Badge",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "进场胸牌/通行证",
+    "roots": "",
+    "extension": "Physical security badge worn on site.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "Technicians must display their UN Access Badges visibly at all times.",
+    "exampleZh": "技术人员必须始终明显佩戴联合国出入证。"
+  },
+  {
+    "text": "Site Readiness",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "施工现场准备就绪",
+    "roots": "",
+    "extension": "Condition of site being fully prepared for installation.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "We conducted a site readiness walkthrough before starting structural mounting.",
+    "exampleZh": "在开始结构安装前，我们进行了现场就绪巡查。"
+  },
+  {
+    "text": "Noise-Restricted Hours",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "降噪禁施工时段",
+    "roots": "",
+    "extension": "Time slots where quiet operation is mandatory.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "Heavy drilling is prohibited during noise-restricted hours around Council meetings.",
+    "exampleZh": "理事会会议前后的噪声限制时段内禁止重型钻孔。"
+  },
+  {
+    "text": "Escorted Access",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "需陪同准入",
+    "roots": "",
+    "extension": "Requirement for UN security or staff escort on site.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "Unloading at Sector C requires escorted access by UN Security personnel.",
+    "exampleZh": "在C区卸货需由联合国安保人员陪同进入。"
+  },
+  {
+    "text": "Emergency Evacuation Route",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "紧急疏散通道",
+    "roots": "",
+    "extension": "Designated clear paths for emergency exit.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "All equipment crates must be stored away from emergency evacuation routes.",
+    "exampleZh": "所有设备箱必须存放在远离紧急疏散通道的地方。"
+  },
+  {
+    "text": "Dust Containment",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "防尘隔离措施",
+    "roots": "",
+    "extension": "Steps taken to prevent dust from spreading to hall areas.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "Full dust containment enclosures are maintained during wall drilling operations.",
+    "exampleZh": "墙体钻孔作业期间始终保持完整的粉尘封闭围挡。"
+  },
+  {
+    "text": "Minimizing Disruption",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "最大限度减少干扰",
+    "roots": "",
+    "extension": "Executing work with minimal impact on venue.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "Night shift scheduling was selected for minimizing disruption to UN operations.",
+    "exampleZh": "选择夜班作业是为了尽量减少对联合国运作的干扰。"
+  },
+  {
+    "text": "Structural Integrity",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "结构完整性",
+    "roots": "",
+    "extension": "Load-bearing soundness of building components.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "Engineering calculations confirm the structural integrity of the ceiling beam.",
+    "exampleZh": "工程计算确认了天花梁的结构完整性。"
+  },
+  {
+    "text": "Milestone Schedule",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "里程碑进度表",
+    "roots": "",
+    "extension": "Key dates marking major project completion phases.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "We are currently ahead of schedule on our master milestone schedule.",
+    "exampleZh": "我们目前在总体里程碑进度上提前于计划。"
+  },
+  {
+    "text": "Joint Inspection",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "联合竣工验收巡查",
+    "roots": "",
+    "extension": "Combined walkthrough with UN safety and client teams.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "A joint inspection with the UN Facility Manager is set for Thursday afternoon.",
+    "exampleZh": "与联合国设施经理的联合检查定于周四下午。"
+  },
+  {
+    "text": "Restoring Site Condition",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "恢复现场原貌",
+    "roots": "",
+    "extension": "Cleaning and restoring venue after installation.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "Our team is responsible for restoring site condition and removing all debris.",
+    "exampleZh": "我们团队负责恢复现场原状并清除所有废料。"
+  },
+  {
+    "text": "Quality Assurance / QA",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "质量保证机制",
+    "roots": "",
+    "extension": "Systematic monitoring of installation standards.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "Rigorous Quality Assurance checks were performed on all electrical connections.",
+    "exampleZh": "对所有电气连接进行了严格的质量保证检查。"
+  },
+  {
+    "text": "Off-Peak Installation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "非高峰时段施工",
+    "roots": "",
+    "extension": "Scheduling work outside main business hours.（UNOG China Room Diplomatic & Commercial；四、 现场进度、安保与协调表达）",
+    "example": "Off-peak installation was arranged to complete the screen mounting silently.",
+    "exampleZh": "已安排非高峰时段安装，以便安静完成屏幕挂装。"
+  },
+  {
+    "text": "At your earliest convenience",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "在您方便时尽快",
+    "roots": "",
+    "extension": "Polite and formal way to request prompt action.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "Please review the attached drawing and provide your feedback at your earliest convenience.",
+    "exampleZh": "请审阅所附图纸，并尽快反馈意见。"
+  },
+  {
+    "text": "Subject to your approval",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "在获得您批准的前提下",
+    "roots": "",
+    "extension": "Expressing deference and requesting authorization.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "We have updated the bracket layout, subject to your formal approval.",
+    "exampleZh": "我们已更新支架布局，尚待您正式批准。"
+  },
+  {
+    "text": "In accordance with UNOG guidelines",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "严格遵循联合国日内瓦总部的规范",
+    "roots": "",
+    "extension": "Demonstrating compliance.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "All wiring works were carried out in accordance with UNOG electrical guidelines.",
+    "exampleZh": "所有布线工程均按照联合国日内瓦办事处电气指南实施。"
+  },
+  {
+    "text": "We highly appreciate your coordination",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "非常感谢您的协调与支持",
+    "roots": "",
+    "extension": "Expressing professional gratitude.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "We highly appreciate your coordination in securing our Gate 8 delivery permits.",
+    "exampleZh": "我们对您协助落实8号门送货许可证深表感谢。"
+  },
+  {
+    "text": "To align our schedule with the diplomatic calendar",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "确保进度与外交日程保持一致",
+    "roots": "",
+    "extension": "Showing awareness.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "Work shifts were adjusted to align our schedule with the diplomatic calendar.",
+    "exampleZh": "已调整班次，以使我们的进度与外交日程衔接。"
+  },
+  {
+    "text": "With due respect to historical integrity",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "充分尊重历史建筑结构的完整性",
+    "roots": "",
+    "extension": "Demonstrating care.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "Mounting designs were selected with due respect to historical integrity.",
+    "exampleZh": "安装设计的选定充分考虑了对历史完整性的尊重。"
+  },
+  {
+    "text": "Pending formal protocol clearance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "有待礼仪司的正式批准",
+    "roots": "",
+    "extension": "Stating conditional progress.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "The plaque installation is pending formal protocol clearance.",
+    "exampleZh": "铭牌安装尚待正式礼宾审批。"
+  },
+  {
+    "text": "For your gracious consideration",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "呈请您审阅考虑",
+    "roots": "",
+    "extension": "Highly respectful presentation phrase.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "The revised lighting proposal is submitted for your gracious consideration.",
+    "exampleZh": "修订后的照明方案现呈请您惠予审阅。"
+  },
+  {
+    "text": "Rest assured that all safety standards are met",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "请放心所有安全标准均已满足",
+    "roots": "",
+    "extension": "Reassuring client.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "Rest assured that all safety standards are met during overhead rigging.",
+    "exampleZh": "请放心，高空吊装期间所有安全标准均已得到遵守。"
+  },
+  {
+    "text": "On behalf of our engineering team",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "我谨代表我们的工程团队",
+    "roots": "",
+    "extension": "Formal representation phrase.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "On behalf of our engineering team, I welcome you to the China Room walkthrough.",
+    "exampleZh": "我谨代表工程团队，欢迎您参加中国厅现场巡视。"
+  },
+  {
+    "text": "Restructure",
+    "type": "word",
+    "phonetic": "",
+    "translation": "重构/调整结构",
+    "roots": "",
+    "extension": "To reorganize plans or schedules for better execution.（UNOG China Room Diplomatic & Commercial；五、 PM得体外交沟通与态度动词）",
+    "example": "We will restructure our work plan to accommodate the unexpected meeting schedule.",
+    "exampleZh": "我们将调整工作计划，以配合临时会议安排。"
+  },
+  {
+    "text": "Furnished Apartment",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "带家具的公寓",
+    "roots": "",
+    "extension": "Apartment fully equipped with furniture and essentials.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "We need a furnished apartment near Palais des Nations for a two-month stay.",
+    "exampleZh": "我们需要在万国宫附近租一套带家具的公寓，住两个月。"
+  },
+  {
+    "text": "Rental Agreement / Lease",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "租房合同/租赁协议",
+    "roots": "",
+    "extension": "Legally binding contract for housing rental.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Please send us the rental agreement for review before we transfer the deposit.",
+    "exampleZh": "请在我们转付押金前将租赁合同发给我们审阅。"
+  },
+  {
+    "text": "Security Deposit",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "租房押金/保证金",
+    "roots": "",
+    "extension": "Sum of money held to cover potential damages.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "The landlord requested a security deposit equivalent to one month's rent.",
+    "exampleZh": "房东要求支付相当于一个月租金的押金。"
+  },
+  {
+    "text": "Utility Bills Included",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "包含水电网杂费",
+    "roots": "",
+    "extension": "Rent price covers water, heating, and power.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Could you confirm if the utility bills are included in the monthly rent?",
+    "exampleZh": "能否确认月租是否包含水电燃气等费用？"
+  },
+  {
+    "text": "Key Collection",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "领取钥匙/交接钥匙",
+    "roots": "",
+    "extension": "Meeting or process to pick up apartment keys.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Where can we arrange the key collection upon our arrival in Geneva?",
+    "exampleZh": "我们抵达日内瓦后，可以在哪里安排取钥匙？"
+  },
+  {
+    "text": "Check-in / Check-out Time",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "入住/退房时间",
+    "roots": "",
+    "extension": "Standard hours for entering or leaving.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Our flight arrives early, so can we request an early check-in at 11:00 AM?",
+    "exampleZh": "我们航班较早抵达，能否申请上午11:00提前入住？"
+  },
+  {
+    "text": "House Rules",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "住户守则/公寓规矩",
+    "roots": "",
+    "extension": "Building regulations regarding noise and waste.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Please strictly observe the house rules regarding quiet hours after 10:00 PM.",
+    "exampleZh": "请严格遵守晚10点后安静时段的房屋规定。"
+  },
+  {
+    "text": "Quiet Hours",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "夜间禁噪时段",
+    "roots": "",
+    "extension": "Designated night hours requiring low noise levels.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "In Switzerland, quiet hours usually start at 22:00 every evening.",
+    "exampleZh": "在瑞士，安静时段通常每晚从22:00开始。"
+  },
+  {
+    "text": "Waste Sorting",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "垃圾分类",
+    "roots": "",
+    "extension": "Separating household trash into PET, paper, and glass.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "The landlord showed us the designated bins for waste sorting in the basement.",
+    "exampleZh": "房东向我们展示了地下室用于垃圾分类的指定垃圾桶。"
+  },
+  {
+    "text": "Laundry Room",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "公共/私人洗衣房",
+    "roots": "",
+    "extension": "Room equipped with washing machines and dryers.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Is there a schedule card required to use the shared laundry room?",
+    "exampleZh": "使用共用洗衣房是否需要预约卡？"
+  },
+  {
+    "text": "Maintenance Request",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "维修申请",
+    "roots": "",
+    "extension": "Formal request to fix broken home appliances or pipes.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "I submitted a maintenance request because the bathroom shower head is leaking.",
+    "exampleZh": "我提交了维修申请，因为浴室花洒漏水。"
+  },
+  {
+    "text": "Heating Control",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "暖气温控器",
+    "roots": "",
+    "extension": "Thermostat managing indoor radiator temperature.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "How do we adjust the heating control in the living room during cold nights?",
+    "exampleZh": "寒冷夜晚如何调节客厅的暖气控制？"
+  },
+  {
+    "text": "Subletting Agreement",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "转租协议",
+    "roots": "",
+    "extension": "Temporary lease transfer between tenants.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "The primary tenant provided an official subletting agreement approved by the owner.",
+    "exampleZh": "主租户提供了经业主批准的正式转租协议。"
+  },
+  {
+    "text": "Final Inspection",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "退房验收检查",
+    "roots": "",
+    "extension": "Walkthrough checking property condition at move-out.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "We scheduled the final inspection for Thursday afternoon before heading to the airport.",
+    "exampleZh": "我们安排在周四下午飞往机场前进行最终验收检查。"
+  },
+  {
+    "text": "Electronic Lock Code",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电子锁密码",
+    "roots": "",
+    "extension": "Keypad code used for keyless entry access.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "The host sent us the electronic lock code for self check-in via SMS.",
+    "exampleZh": "房东通过短信把电子门锁密码发给我们，方便自助入住。"
+  },
+  {
+    "text": "Parking Permit",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "停车许可证",
+    "roots": "",
+    "extension": "Permit allowing parking in designated residential zones.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Do we need a special blue parking permit to park in front of the building?",
+    "exampleZh": "我们在楼前停车需要特别的蓝色停车许可证吗？"
+  },
+  {
+    "text": "Meter Reading",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "水电气表读数",
+    "roots": "",
+    "extension": "Recording energy consumption numbers at entry.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Let us take a photo of the electricity meter reading before moving in.",
+    "exampleZh": "入住前我们先拍一张电表读数的照片吧。"
+  },
+  {
+    "text": "Resident Permit Registration",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "居住登记/户籍登记",
+    "roots": "",
+    "extension": "Registering address with local cantonal authorities.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Technicians staying over 90 days must complete resident permit registration.",
+    "exampleZh": "停留超过90天的技术人员必须办理居留许可登记。"
+  },
+  {
+    "text": "Storage Locker / Cave",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "地下储物间",
+    "roots": "",
+    "extension": "Private basement compartment for luggage.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "You can store your extra equipment crates in storage locker number 12.",
+    "exampleZh": "多余的设备箱可以存放在12号储物间。"
+  },
+  {
+    "text": "Wi-Fi Router",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "无线路由器",
+    "roots": "",
+    "extension": "Device providing indoor internet connectivity.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "If the internet drops, try restarting the Wi-Fi router under the desk.",
+    "exampleZh": "如果断网了，试试重启桌子下面的无线路由器。"
+  },
+  {
+    "text": "Fully Equipped Kitchen",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "设备齐全的厨房",
+    "roots": "",
+    "extension": "Kitchen with cookware, stove, and fridge.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "The apartment has a fully equipped kitchen so we can prepare meals after work.",
+    "exampleZh": "公寓有配备齐全的厨房，下班后我们可以自己做饭。"
+  },
+  {
+    "text": "Elevator Capacity",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电梯载重上限",
+    "roots": "",
+    "extension": "Weight or person limit for residential lifts.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Please do not overload the elevator capacity when moving heavy toolboxes.",
+    "exampleZh": "搬运沉重的工具箱时，请勿超过电梯载重。"
+  },
+  {
+    "text": "Balcony Access",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "阳台通道",
+    "roots": "",
+    "extension": "Door leading to private outdoor balcony.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Keep the balcony access locked when leaving the apartment for the site.",
+    "exampleZh": "离开公寓前往工地时，请把通往阳台的门锁好。"
+  },
+  {
+    "text": "Smoke Detector",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "烟雾报警器",
+    "roots": "",
+    "extension": "Ceiling alarm detecting smoke or fire hazards.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "Smoking inside the apartment is strictly forbidden due to sensitive smoke detectors.",
+    "exampleZh": "由于烟雾探测器灵敏，公寓内严禁吸烟。"
+  },
+  {
+    "text": "Extension Cable",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电源插座延长线/插线板",
+    "roots": "",
+    "extension": "Multi-socket extension cord for devices.（Switzerland Daily Life & Transit；一、 瑞士租房、公寓预订与入住沟通）",
+    "example": "We bought a Swiss plug extension cable to charge multiple laptops.",
+    "exampleZh": "我们买了一根瑞士插头的延长线，方便给多台笔记本电脑充电。"
+  },
+  {
+    "text": "Train Station / Gare",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "火车站",
+    "roots": "",
+    "extension": "Central railway station (e.g., Gare de Genève Cornavin).（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "The team will meet at Geneva Cornavin Train Station at 07:30 AM.",
+    "exampleZh": "团队将于上午7:30在日内瓦科尔纳万火车站会合。"
+  },
+  {
+    "text": "Tram Stop",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "有轨电车站",
+    "roots": "",
+    "extension": "Designated boarding point for city trams.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Take Tram 15 from the train station directly to Nations tram stop.",
+    "exampleZh": "从火车站乘坐15路有轨电车可直达万国宫站。"
+  },
+  {
+    "text": "Ticket Machine",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "自助售票机",
+    "roots": "",
+    "extension": "Kiosk for purchasing bus or train passes.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "You can buy daily transit passes using credit cards at the ticket machine.",
+    "exampleZh": "你可以在售票机上用信用卡购买日票。"
+  },
+  {
+    "text": "Day Pass",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "日票/24小时通票",
+    "roots": "",
+    "extension": "Pass allowing unlimited travel within a zone for a day.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Purchasing a Day Pass is more economical if you take multiple trips.",
+    "exampleZh": "如果当天多次出行，购买日票更划算。"
+  },
+  {
+    "text": "Swiss Travel Pass",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "瑞士旅行通行证",
+    "roots": "",
+    "extension": "All-in-one transit pass for Swiss trains, buses, and boats.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "The Swiss Travel Pass covers all regional trains and city transport systems.",
+    "exampleZh": "瑞士通票涵盖所有区域火车和城市公共交通系统。"
+  },
+  {
+    "text": "Platform Number",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "站台编号",
+    "roots": "",
+    "extension": "Designated track platform for boarding trains.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "The InterCity train to Zurich departs from Platform Number 4.",
+    "exampleZh": "开往苏黎世的城际列车从4号站台出发。"
+  },
+  {
+    "text": "Final Destination",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "终点站",
+    "roots": "",
+    "extension": "Last station on a transit route line.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Check the display screen on the bus to confirm its final destination.",
+    "exampleZh": "请查看巴士上的显示屏，确认其终点站。"
+  },
+  {
+    "text": "Connecting Train",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "中转列车/换乘火车",
+    "roots": "",
+    "extension": "Second train taken to complete a journey.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "We have a 6-minute window to catch our connecting train at Lausanne.",
+    "exampleZh": "我们在洛桑只有6分钟时间去赶换乘列车。"
+  },
+  {
+    "text": "Validate Ticket",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "验票/打票",
+    "roots": "",
+    "extension": "Stamping a physical ticket before boarding.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Remember to validate ticket at the orange machine before stepping onto the train.",
+    "exampleZh": "上车前请记得在橙色验票机上验票。"
+  },
+  {
+    "text": "Ticket Inspector",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "查票员",
+    "roots": "",
+    "extension": "Official checking passenger tickets during travel.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Please have your digital QR code ready for the ticket inspector.",
+    "exampleZh": "请准备好数字二维码，以便查票员查验。"
+  },
+  {
+    "text": "First Class / Second Class",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "一等座/二等座",
+    "roots": "",
+    "extension": "Seating category tiers on trains.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Standard team travel is booked in Second Class carriages.",
+    "exampleZh": "团队标准出行预订的是二等车厢。"
+  },
+  {
+    "text": "Timetable / Schedule",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "时刻表",
+    "roots": "",
+    "extension": "Time list showing arrival and departure times.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Download the SBB Mobile app to check live train timetables in Switzerland.",
+    "exampleZh": "下载瑞士联邦铁路手机应用，可查看瑞士实时火车时刻表。"
+  },
+  {
+    "text": "Express Train / InterCity",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "城际特快列车",
+    "roots": "",
+    "extension": "Fast train linking major Swiss cities.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "The InterCity express train takes only 45 minutes from Geneva to Lausanne.",
+    "exampleZh": "从日内瓦到洛桑，城际快车只需45分钟。"
+  },
+  {
+    "text": "Yellow Zone / Blue Zone",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "黄色/蓝色停车区域",
+    "roots": "",
+    "extension": "Parking regulation zones on streets.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Blue Zone parking requires setting your arrival time on the parking disc.",
+    "exampleZh": "蓝区停车需要在停车盘上设置到达时间。"
+  },
+  {
+    "text": "Airport Shuttle",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "机场接驳车",
+    "roots": "",
+    "extension": "Bus linking airport terminals and city hotels.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Check if the hotel offers a free complimentary airport shuttle service.",
+    "exampleZh": "请确认酒店是否提供免费机场班车服务。"
+  },
+  {
+    "text": "Taxi Stand",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "出租车停靠站",
+    "roots": "",
+    "extension": "Designated curb area to hail taxis.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "There is a taxi stand right outside Gate 8 at Palais des Nations.",
+    "exampleZh": "万国宫8号门外面就有出租车候客点。"
+  },
+  {
+    "text": "Ride-Hailing App",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "网约车应用",
+    "roots": "",
+    "extension": "Mobile apps like Uber for private transport.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "We can order a van using a ride-hailing app to transport small equipment.",
+    "exampleZh": "我们可以用网约车应用叫一辆面包车运送小型设备。"
+  },
+  {
+    "text": "Round Trip / One-Way",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "往返车票/单程车票",
+    "roots": "",
+    "extension": "Ticket options covering two or one direction.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "I bought a round trip ticket to Lausanne for the weekend site visit.",
+    "exampleZh": "为周末实地考察，我买了一张往返洛桑的车票。"
+  },
+  {
+    "text": "Delay Notice",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "晚点/延迟通知",
+    "roots": "",
+    "extension": "Alert showing train timing adjustments.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "SBB app issued a delay notice due to maintenance work on the tracks.",
+    "exampleZh": "因轨道维修，瑞士联邦铁路应用发布了延误通知。"
+  },
+  {
+    "text": "Quiet Zone / Quiet Carriage",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "静音车厢",
+    "roots": "",
+    "extension": "Train carriage designated for silence.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "No phone calls or loud talks are allowed in the train Quiet Zone.",
+    "exampleZh": "火车静音区内禁止打电话或大声交谈。"
+  },
+  {
+    "text": "Luggage Rack",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "行李架",
+    "roots": "",
+    "extension": "Overhead or compartment storage for bags.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Place your heavy tool backpacks on the lower luggage rack near the door.",
+    "exampleZh": "请把沉重的工具背包放在靠近车门的下层行李架上。"
+  },
+  {
+    "text": "Bus Conductor / Driver",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "公交车司机",
+    "roots": "",
+    "extension": "Person operating city buses.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "You can ask the bus driver if the route stops near Nations square.",
+    "exampleZh": "你可以问司机这趟车是否停在万国广场附近。"
+  },
+  {
+    "text": "Free Geneva Transport Card",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "日内瓦免费交通卡",
+    "roots": "",
+    "extension": "Card issued by hotels for free public transit.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "Hotel guests receive a complimentary Free Geneva Transport Card upon check-in.",
+    "exampleZh": "酒店客人入住时可获赠日内瓦免费交通卡。"
+  },
+  {
+    "text": "Pedestrian Crossing",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "斑马线/人行过街通道",
+    "roots": "",
+    "extension": "Marked street area for walking across.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "In Switzerland, cars always stop for pedestrians at the pedestrian crossing.",
+    "exampleZh": "在瑞士，车辆在人行横道处总会为行人停车让行。"
+  },
+  {
+    "text": "Cable Car / Funicular",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "缆车/索道",
+    "roots": "",
+    "extension": "Mountain or steep incline railway transport.（Switzerland Daily Life & Transit；二、 瑞士公共交通、火车站与乘车）",
+    "example": "We took a scenic cable car to inspect the mountain resort installation.",
+    "exampleZh": "我们乘坐观光缆车去检查山区度假村的安装工程。"
+  },
+  {
+    "text": "Excuse Me",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "打扰一下/请问",
+    "roots": "",
+    "extension": "Polite opening phrase before asking a stranger.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Excuse me, could you tell me how to get to Palais des Nations Gate 8?",
+    "exampleZh": "打扰一下，请问去万国宫8号门怎么走？"
+  },
+  {
+    "text": "Straight Ahead",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "直行/一直往前走",
+    "roots": "",
+    "extension": "Moving directly forward along a street.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Walk straight ahead for 200 meters until you see the big broken chair sculpture.",
+    "exampleZh": "一直往前走200米，直到看到那座巨大的断腿椅雕塑。"
+  },
+  {
+    "text": "Turn Left / Turn Right",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "左转/右转",
+    "roots": "",
+    "extension": "Changing walking or driving direction.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Turn left at the intersection and the entrance will be on your right.",
+    "exampleZh": "在路口左转，入口就在你的右侧。"
+  },
+  {
+    "text": "Across the Street",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "在街对面",
+    "roots": "",
+    "extension": "Located on the opposite side of the road.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "The pharmacy is located across the street from the main post office.",
+    "exampleZh": "药店在主邮局的马路对面。"
+  },
+  {
+    "text": "Main Entrance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "主入口",
+    "roots": "",
+    "extension": "Primary doorway or security gate into a building.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Visitor passes must be picked up near the main entrance at Gate 8.",
+    "exampleZh": "访客通行证须在8号门主入口附近领取。"
+  },
+  {
+    "text": "Pedestrian Zone",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "步行街/行人专用区",
+    "roots": "",
+    "extension": "Street reserved exclusively for walkers.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Delivery trucks are only allowed inside the pedestrian zone before 09:00 AM.",
+    "exampleZh": "送货卡车仅允许在上午9点前进入步行区。"
+  },
+  {
+    "text": "Around the Corner",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "在转角处/拐角街边",
+    "roots": "",
+    "extension": "Situated just past the street corner.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "There is a small bakery just around the corner from our apartment.",
+    "exampleZh": "我们公寓转角处就有一家小面包店。"
+  },
+  {
+    "text": "Next to",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "在……旁/紧邻",
+    "roots": "",
+    "extension": "Located immediately beside a landmark.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "The bank ATM is right next to the supermarket entrance.",
+    "exampleZh": "银行自动取款机就在超市入口旁边。"
+  },
+  {
+    "text": "Landmark",
+    "type": "word",
+    "phonetic": "",
+    "translation": "地标/显著标志",
+    "roots": "",
+    "extension": "Prominent physical feature used for orientation.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "The Broken Chair monument is the easiest landmark to find near Gate 8.",
+    "exampleZh": "断腿椅纪念碑是8号门附近最容易找到的地标。"
+  },
+  {
+    "text": "Distance on Foot",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "步行距离",
+    "roots": "",
+    "extension": "Walking time or length to a destination.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Is the restaurant within walking distance, or should we take a bus?",
+    "exampleZh": "这家餐厅步行就能到吗，还是我们应该坐巴士？"
+  },
+  {
+    "text": "Intersection / Crossroad",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "十字路口",
+    "roots": "",
+    "extension": "Point where two or more roads cross.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Turn right at the next traffic light intersection.",
+    "exampleZh": "在下一个红绿灯路口右转。"
+  },
+  {
+    "text": "Bus Stop Name",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "公交站名称",
+    "roots": "",
+    "extension": "Specific name displayed on transit signs.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Make sure to get off at the bus stop named \"Appia\".",
+    "exampleZh": "请务必在名为“Appia”的巴士站下车。"
+  },
+  {
+    "text": "Navigation App",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "导航应用",
+    "roots": "",
+    "extension": "GPS mobile apps like Google Maps or Apple Maps.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Let us pin the staging area location on our navigation app.",
+    "exampleZh": "我们在导航应用上把集结区位置钉上吧。"
+  },
+  {
+    "text": "Lost My Way",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "迷路了",
+    "roots": "",
+    "extension": "Unable to find correct direction or position.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "I lost my way in the Sector C basement corridor; where is elevator 4?",
+    "exampleZh": "我在C区地下室走廊迷路了；4号电梯在哪里？"
+  },
+  {
+    "text": "Opposite Side",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "在相反方向/对面",
+    "roots": "",
+    "extension": "Facing the current position.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "The bus back to the station departs from the platform on the opposite side.",
+    "exampleZh": "返回车站的巴士从对面站台发车。"
+  },
+  {
+    "text": "Shortcut",
+    "type": "word",
+    "phonetic": "",
+    "translation": "捷径/近路",
+    "roots": "",
+    "extension": "Faster path bypassing the main street route.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Our liaison officer showed us a shortcut through the park to the venue.",
+    "exampleZh": "我们的联络官带我们抄近路穿过公园前往会场。"
+  },
+  {
+    "text": "Underground Passage",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "地下通道",
+    "roots": "",
+    "extension": "Subterranean pedestrian walkway.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Use the underground passage to cross the busy avenue safely.",
+    "exampleZh": "请走地下通道，安全穿过这条繁忙的大道。"
+  },
+  {
+    "text": "Public Restroom / Toilet",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "公共洗手间",
+    "roots": "",
+    "extension": "Toilet facilities available in public areas.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Excuse me, is there a public restroom inside the visitor center?",
+    "exampleZh": "打扰一下，访客中心里面有公共卫生间吗？"
+  },
+  {
+    "text": "Tourist Information Center",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "游客咨询中心",
+    "roots": "",
+    "extension": "Office providing maps and local guidance.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "You can pick up a free city map at the Tourist Information Center at Cornavin.",
+    "exampleZh": "你可以在科尔纳万的旅游信息中心领取免费城市地图。"
+  },
+  {
+    "text": "Street Name",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "街道名称",
+    "roots": "",
+    "extension": "Official road title written on blue street signs.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "What is the exact street name of the hotel where the crew is staying?",
+    "exampleZh": "工作人员入住的酒店具体街道名称是什么？"
+  },
+  {
+    "text": "Parallel Street",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "平行街道",
+    "roots": "",
+    "extension": "Road running alongside another street.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Walk down the parallel street to avoid the heavy traffic on Rue de Lausanne.",
+    "exampleZh": "走平行的那条街，可以避开洛桑街的拥堵交通。"
+  },
+  {
+    "text": "Public Park",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "公共公园",
+    "roots": "",
+    "extension": "Open green space for walking.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "The path through the public park leads straight to Lake Geneva.",
+    "exampleZh": "穿过公园的小路直通日内瓦湖。"
+  },
+  {
+    "text": "Security Post",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "安保值班室/岗亭",
+    "roots": "",
+    "extension": "Guard booth checking credentials at entrances.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Show your contractor pass to the officer at the security post.",
+    "exampleZh": "请向安保岗的工作人员出示你的承包商通行证。"
+  },
+  {
+    "text": "Sector / Building Wing",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "建筑区域/翼楼",
+    "roots": "",
+    "extension": "Specific section code in Palais des Nations.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "The China Room is located on the first floor of Sector C.",
+    "exampleZh": "中国厅位于C区一楼。"
+  },
+  {
+    "text": "Head Towards",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "朝……方向走",
+    "roots": "",
+    "extension": "Moving in the general direction of a landmark.（Switzerland Daily Life & Transit；三、 现场问路、方向与地理位置沟通）",
+    "example": "Head towards the lake and you will find the lakeside restaurant on your left.",
+    "exampleZh": "朝湖边走，你会在左侧看到湖畔餐厅。"
+  },
+  {
+    "text": "Table for Two / Three",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "2位/3位用餐",
+    "roots": "",
+    "extension": "Requesting seating for specific party size.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Good evening, we would like a table for four, please.",
+    "exampleZh": "晚上好，我们想要一张四人桌。"
+  },
+  {
+    "text": "Menu / Drink List",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "菜单/酒水单",
+    "roots": "",
+    "extension": "Printed list of food and beverages.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Could we please have the menu and the wine list?",
+    "exampleZh": "请给我们菜单和酒单好吗？"
+  },
+  {
+    "text": "Daily Special / Today's Special",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "每日特色菜/今日例牌",
+    "roots": "",
+    "extension": "Chef's featured dish of the day.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "What is today's daily special for lunch?",
+    "exampleZh": "今天的午餐特色菜是什么？"
+  },
+  {
+    "text": "Tap Water",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "免费自来水/饮用水",
+    "roots": "",
+    "extension": "Drinkable tap water served in pitchers.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Could we just have a carafe of tap water for the table, please?",
+    "exampleZh": "请给我们一壶自来水，谢谢。"
+  },
+  {
+    "text": "Sparkling Water / Still Water",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "气泡水/纯净水",
+    "roots": "",
+    "extension": "Carbonated or non-carbonated water.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "We would like one large bottle of still water, please.",
+    "exampleZh": "请给我们一瓶大瓶的无汽矿泉水。"
+  },
+  {
+    "text": "Cheese Fondue",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "瑞士奶酪火锅",
+    "roots": "",
+    "extension": "Traditional Swiss dish of melted cheese with bread.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Sampling authentic Cheese Fondue is a must-do experience in Geneva.",
+    "exampleZh": "品尝正宗芝士火锅是日内瓦必体验的活动。"
+  },
+  {
+    "text": "Raclette",
+    "type": "word",
+    "phonetic": "",
+    "translation": "瑞士烤奶酪",
+    "roots": "",
+    "extension": "Swiss dish of melted cheese scraped over potatoes.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "We ordered Raclette served with boiled potatoes and pickled onions.",
+    "exampleZh": "我们点了配水煮土豆和腌洋葱的拉克莱特奶酪。"
+  },
+  {
+    "text": "Rösti",
+    "type": "word",
+    "phonetic": "",
+    "translation": "瑞士马铃薯饼",
+    "roots": "",
+    "extension": "Pan-fried grated potato pancake dish.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "I would like the sausage served with traditional Swiss Rösti.",
+    "exampleZh": "我想要香肠配传统瑞士土豆饼。"
+  },
+  {
+    "text": "Vegetarian Option",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "素食选项",
+    "roots": "",
+    "extension": "Dishes prepared without meat or fish.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Does this pasta dish contain meat, or is it a vegetarian option?",
+    "exampleZh": "这道意面含肉吗，还是素食选项？"
+  },
+  {
+    "text": "Food Allergy",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "食物过敏",
+    "roots": "",
+    "extension": "Reaction to specific ingredients like nuts or gluten.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "One of our team members has a severe peanut food allergy.",
+    "exampleZh": "我们团队有一名成员对花生严重过敏。"
+  },
+  {
+    "text": "Order Food / Take Order",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "点餐/结账",
+    "roots": "",
+    "extension": "Requesting food selection from waiter.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Excuse me, we are ready to order food now.",
+    "exampleZh": "打扰一下，我们现在可以点餐了。"
+  },
+  {
+    "text": "Bill / Check",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "账单",
+    "roots": "",
+    "extension": "Total itemized cost at the end of a meal.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Could we have the bill, please? We would like to pay now.",
+    "exampleZh": "请把账单给我们，我们现在想结账。"
+  },
+  {
+    "text": "Split the Bill",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "分开付/按人头平摊",
+    "roots": "",
+    "extension": "Dividing total payment among individuals.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Is it possible to split the bill between three credit cards?",
+    "exampleZh": "可以用三张信用卡分开结账吗？"
+  },
+  {
+    "text": "Service Included",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "包含服务费",
+    "roots": "",
+    "extension": "Tip already included in Swiss restaurant bills.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "In Switzerland, service is included in the total price, but small tips are welcome.",
+    "exampleZh": "在瑞士，服务费已包含在总价中，但欢迎给一点小费。"
+  },
+  {
+    "text": "Tip / Gratuity",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "小费",
+    "roots": "",
+    "extension": "Optional extra money left for good service.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "We left a 5-franc tip on the table for the helpful waiter.",
+    "exampleZh": "我们在桌上留了5法郎小费给这位热心的服务员。"
+  },
+  {
+    "text": "Contactless Payment",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "感应式/无接触支付",
+    "roots": "",
+    "extension": "Paying via card tap or Apple Pay.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Do you accept contactless payment via mobile phone here?",
+    "exampleZh": "这里接受手机非接触式支付吗？"
+  },
+  {
+    "text": "Takeaway / To-Go",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "外带/打包",
+    "roots": "",
+    "extension": "Ordering food to eat outside the venue.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Two chicken sandwiches for takeaway, please.",
+    "exampleZh": "请打包两份鸡肉三明治。"
+  },
+  {
+    "text": "Reservation / Book a Table",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "预订餐位",
+    "roots": "",
+    "extension": "Reserving seats in advance.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "I made a reservation under the name \"Wang\" for 19:30 tonight.",
+    "exampleZh": "我以“Wang”的名字预订了今晚19:30的位子。"
+  },
+  {
+    "text": "Local Dish / House Specialty",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "当地特色菜/招牌菜",
+    "roots": "",
+    "extension": "Dish famous in that specific restaurant.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "What is the house specialty recommended by the chef?",
+    "exampleZh": "厨师推荐的本店特色菜是什么？"
+  },
+  {
+    "text": "Medium / Well-Done",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "中熟/全熟",
+    "roots": "",
+    "extension": "Doneness level for ordering steak.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "I would like my beef steak cooked medium, please.",
+    "exampleZh": "请把我的牛排做成五分熟。"
+  },
+  {
+    "text": "Espresso / Coffee with Milk",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "意式浓缩/拿铁咖啡",
+    "roots": "",
+    "extension": "Popular coffee choices.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Two espressos and one coffee with milk after dessert, please.",
+    "exampleZh": "甜点后请给我们两杯意式浓缩和一杯加奶咖啡。"
+  },
+  {
+    "text": "Dessert Menu",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "甜品菜单",
+    "roots": "",
+    "extension": "List of sweet dishes served after main course.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Could you bring us the dessert menu, please?",
+    "exampleZh": "请给我们甜品菜单好吗？"
+  },
+  {
+    "text": "Non-Alcoholic",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "不含酒精的",
+    "roots": "",
+    "extension": "Beverages containing zero alcohol.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Do you have any non-alcoholic beers or fruit mocktails?",
+    "exampleZh": "有无酒精啤酒或水果无酒精鸡尾酒吗？"
+  },
+  {
+    "text": "Grocery Supermarket",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "生鲜超市",
+    "roots": "",
+    "extension": "Grocery stores like Coop or Migros.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "We bought fresh bread and fruits from the Migros grocery supermarket.",
+    "exampleZh": "我们在Migros超市买了新鲜面包和水果。"
+  },
+  {
+    "text": "Receipt",
+    "type": "word",
+    "phonetic": "",
+    "translation": "收据/发票",
+    "roots": "",
+    "extension": "Printed paper proving payment for expense claims.（Switzerland Daily Life & Transit；四、 餐饮、点餐、瑞士特色美食与付款）",
+    "example": "Please give me a detailed receipt so I can claim the business meal expense.",
+    "exampleZh": "请给我一张明细收据，方便我报销商务餐费。"
+  },
+  {
+    "text": "Front Desk / Reception",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "前台/接待处",
+    "roots": "",
+    "extension": "Primary counter for check-in and guest inquiries.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Please present your passport at the front desk upon check-in.",
+    "exampleZh": "办理入住时请在前台出示护照。"
+  },
+  {
+    "text": "Check-in Counter",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "入住办理柜台",
+    "roots": "",
+    "extension": "Designated station for registration and key assignment.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "There was no line at the check-in counter when we arrived at the hotel.",
+    "exampleZh": "我们到达酒店时，入住柜台没有排队。"
+  },
+  {
+    "text": "Express Check-out",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "快捷退房服务",
+    "roots": "",
+    "extension": "Drop-box or automated service for fast departure.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "We used express check-out by leaving our key cards in the lobby drop-box.",
+    "exampleZh": "我们把房卡放进大堂投递箱，办理了快速退房。"
+  },
+  {
+    "text": "Reservation Confirmation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "预订确认单",
+    "roots": "",
+    "extension": "Voucher or document verifying hotel booking.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "I showed the receptionist my reservation confirmation on my mobile phone.",
+    "exampleZh": "我向接待员出示了手机上的预订确认信息。"
+  },
+  {
+    "text": "Key Card",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "感应门卡",
+    "roots": "",
+    "extension": "Magnetic or RFID card used to unlock room doors and access lifts.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Tap your key card against the sensor to unlock the room door.",
+    "exampleZh": "将房卡贴在感应器上即可打开房门。"
+  },
+  {
+    "text": "Twin Room",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "双床房",
+    "roots": "",
+    "extension": "Room with two separate single beds.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "We requested a twin room for the two installation technicians.",
+    "exampleZh": "我们为两名安装技术人员申请了一间双床房。"
+  },
+  {
+    "text": "Executive Suite",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "行政套房",
+    "roots": "",
+    "extension": "Premium room with a separate living space and work area.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "The project director booked an executive suite for high-level meetings.",
+    "exampleZh": "项目总监预订了行政套房，用于高层会议。"
+  },
+  {
+    "text": "Connecting Rooms",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "连通房",
+    "roots": "",
+    "extension": "Adjoining rooms connected by an internal private door.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Connecting rooms allowed our team to coordinate easily during the trip.",
+    "exampleZh": "连通房让我们团队在出差期间方便协调。"
+  },
+  {
+    "text": "Early Check-in Fee",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "提前入住费",
+    "roots": "",
+    "extension": "Surcharge applied when checking in before standard hours.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "The hotel waived the early check-in fee as the room was already prepared.",
+    "exampleZh": "由于房间已经准备好，酒店免收了提前入住费。"
+  },
+  {
+    "text": "Late Check-out Request",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "延迟退房申请",
+    "roots": "",
+    "extension": "Requesting to keep the room past noon.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "We submitted a late check-out request so we could pack after our morning site visit.",
+    "exampleZh": "我们提交了延迟退房申请，以便在上午现场勘查后再收拾行李。"
+  },
+  {
+    "text": "Luggage Storage Room",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "行李寄存室",
+    "roots": "",
+    "extension": "Secure room to store bags before check-in or after check-out.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "You can leave your suitcases in the luggage storage room while visiting the venue.",
+    "exampleZh": "参观场馆期间，您可以把行李箱寄存在行李寄存室。"
+  },
+  {
+    "text": "Wake-up Call",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电话起床服务",
+    "roots": "",
+    "extension": "Automated or staff phone call to wake guests.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Please schedule a wake-up call for 06:00 AM for our morning flight.",
+    "exampleZh": "请为我们安排早上六点的叫醒服务，以便赶早班飞机。"
+  },
+  {
+    "text": "Housekeeping Service",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "客房清洁服务",
+    "roots": "",
+    "extension": "Daily room cleaning and bed-making service.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Housekeeping service comes around 10:00 AM every morning.",
+    "exampleZh": "客房清洁服务每天上午十点左右进行。"
+  },
+  {
+    "text": "Do Not Disturb",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "请勿打扰标识",
+    "roots": "",
+    "extension": "Door hanger or button signaling privacy request.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Hang the Do Not Disturb sign on the door handle if you are resting.",
+    "exampleZh": "如果您在休息，请把“请勿打扰”牌挂在门把手上。"
+  },
+  {
+    "text": "Towel Replacement",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "更换毛巾",
+    "roots": "",
+    "extension": "Requesting fresh bathroom towels.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Please leave dirty towels on the floor if you require towel replacement.",
+    "exampleZh": "如需更换毛巾，请将脏毛巾放在地板上。"
+  },
+  {
+    "text": "Toiletries Set",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "洗漱用品套装",
+    "roots": "",
+    "extension": "Shampoo, soap, and lotion provided in bathrooms.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "The bathroom is stocked with a complimentary eco-friendly toiletries set.",
+    "exampleZh": "浴室备有一套免费的环保洗漱用品。"
+  },
+  {
+    "text": "Hair Dryer",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "吹风机",
+    "roots": "",
+    "extension": "Electric appliance for drying hair.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "The hair dryer is located inside the top drawer beneath the vanity mirror.",
+    "exampleZh": "吹风机放在梳妆镜下方的最上层抽屉里。"
+  },
+  {
+    "text": "In-room Safe",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "房间保险箱",
+    "roots": "",
+    "extension": "Electronic vault for storing cash, passports, and laptops.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Store your passport and emergency CHF cash inside the in-room safe.",
+    "exampleZh": "请将护照和应急瑞士法郎现金存放在客房保险箱内。"
+  },
+  {
+    "text": "Electric Kettle",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电热水壶",
+    "roots": "",
+    "extension": "Water boiling appliance provided in rooms.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "We used the electric kettle to make hot tea after a cold shift on site.",
+    "exampleZh": "在工地寒冷轮班结束后，我们用电热水壶泡了热茶。"
+  },
+  {
+    "text": "Mini-Bar",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "迷你酒吧/小冰箱",
+    "roots": "",
+    "extension": "In-room fridge stocked with cold drinks and snacks.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Drinks inside the mini-bar will be charged to your room bill upon check-out.",
+    "exampleZh": "迷你吧内的饮品将在退房时计入您的房费账单。"
+  },
+  {
+    "text": "Air Conditioning Control",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "空调控制器",
+    "roots": "",
+    "extension": "Wall thermostat adjusting room temperature.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Set the air conditioning control to 22°C for optimal comfort.",
+    "exampleZh": "将空调调至22°C，以获得最佳舒适度。"
+  },
+  {
+    "text": "Blackout Curtains",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "遮光窗帘",
+    "roots": "",
+    "extension": "Heavy drapes blocking external sunlight completely.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Close the blackout curtains if you need to sleep during the day after a night shift.",
+    "exampleZh": "夜班后如需白天睡觉，请拉上遮光窗帘。"
+  },
+  {
+    "text": "Power Adapter",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电源转换插头",
+    "roots": "",
+    "extension": "Plug converter adapting overseas plugs to Swiss sockets.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Ask reception for a Swiss power adapter if your three-pin plug does not fit.",
+    "exampleZh": "如果您的三脚插头不匹配，请向前台索取瑞士电源转换插头。"
+  },
+  {
+    "text": "Complimentary Breakfast",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "免费早餐",
+    "roots": "",
+    "extension": "Breakfast meal included in the room rate.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Complimentary breakfast is served in the main dining hall from 06:30 to 10:00 AM.",
+    "exampleZh": "免费早餐于上午六点半至十点在主餐厅供应。"
+  },
+  {
+    "text": "Room Service",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "客房送餐服务",
+    "roots": "",
+    "extension": "Food and drinks delivered directly to guest rooms.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "We ordered late-night room service after finishing the evening setup.",
+    "exampleZh": "完成晚间布置后，我们叫了夜宵客房送餐服务。"
+  },
+  {
+    "text": "Incidental Deposit",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "随附消费押金",
+    "roots": "",
+    "extension": "Credit card hold covering extra room charges.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "The hotel placed a 100 CHF incidental deposit hold on my credit card.",
+    "exampleZh": "酒店在我的信用卡上预授权了100瑞士法郎的杂费押金。"
+  },
+  {
+    "text": "Iron and Ironing Board",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "熨斗和熨衣板",
+    "roots": "",
+    "extension": "Pressing equipment for formal clothing.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Request an iron and ironing board to press your suit before the inauguration.",
+    "exampleZh": "请在落成仪式前索取熨斗和熨衣板，熨烫您的西装。"
+  },
+  {
+    "text": "Breakfast Voucher",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "早餐券",
+    "roots": "",
+    "extension": "Ticket presented at the restaurant for breakfast access.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Show your breakfast voucher to the hostess at the dining room entrance.",
+    "exampleZh": "请在餐厅入口向接待员出示您的早餐券。"
+  },
+  {
+    "text": "Emergency Exit Plan",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "紧急疏散图",
+    "roots": "",
+    "extension": "Map behind room doors showing fire escape routes.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Check the emergency exit plan posted on the back of your room door.",
+    "exampleZh": "请查看贴在房门背面的紧急出口示意图。"
+  },
+  {
+    "text": "Master Light Switch",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "总电源开关",
+    "roots": "",
+    "extension": "Main switch controlling all room lighting.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Insert your room key card into the slot to activate the master light switch.",
+    "exampleZh": "将房卡插入卡槽以启动总电源开关。"
+  },
+  {
+    "text": "Extra Bed / Rollaway Bed",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "加床/折叠床",
+    "roots": "",
+    "extension": "Additional portable bed added to a room.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "We requested an extra bed to accommodate three technicians in the room.",
+    "exampleZh": "我们申请了加床，以便三名技术人员同住一间房。"
+  },
+  {
+    "text": "Laundry Service / Dry Cleaning",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "洗衣与干洗服务",
+    "roots": "",
+    "extension": "Hotel valet garment cleaning.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Put your dirty shirts in the laundry bag if you want same-day dry cleaning.",
+    "exampleZh": "如需当日干洗，请将脏衬衫放入洗衣袋。"
+  },
+  {
+    "text": "Hotel Shuttle Bus",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "酒店专线接送车",
+    "roots": "",
+    "extension": "Scheduled bus connecting hotel to airport or station.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "The hotel shuttle bus runs every 30 minutes to Cornavin station.",
+    "exampleZh": "酒店班车每30分钟开往科尔纳万车站一趟。"
+  },
+  {
+    "text": "Fitness Center / Gym",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "健身房",
+    "roots": "",
+    "extension": "Hotel exercise room equipped with fitness gear.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Hotel guests have 24-hour access to the basement fitness center.",
+    "exampleZh": "酒店住客可全天24小时使用地下健身中心。"
+  },
+  {
+    "text": "Concierge Desk",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "礼宾服务台",
+    "roots": "",
+    "extension": "Desk assisting with tours, taxis, and dinner bookings.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "The concierge desk helped us book a large van for our equipment boxes.",
+    "exampleZh": "礼宾台帮我们预订了一辆大货车来运送设备箱。"
+  },
+  {
+    "text": "City Tax / Tourist Tax",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "城市旅游税",
+    "roots": "",
+    "extension": "Cantonal tax levied on hotel stays in Switzerland.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "The city tax of 3.75 CHF per person per night is paid separately at check-out.",
+    "exampleZh": "每人每晚3.75瑞士法郎的城市税需在退房时另行支付。"
+  },
+  {
+    "text": "Wi-Fi Password",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "无线上网密码",
+    "roots": "",
+    "extension": "Credentials needed to log into hotel internet.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "The receptionist printed the Wi-Fi password on our key card holder.",
+    "exampleZh": "前台把无线网络密码打印在我们的房卡套上。"
+  },
+  {
+    "text": "Non-Smoking Room",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "禁烟客房",
+    "roots": "",
+    "extension": "Room where smoking is strictly prohibited.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "All guest rooms in Switzerland are strictly non-smoking rooms.",
+    "exampleZh": "瑞士所有客房均为严格无烟房。"
+  },
+  {
+    "text": "High-Speed Internet",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "高速宽带网络",
+    "roots": "",
+    "extension": "Fast internet connection for video calls and uploads.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "High-speed internet enabled us to send heavy CAD drawings back to the office.",
+    "exampleZh": "高速网络使我们能够将大型CAD图纸发送回办公室。"
+  },
+  {
+    "text": "Voltage Converter",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电压转换器",
+    "roots": "",
+    "extension": "Device adjusting electrical voltage for appliances.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Most modern laptops do not require a voltage converter in Switzerland.",
+    "exampleZh": "在瑞士，大多数现代笔记本电脑不需要电压转换器。"
+  },
+  {
+    "text": "Lost and Found",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "失物招领处",
+    "roots": "",
+    "extension": "Department holding misplaced guest items.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Contact Lost and Found if you accidentally leave a charger in the lobby.",
+    "exampleZh": "如果您不慎将充电器遗落在大堂，请联系失物招领处。"
+  },
+  {
+    "text": "Room Allocation",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "客房分配",
+    "roots": "",
+    "extension": "Assigning specific room numbers to incoming guests.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Reception completed our room allocation so all team members stay on floor 3.",
+    "exampleZh": "前台已完成我们的房间分配，使所有团队成员都住在三楼。"
+  },
+  {
+    "text": "Card Key Reader",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "门卡感应器",
+    "roots": "",
+    "extension": "Sensor on doors or elevators validating key cards.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Hold your card key reader against the elevator panel to select upper floors.",
+    "exampleZh": "请将房卡贴在电梯读卡面板上，以选择高层楼层。"
+  },
+  {
+    "text": "Elevator Access Control",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电梯刷卡门禁",
+    "roots": "",
+    "extension": "Security feature requiring key card to use lift.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Elevator access control ensures only registered hotel guests reach guest floors.",
+    "exampleZh": "电梯门禁系统确保只有登记住客才能到达客房楼层。"
+  },
+  {
+    "text": "Ice Machine",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "自动制冰机",
+    "roots": "",
+    "extension": "Dispenser providing free ice cubes.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "There is an ice machine located next to the vending area on floor 2.",
+    "exampleZh": "二楼自动售货区旁有一台制冰机。"
+  },
+  {
+    "text": "Vending Machine",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "自动售货机",
+    "roots": "",
+    "extension": "Machine selling snacks and bottled drinks.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Grab a bottle of water from the vending machine in the hallway.",
+    "exampleZh": "可在走廊的自动售货机购买一瓶水。"
+  },
+  {
+    "text": "Valet Parking",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "代客泊车服务",
+    "roots": "",
+    "extension": "Staff parking service for guest vehicles.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Valet parking is available at the main driveway for an extra daily fee.",
+    "exampleZh": "主车道提供代客泊车服务，需另付每日费用。"
+  },
+  {
+    "text": "Noise Complaint",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "噪音投诉",
+    "roots": "",
+    "extension": "Formal objection regarding loud neighboring rooms.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Call the front desk if you need to report a noise complaint late at night.",
+    "exampleZh": "如需在深夜投诉噪音，请致电前台。"
+  },
+  {
+    "text": "Pillow Menu",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "枕头选择菜单",
+    "roots": "",
+    "extension": "Options for selecting feather, foam, or firm pillows.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Choose an orthopedic pillow from the hotel's pillow menu for better sleep.",
+    "exampleZh": "可从酒店枕头菜单中选择一款护颈枕，以改善睡眠。"
+  },
+  {
+    "text": "Settlement of Account",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "结清账目/退房结算",
+    "roots": "",
+    "extension": "Final payment of all room charges.（Switzerland Hotel & UNOG Tour Navigation；一、 酒店入住、房间设施与客房服务）",
+    "example": "Please review the itemized receipt during settlement of account at check-out.",
+    "exampleZh": "退房结账时，请核对明细账单。"
+  },
+  {
+    "text": "Visitor Center / Gate 8",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "访客中心/8号门",
+    "roots": "",
+    "extension": "Primary public entry checkpoint for UNOG tours.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "All guided tour groups must gather outside Visitor Center Gate 8 at 09:15 AM.",
+    "exampleZh": "所有导游团必须于上午九点十五分在游客中心8号门外集合。"
+  },
+  {
+    "text": "Human Rights and Alliance of Civilizations Room",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "人权与文明联盟厅/XXXX厅",
+    "roots": "",
+    "extension": "Famous hall with ceiling sculpture.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Room XX, also known as the Human Rights Room, features the famous ceiling artwork.",
+    "exampleZh": "XX会议室，又称人权厅，以著名的天花板艺术作品著称。"
+  },
+  {
+    "text": "Assembly Hall",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "大会堂",
+    "roots": "",
+    "extension": "Largest conference auditorium in Palais des Nations.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "The Assembly Hall seats over 2,000 delegates during major international summits.",
+    "exampleZh": "在重大国际峰会期间，大会厅可容纳两千多名代表。"
+  },
+  {
+    "text": "Council Chamber",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "理事会厅",
+    "roots": "",
+    "extension": "Historic room decorated with famous gold and grey murals.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Historic treaties were negotiated inside the famous Council Chamber.",
+    "exampleZh": "多项历史性条约曾在著名的理事厅内谈判达成。"
+  },
+  {
+    "text": "Concert Hall / Cinema",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "音乐厅/电影放映厅",
+    "roots": "",
+    "extension": "Multi-purpose performance and screening space.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "A cultural film screening will take place in the UNOG cinema tonight.",
+    "exampleZh": "今晚将在联合国日内瓦办事处电影院举行文化影片放映。"
+  },
+  {
+    "text": "Exhibition Gallery",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "展览画廊/艺术展厅",
+    "roots": "",
+    "extension": "Dedicated space displaying international artworks.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "The temporary photography exhibit is located in the main Exhibition Gallery.",
+    "exampleZh": "临时摄影展设在主展览廊。"
+  },
+  {
+    "text": "Press Room / Media Center",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "新闻发布厅/媒体中心",
+    "roots": "",
+    "extension": "Facility for international journalists and briefings.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Spokespersons deliver daily briefings inside the Press Room.",
+    "exampleZh": "发言人在新闻发布厅进行每日简报。"
+  },
+  {
+    "text": "Diplomatic Lounge / VIP Lounge",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "外交官休息室/贵宾室",
+    "roots": "",
+    "extension": "Private lounge for delegates and ambassadors.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Dignitaries gathered in the VIP Lounge before the opening ceremony.",
+    "exampleZh": "贵宾们在开幕式前于贵宾休息室集合。"
+  },
+  {
+    "text": "Delegates' Restaurant",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "代表餐厅",
+    "roots": "",
+    "extension": "Formal dining venue overlooking Lake Geneva and the Alps.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "We reserved a table at the Delegates' Restaurant for a business lunch.",
+    "exampleZh": "我们在代表餐厅预订了商务午餐的座位。"
+  },
+  {
+    "text": "Serpent Bar / Cafeteria",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "蛇形酒吧/自助餐厅",
+    "roots": "",
+    "extension": "Popular casual coffee and lunch spot in Sector E.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Grab a quick coffee and sandwich at the Serpent Bar between tour stops.",
+    "exampleZh": "参观间隙可在蛇形酒吧快速喝杯咖啡、吃个三明治。"
+  },
+  {
+    "text": "Ground Floor / Level 0",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "地面层/一楼/日内瓦标示为0层",
+    "roots": "",
+    "extension": "Entry level of Palais des Nations.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "The main information desk is situated on the Ground Floor of Building E.",
+    "exampleZh": "总问讯处位于E楼底层。"
+  },
+  {
+    "text": "First Floor / Level 1",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "二楼/欧洲标示为1层",
+    "roots": "",
+    "extension": "Level directly above the ground floor.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Take the stairs up to the First Floor to find the China Room.",
+    "exampleZh": "沿楼梯上到一楼即可找到中国厅。"
+  },
+  {
+    "text": "Upper Level / Lower Level",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "上层/下层",
+    "roots": "",
+    "extension": "General vertical positions within building wings.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Restricted offices are located on the upper levels of Sector C.",
+    "exampleZh": "限制进入的办公室位于C区上层。"
+  },
+  {
+    "text": "Basement Level / Sub-level",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "地下层/负一层",
+    "roots": "",
+    "extension": "Underground floors storing archives and AV gear.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Cable conduits run through the basement level service tunnels.",
+    "exampleZh": "电缆管道贯穿地下室服务隧道。"
+  },
+  {
+    "text": "Elevator / Lift",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电梯",
+    "roots": "",
+    "extension": "Vertical transport cabin connecting building floors.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Take Elevator 3 to reach the second floor exhibition area.",
+    "exampleZh": "乘坐3号电梯可到达二楼展览区。"
+  },
+  {
+    "text": "Freight Elevator / Service Lift",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "载货电梯/施工梯",
+    "roots": "",
+    "extension": "Heavy-duty lift reserved for equipment crates.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Move all LED flight cases using the freight elevator in Sector C.",
+    "exampleZh": "请使用C区货梯运送所有LED航空箱。"
+  },
+  {
+    "text": "Staircase / Stairs",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "楼梯",
+    "roots": "",
+    "extension": "Set of steps leading from one level to another.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Walk up the marble staircase to reach the Assembly Hall gallery.",
+    "exampleZh": "沿大理石楼梯上行可到达大会厅旁听席。"
+  },
+  {
+    "text": "Emergency Stairwell",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "紧急逃生楼梯",
+    "roots": "",
+    "extension": "Fireproof stairs used during evacuations.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Keep emergency stairwells clear of equipment boxes at all times.",
+    "exampleZh": "请始终保持紧急楼梯间畅通，勿堆放设备箱。"
+  },
+  {
+    "text": "Escalator",
+    "type": "word",
+    "phonetic": "",
+    "translation": "自动扶梯",
+    "roots": "",
+    "extension": "Power-driven moving staircase between floors.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Take the escalator down to connect Building E with Building A.",
+    "exampleZh": "乘自动扶梯下行，可从E楼通往A楼。"
+  },
+  {
+    "text": "Ramp",
+    "type": "word",
+    "phonetic": "",
+    "translation": "无障碍坡道",
+    "roots": "",
+    "extension": "Sloped pathway allowing wheeled access instead of stairs.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Wheelchair users can enter via the accessible ramp near Door 40.",
+    "exampleZh": "轮椅使用者可经40号门附近的无障碍坡道进入。"
+  },
+  {
+    "text": "Accessible Entrance",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "无障碍入口",
+    "roots": "",
+    "extension": "Entrance equipped for visitors with mobility needs.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "The accessible entrance features automated sliding doors and zero threshold steps.",
+    "exampleZh": "无障碍入口设有自动滑动门和零门槛台阶。"
+  },
+  {
+    "text": "Wheelchair Accessible Toilet",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "无障碍洗手间",
+    "roots": "",
+    "extension": "Bathroom equipped with grab bars and wider doors.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "A wheelchair accessible toilet is available next to Elevator 2 on Level 1.",
+    "exampleZh": "一楼2号电梯旁设有无障碍卫生间。"
+  },
+  {
+    "text": "Step-Free Access",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "无台阶通道/平步通道",
+    "roots": "",
+    "extension": "Path completely free of steps or curbs.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Follow the blue signage for step-free access across Sector E.",
+    "exampleZh": "请沿蓝色标识前往E区的无台阶通道。"
+  },
+  {
+    "text": "Elevator Button / Floor Selector",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "电梯按键",
+    "roots": "",
+    "extension": "Control panel to choose target floor.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Press the elevator button marked \"1\" for the main meeting halls.",
+    "exampleZh": "请按标有“1”的电梯按钮前往主要会议厅。"
+  },
+  {
+    "text": "Braille Signage",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "盲文标识",
+    "roots": "",
+    "extension": "Tactile raised dots on signs for visually impaired guests.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Elevator panels are fitted with Braille signage for accessible navigation.",
+    "exampleZh": "电梯面板配有盲文标识，便于无障碍导航。"
+  },
+  {
+    "text": "Hearing Loop System",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "助听感应线圈系统",
+    "roots": "",
+    "extension": "Assistive listening tech in conference halls.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "The Council Chamber is equipped with an induction hearing loop system.",
+    "exampleZh": "理事厅配备了感应助听回路系统。"
+  },
+  {
+    "text": "Tactile Paving",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "盲道/触觉铺面",
+    "roots": "",
+    "extension": "Textured ground tiles guiding visually impaired visitors.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Follow the yellow tactile paving leading from Gate 8 to the security screening area.",
+    "exampleZh": "请沿从8号门通向安检区的黄色盲道前行。"
+  },
+  {
+    "text": "Guided Tour",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "有导游陪同的参观",
+    "roots": "",
+    "extension": "Official walkthrough led by a UN guide.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Book a guided tour in advance to learn about the history of万国宫.",
+    "exampleZh": "请提前预订导游讲解团，了解万国宫的历史。"
+  },
+  {
+    "text": "Self-Guided Audio Tour",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "自助语音导览",
+    "roots": "",
+    "extension": "Individual tour using headphones and audio devices.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Visitors can download the UNOG self-guided audio tour app on their phones.",
+    "exampleZh": "访客可在手机上下载联合国日内瓦办事处自助语音导览应用。"
+  },
+  {
+    "text": "Tour Guide",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "导游/讲解员",
+    "roots": "",
+    "extension": "Official staff member explaining hall features and history.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Our tour guide explained the symbolism behind the ceiling murals.",
+    "exampleZh": "我们的导游讲解了天花板壁画背后的象征意义。"
+  },
+  {
+    "text": "Security Screening / Bag Check",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "安检过闸/查包",
+    "roots": "",
+    "extension": "Security inspection point for visitors.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Place your coat and backpack on the belt for security screening.",
+    "exampleZh": "请将外套和背包放在传送带上进行安检。"
+  },
+  {
+    "text": "Visitor Badge / Security Lanyard",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "访客胸牌/挂绳",
+    "roots": "",
+    "extension": "Temporary pass worn around the neck.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Wear your visitor badge visibly at all times during the UNOG tour.",
+    "exampleZh": "在联合国日内瓦办事处参观期间，请始终佩戴并露出访客证件。"
+  },
+  {
+    "text": "Photo Prohibition Zone",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "禁止拍照区域",
+    "roots": "",
+    "extension": "Area where cameras and recording are forbidden.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Respect the photo prohibition zone near active diplomatic negotiations.",
+    "exampleZh": "请遵守正在进行外交谈判区域附近的禁止拍照规定。"
+  },
+  {
+    "text": "Flag Alley / Allée des Drapeaux",
+    "type": "sentence",
+    "phonetic": "",
+    "translation": "国旗大道",
+    "roots": "",
+    "extension": "Iconic avenue lined with flags of member states.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Group photos are usually taken along Flag Alley in front of the main building.",
+    "exampleZh": "团体合影通常在主楼前的国旗大道拍摄。"
+  },
+  {
+    "text": "Broken Chair Monument",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "大断椅雕塑",
+    "roots": "",
+    "extension": "Famous monumental sculpture opposite Gate 8.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Meet the group in front of the Broken Chair Monument before entering Gate 8.",
+    "exampleZh": "进入8号门前，请在断椅纪念碑前与团队会合。"
+  },
+  {
+    "text": "Ariana Park",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "阿里阿纳公园",
+    "roots": "",
+    "extension": "Historic park surrounding Palais des Nations.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Peacocks roam freely across Ariana Park outside the Council Chamber windows.",
+    "exampleZh": "孔雀在理事厅窗外的阿里亚纳公园自由漫步。"
+  },
+  {
+    "text": "Celestial Sphere Monument",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "天球仪雕塑",
+    "roots": "",
+    "extension": "Historic astronomical monument in the UN garden.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "The Celestial Sphere Monument stands at the center of the upper terrace.",
+    "exampleZh": "天体仪纪念碑矗立在上层露台中央。"
+  },
+  {
+    "text": "Main Corridor / Concourse",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "主走廊/中央大厅",
+    "roots": "",
+    "extension": "Wide central hallway linking building sectors.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Walk down the main corridor in Building AC to reach the China Room.",
+    "exampleZh": "沿AC楼主走廊前行即可到达中国厅。"
+  },
+  {
+    "text": "Information Desk / Help Desk",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "问询台/服务台",
+    "roots": "",
+    "extension": "Desk where staff answer visitor questions.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Ask staff at the Information Desk for a physical map of Palais des Nations.",
+    "exampleZh": "可向问讯处工作人员索取万国宫纸质地图。"
+  },
+  {
+    "text": "Gift Shop / UN Bookstore",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "纪念品商店/联合国书店",
+    "roots": "",
+    "extension": "Shop selling souvenirs and books.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Buy official UN stamps and souvenirs at the UN Bookstore in Building E.",
+    "exampleZh": "可在E楼联合国书店购买官方联合国邮票和纪念品。"
+  },
+  {
+    "text": "Cloakroom / Coat Check",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "寄衣间/衣帽间",
+    "roots": "",
+    "extension": "Facility for storing coats and umbrellas.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Leave your heavy winter coats in the cloakroom before starting the tour.",
+    "exampleZh": "开始参观前，请将厚重冬衣寄存在衣帽间。"
+  },
+  {
+    "text": "Wayfinding Signage",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "路标引路线索",
+    "roots": "",
+    "extension": "Directional signs guiding traffic through halls.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Follow the green wayfinding signage towards the Assembly Hall gallery.",
+    "exampleZh": "请沿绿色导引标识前往大会厅旁听席。"
+  },
+  {
+    "text": "Restricted Zone / Staff Only",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "非开放区域/游客止步",
+    "roots": "",
+    "extension": "Area off-limits to general public.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Do not cross the velvet rope marked Restricted Zone.",
+    "exampleZh": "请勿越过标有限制区域的丝绒绳。"
+  },
+  {
+    "text": "Meeting Point",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "集合地点",
+    "roots": "",
+    "extension": "Designated spot for group assembly.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Our meeting point for the afternoon walkthrough is the Serpent Bar entrance.",
+    "exampleZh": "下午实地勘察的集合点是蛇形酒吧入口。"
+  },
+  {
+    "text": "Door Number / Gate Code",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "门牌号/门禁代码",
+    "roots": "",
+    "extension": "Numeric designation on building entrances.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Enter Building E via Door 40 near the unloading bay.",
+    "exampleZh": "请经卸货区附近的40号门进入E楼。"
+  },
+  {
+    "text": "Sector Code (Sector A/B/C/D/E)",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "建筑分区代码",
+    "roots": "",
+    "extension": "Letter code identifying Palais des Nations wings.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Sector C houses the historic meeting halls, while Sector E contains modern rooms.",
+    "exampleZh": "C区设有历史会议厅，而E区则有现代化房间。"
+  },
+  {
+    "text": "Pedestrian Bridge / Skywalk",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "空中连廊/行人天桥",
+    "roots": "",
+    "extension": "Elevated enclosed bridge linking wings.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Cross the glass pedestrian bridge to move from Sector C to Sector E.",
+    "exampleZh": "穿过玻璃人行天桥即可从C区前往E区。"
+  },
+  {
+    "text": "Emergency Assembly Area",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "紧急集合地点",
+    "roots": "",
+    "extension": "Outdoor zone designated for fire evacuations.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "In case of alarm, proceed immediately to Emergency Assembly Area 2 in the park.",
+    "exampleZh": "如遇警报，请立即前往公园内的2号紧急集合点。"
+  },
+  {
+    "text": "Capacity Limit",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "人数/承载限制",
+    "roots": "",
+    "extension": "Maximum visitors allowed inside a hall at once.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "The tour group was split into two due to room capacity limits in the Council Chamber.",
+    "exampleZh": "由于理事厅的人数限制，参观团被分成了两组。"
+  },
+  {
+    "text": "Official Stamp / Souvenir Postcard",
+    "type": "phrase",
+    "phonetic": "",
+    "translation": "盖章/纪念明信片",
+    "roots": "",
+    "extension": "UN postal stamp service.（Switzerland Hotel & UNOG Tour Navigation；二、 参观联合国日内瓦总部（UNOG）、空间名称与无障碍导航）",
+    "example": "Mail a souvenir postcard with an official UN Geneva postmark at the UN post office.",
+    "exampleZh": "可在联合国邮局寄出盖有联合国日内瓦官方邮戳的纪念明信片。"
+  }
+];

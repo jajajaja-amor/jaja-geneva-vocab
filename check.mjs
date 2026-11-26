@@ -1,0 +1,20 @@
+import fs from 'node:fs/promises';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+import {webcrypto} from 'node:crypto';
+const elements=new Map();const element=key=>{if(!elements.has(key))elements.set(key,{innerHTML:'',value:'',style:{},addEventListener(){},scrollIntoView(){}});return elements.get(key);};
+const saved=new Map();const context=vm.createContext({document:{querySelector:element,addEventListener(){}},window:{addEventListener(){},scrollTo(){}},location:{hash:'#/'},localStorage:{getItem:k=>saved.get(k),setItem:(k,v)=>saved.set(k,v)},setTimeout:()=>0,clearTimeout(){},console,crypto:webcrypto,confirm:()=>true});
+for(const file of ['vocab.js','app.js'])vm.runInContext(await fs.readFile(new URL('./dist/'+file,import.meta.url),'utf8'),context);
+const run=s=>vm.runInContext(s,context);
+assert.equal(run('state.items.length'),569);assert.equal(run('state.queue.length'),50);assert.equal(run('new Set(state.queue).size'),50);
+run('mark(state.queue[0],"remembered",true)');assert.equal(run('state.index'),1);assert.equal(run('state.daily[0].studied'),1);assert.equal(run('state.daily[0].remembered'),1);assert.equal(JSON.parse([...saved.values()][0]).index,1);
+run('mark(state.queue[1],"forgotten",true)');assert.equal(run('state.daily[0].forgotten'),1);
+assert.equal(run('parseText("Delegate | 代表 | Test. | 测试。\\nHello：你好\\n中文标题").length'),2);
+assert.equal(run('parseText("Delegate | 代表\\n词根：deleg\\n例句：Please register.")[0].example'),'Please register.');
+run('preview=parseText("Unique test entry | 测试\\nDelegate | 代表"); addPreview()');assert.equal(run('state.items.length'),570);assert.equal(run('state.index'),2);
+run('query="秘书处"; home()');assert.ok(element('#results').innerHTML.includes('Secretariat'));
+assert.equal(run('esc("<script>")'),'&lt;script&gt;');
+for(const route of ['#/daily','#/curve','#/import','#/word/w0']){context.location.hash=route;run('render()');assert.ok(element('#app').innerHTML.length>100);}
+run('state.index=50; daily()');assert.ok(element('#app').innerHTML.includes('今天也完成了'));
+run('state.date="2000-01-01";ensureDaily()');assert.equal(run('state.index'),0);assert.equal(run('state.queue.length'),50);
+console.log('PASS: 569 source entries; unique daily queue; marking; persistence; import parsing/deduplication; search; escaping; all views; daily completion and rollover.');
