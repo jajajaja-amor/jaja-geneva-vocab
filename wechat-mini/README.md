@@ -12,7 +12,7 @@
 
 ## 可选 DeepSeek 补全
 
-小程序的“导入 → 可选 AI 接口”填写已部署服务的 HTTPS 基础地址和 `ENRICH_ACCESS_TOKEN` 访问口令。DeepSeek Key 仅配置在 Cloudflare Worker 或其他服务端环境，不写进小程序。上线前需在微信小程序后台将该 HTTPS 域名配置为 `request` 合法域名。没有接口或网络时，小程序内置词库与直接导入仍能使用。
+小程序的“导入 → 可选 AI 接口”可填写 `https://jaja-geneva-vocab.jingyachen0508.workers.dev` 和 `ENRICH_ACCESS_TOKEN` 访问口令；目前 Cloudflare 尚未配置 DeepSeek Key，需先在服务端设置。DeepSeek Key 不写进小程序。上线前需在微信小程序后台将接口 HTTPS 域名配置为 `request` 合法域名。没有接口或网络时，小程序内置词库与直接导入仍能使用。
 
 当前原生版未接入语音播放；网页和本地 HTML 版仍支持设备浏览器语音。微信小程序正式发布需要用户自己的小程序 AppID、账号权限及平台审核。
 

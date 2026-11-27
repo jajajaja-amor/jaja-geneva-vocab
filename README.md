@@ -20,7 +20,7 @@
 
 仓库含 `api/enrich.js`，可用于 Vercel 的 Node Serverless Function；静态页面位于 `dist/`，部署配置在 `vercel.json`。在 Vercel 中配置 `DEEPSEEK_API_KEY` 和 `ENRICH_ACCESS_TOKEN`；需要中转平台时另配 `VOCAB_API_KEY` 和 `ENRICH_ALLOWED_HOSTS`。公开部署上的补全接口要求访问口令，网页会在首次补全时询问口令；不要将口令写入前端文件。若未部署 API 路由，静态页面仍能使用，只有 AI 补全不可用。本地 `server.mjs` 在回环地址提供同一接口，方便测试。
 
-Cloudflare Worker 与静态资源部署配置见 `wrangler.jsonc` 和 `cloudflare/worker.mjs`。登录 Cloudflare 后运行 `wrangler secret put DEEPSEEK_API_KEY`、`wrangler secret put ENRICH_ACCESS_TOKEN`，再运行 `wrangler deploy`。第三方 API 另需 `VOCAB_API_KEY` 和 `ENRICH_ALLOWED_HOSTS`。未配置 Key 时网页的核心学习功能仍可用。普通 Cloudflare 全球网络不能保证中国大陆持续可达；若要求有保障的中国大陆访问，需另行满足 Cloudflare China Network 服务与中国大陆域名备案条件。
+Cloudflare 版本已部署到 https://jaja-geneva-vocab.jingyachen0508.workers.dev 。Worker 与静态资源配置见 `wrangler.jsonc` 和 `cloudflare/worker.mjs`。当前未配置 AI 密钥；如需开启补全，在所选 Cloudflare 账号中运行 `wrangler secret put DEEPSEEK_API_KEY` 和 `wrangler secret put ENRICH_ACCESS_TOKEN`。第三方 API 另需 `VOCAB_API_KEY` 和 `ENRICH_ALLOWED_HOSTS`。未配置 Key 时网页的核心学习功能仍可用。普通 Cloudflare 全球网络不能保证中国大陆持续可达；若要求有保障的中国大陆访问，需另行满足 Cloudflare China Network 服务与中国大陆域名备案条件。
 
 运行 `npm run export:offline` 会在项目上一级生成单文件 `jaja-geneva-vocab-offline.html`；双击即可在本机浏览器使用词表、练习、朗读、TXT 直接导入及备份。单文件模式不调用 AI 补全接口。
 
