@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {apiResponse,enrichPairs,validatePairs} from './enrich.mjs';
+import {apiResponse,enrichPairs,isPrivateAddress,resolveApiConfig,validatePairs} from './enrich.mjs';
 assert.throws(()=>validatePairs([]));assert.throws(()=>validatePairs([{text:'中文',translation:'测试'}]));
 await assert.rejects(()=>enrichPairs([{text:'Delegate',translation:'代表'}],{key:''}),/尚未配置/);
 let sent;
@@ -8,6 +8,15 @@ const result=await enrichPairs([{text:'Delegate',translation:'代表'}],{key:'te
 assert.equal(result[0].translation,'代表');assert.equal(result[0].exampleZh,'代表到了。');
 assert.equal(sent.url,'https://api.deepseek.com/chat/completions');assert.equal(sent.options.headers.Authorization,'Bearer test-secret');
 assert.equal(JSON.parse(sent.options.body).model,'deepseek-flash');
+assert.deepEqual(resolveApiConfig({baseUrl:'https://proxy.example.org/v1/',model:'anthropic/claude-opus-5',authMode:'x-api-key'},'proxy.example.org'),{url:'https://proxy.example.org/v1/chat/completions',model:'anthropic/claude-opus-5',authMode:'x-api-key',official:false});
+assert.equal(resolveApiConfig({baseUrl:'https://api.deepseek.com/chat/completions/'}).url,'https://api.deepseek.com/chat/completions');
+assert.throws(()=>resolveApiConfig({baseUrl:'http://127.0.0.1:8000'},'127.0.0.1'),/公开 HTTPS/);
+assert.throws(()=>resolveApiConfig({baseUrl:'https://localhost'},'localhost'),/本机/);
+assert.throws(()=>resolveApiConfig({baseUrl:'https://other.example.org/v1'}),/未获服务端允许/);
+assert.equal(isPrivateAddress('10.2.3.4'),true);assert.equal(isPrivateAddress('192.168.1.1'),true);assert.equal(isPrivateAddress('8.8.8.8'),false);
+const proxyResult=await enrichPairs([{text:'Delegate',translation:'代表'}],{key:'proxy-secret',fetcher,config:{baseUrl:'https://proxy.example.org/v1/',authMode:'x-api-key',model:'provider/model'},allowedHosts:'proxy.example.org',lookup:async()=>[{address:'8.8.8.8'}]});
+assert.equal(proxyResult[0].text,'Delegate');assert.equal(sent.options.headers['x-api-key'],'proxy-secret');assert.equal(sent.options.headers.Authorization,undefined);assert.equal(JSON.parse(sent.options.body).model,'provider/model');assert.equal(sent.options.redirect,'error');
+await assert.rejects(()=>enrichPairs([{text:'Delegate',translation:'代表'}],{key:'x',fetcher,config:{baseUrl:'https://proxy.example.org'},allowedHosts:'proxy.example.org',lookup:async()=>[{address:'10.0.0.1'}]}),/内网地址/);
 await assert.rejects(()=>enrichPairs([{text:'Delegate',translation:'代表'}],{key:'x',fetcher:async()=>({ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'{"items":[]}'}}]})})}),/条数不匹配/);
 let response='';const fakeRes={statusCode:0,headers:{},setHeader(k,v){this.headers[k]=v;},end(v){response=v;}};
 await apiResponse({method:'POST',headers:{host:'localhost:4173'},body:{items:[{text:'Delegate',translation:'代表'}]}},fakeRes);
