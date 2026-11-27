@@ -1,0 +1,9 @@
+<view class="page">
+  <view class="title">每天50词 · 第 {{batch}} 组</view><view class="sub">今日累计完成 {{todayCompleted}} 词。完成后可继续开启下一组。</view>
+  <view wx:if="{{!length}}" class="card">词库为空，请先导入词条。</view>
+  <view wx:elif="{{done}}" class="card center"><view class="title">这一组完成了！</view><view class="sub">今日累计 {{todayCompleted}} 词 · 本组记住 {{yes}} · 待复习或跳过 {{no}}</view><button class="btn" bindtap="nextBatch">再开启一组 50 词</button><button class="btn light" bindtap="restart">重练本组</button></view>
+  <block wx:else><view class="sub space">第 {{index+1}} / {{length}} 词</view><progress percent="{{(index+1)/length*100}}" activeColor="#16704a" />
+    <view class="card"><view class="center"><view class="term" bindtap="detail">{{word.text}}</view><view class="sub">{{word.phonetic}}</view></view><view wx:if="{{word.example}}" class="space">{{word.example}}<view wx:if="{{word.exampleZh}}" class="meaning">{{word.exampleZh}}</view></view><button class="btn light" bindtap="reveal">{{reveal?'隐藏释义':'显示中文释义'}}</button><view wx:if="{{reveal}}"><view class="term">{{word.translation}}</view><view class="meaning">{{word.roots}}</view><view class="meaning">{{word.extension}}</view></view></view>
+    <view class="row"><button class="btn negative" data-status="forgotten" bindtap="mark">忘记了</button><button class="btn" data-status="remembered" bindtap="mark">记住了</button></view><view class="row"><button class="btn light" data-step="-1" bindtap="move" disabled="{{index===0}}">上一词</button><button class="btn light" data-step="1" bindtap="move">跳过</button></view>
+  </block>
+</view>

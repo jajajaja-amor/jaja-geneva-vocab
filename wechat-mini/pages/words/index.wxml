@@ -1,0 +1,9 @@
+<view class="page">
+  <view class="card"><view class="sub">Geneva Assault Plan</view><view class="title">jaja的日内瓦突击计划</view><view class="sub">共 {{counts.all}} 词 · 已记住 {{counts.remembered}} 词 · 今日完成 {{todayCompleted}} 词</view><button class="btn" bindtap="daily">开始今日学习</button></view>
+  <input class="input" placeholder="搜索英文 / 中文 / 词根" value="{{query}}" bindinput="input" />
+  <scroll-view scroll-x="true" style="white-space:nowrap"><view wx:for="{{filters}}" wx:key="value" class="pill" style="{{filter===item.value?'background:#16704a;color:#fff':''}}" data-value="{{item.value}}" bindtap="filter">{{item.label}}</view></scroll-view>
+  <scroll-view scroll-x="true" style="white-space:nowrap"><view wx:for="{{collections}}" wx:key="*this" class="pill" style="{{collection===item?'background:#16704a;color:#fff':''}}" data-value="{{item}}" bindtap="collection">{{item==='all'?'所有词库':item}}</view></scroll-view>
+  <view class="sub space">找到 {{total}} 条</view>
+  <view wx:for="{{list}}" wx:key="id" class="card" data-id="{{item.id}}" bindtap="open"><view class="row"><view><view class="term">{{item.text}}</view><view class="meaning">{{item.translation}}</view></view><view class="small muted">{{item.status==='remembered'?'已记住':item.status==='forgotten'?'待复习':'未学'}}</view></view></view>
+  <view class="row"><button class="btn light" data-step="-1" bindtap="page" disabled="{{page===0}}">上一页</button><text>{{page+1}} / {{maxPage+1}}</text><button class="btn light" data-step="1" bindtap="page" disabled="{{page>=maxPage}}">下一页</button></view>
+</view>

@@ -1,5 +1,6 @@
 reference/
 node_modules/
+cloudflare-build/
 *.tar.gz
 *.log
 .env

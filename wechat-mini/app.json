@@ -1,0 +1,11 @@
+{
+  "pages": ["pages/words/index", "pages/daily/index", "pages/curve/index", "pages/import/index", "pages/detail/index"],
+  "window": { "navigationBarTitleText": "jaja的日内瓦突击计划", "navigationBarBackgroundColor": "#f6f3ec", "navigationBarTextStyle": "black", "backgroundColor": "#f6f3ec" },
+  "tabBar": { "color": "#66716c", "selectedColor": "#16704a", "backgroundColor": "#ffffff", "list": [
+    { "pagePath": "pages/words/index", "text": "词表" },
+    { "pagePath": "pages/daily/index", "text": "每日50" },
+    { "pagePath": "pages/curve/index", "text": "曲线" },
+    { "pagePath": "pages/import/index", "text": "导入" }
+  ] },
+  "sitemapLocation": "sitemap.json"
+}

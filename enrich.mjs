@@ -1,4 +1,3 @@
-import {lookup as dnsLookup} from 'node:dns/promises';
 const fields=['phonetic','roots','extension','example','exampleZh'];
 const officialHost='api.deepseek.com';
 const error=(message,status=400)=>Object.assign(new Error(message),{status});
@@ -24,7 +23,7 @@ export function validatePairs(items){
   });
 }
 
-export function resolveApiConfig(input={},allowedHosts=process.env.ENRICH_ALLOWED_HOSTS||''){
+export function resolveApiConfig(input={},allowedHosts=(typeof process!=='undefined'?process.env.ENRICH_ALLOWED_HOSTS:'')||''){
   if(!input||typeof input!=='object'||Array.isArray(input))throw error('接口设置格式不正确');
   const base=String(input.baseUrl||'https://api.deepseek.com').trim().replace(/\/+$/,'');
   if(base.length>500)throw error('API 地址过长');
@@ -47,11 +46,11 @@ export function resolveApiConfig(input={},allowedHosts=process.env.ENRICH_ALLOWE
 
 const systemPrompt=`你是英语词汇编辑。只返回 JSON 对象，格式 {"items":[{"text":"Delegate","phonetic":"[ˈdelɪɡət]","roots":"deleg：委派","extension":"A person authorized to represent others.","example":"The delegate arrived at the meeting.","exampleZh":"代表抵达会议现场。"}]}。词条顺序与输入完全一致，不得修改英文 text，不要生成 translation。只补充自然、准确的英语读音、词根拆解、简明英文释义和中英对应例句；尽量使用日内瓦、外交、建筑、园林或日常语境。无法确定时填空字符串，不编造事实。只输出 JSON。`;
 
-export async function enrichPairs(items,{key=process.env.VOCAB_API_KEY||process.env.DEEPSEEK_API_KEY,fetcher=fetch,config={},allowedHosts,lookup=dnsLookup}={}){
+export async function enrichPairs(items,{key=typeof process!=='undefined'?(process.env.VOCAB_API_KEY||process.env.DEEPSEEK_API_KEY):undefined,fetcher=fetch,config={},allowedHosts,lookup}={}){
   const pairs=validatePairs(items);
   const resolved=resolveApiConfig(config,allowedHosts);
   if(!key)throw error('尚未配置 API Key；可继续直接导入词汇。',503);
-  if(!resolved.official){
+  if(!resolved.official&&lookup){
     let records;try{records=await lookup(new URL(resolved.url).hostname,{all:true});}catch{throw error('中转域名 DNS 解析失败',502);}
     if(!records.length||records.some(record=>isPrivateAddress(record.address)))throw error('中转域名解析到本机或内网地址',403);
   }
@@ -82,7 +81,7 @@ export async function enrichPairs(items,{key=process.env.VOCAB_API_KEY||process.
   });
 }
 
-export async function apiResponse(req,res,{local=false}={}){
+export async function apiResponse(req,res,{local=false,lookup}={}){
   res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');
   if(req.method!=='POST'){res.statusCode=405;res.end(JSON.stringify({error:'仅支持 POST'}));return;}
   try{
@@ -90,7 +89,7 @@ export async function apiResponse(req,res,{local=false}={}){
     let raw='';if(req.body!==undefined)raw=typeof req.body==='string'?req.body:JSON.stringify(req.body);else for await(const chunk of req){raw+=chunk;if(raw.length>30000)throw error('请求过大',413);}
     if(raw.length>30000)throw error('请求过大',413);
     const payload=JSON.parse(raw);
-    const items=await enrichPairs(payload.items,{config:payload.config});
+    const items=await enrichPairs(payload.items,{config:payload.config,lookup});
     res.statusCode=200;res.end(JSON.stringify({items}));
   }catch(e){res.statusCode=e.status||400;res.end(JSON.stringify({error:e.message||'解析失败'}));}
 }

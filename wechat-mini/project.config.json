@@ -1,0 +1,7 @@
+{
+  "appid": "touristappid",
+  "projectname": "jaja-geneva-vocab",
+  "compileType": "miniprogram",
+  "miniprogramRoot": "./",
+  "setting": { "es6": true, "enhance": true, "postcss": true, "minified": true, "urlCheck": true }
+}

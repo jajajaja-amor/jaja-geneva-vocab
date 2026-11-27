@@ -20,6 +20,12 @@
 
 仓库含 `api/enrich.js`，可用于 Vercel 的 Node Serverless Function；静态页面位于 `dist/`，部署配置在 `vercel.json`。在 Vercel 中配置 `DEEPSEEK_API_KEY` 和 `ENRICH_ACCESS_TOKEN`；需要中转平台时另配 `VOCAB_API_KEY` 和 `ENRICH_ALLOWED_HOSTS`。公开部署上的补全接口要求访问口令，网页会在首次补全时询问口令；不要将口令写入前端文件。若未部署 API 路由，静态页面仍能使用，只有 AI 补全不可用。本地 `server.mjs` 在回环地址提供同一接口，方便测试。
 
+Cloudflare Worker 与静态资源部署配置见 `wrangler.jsonc` 和 `cloudflare/worker.mjs`。登录 Cloudflare 后运行 `wrangler secret put DEEPSEEK_API_KEY`、`wrangler secret put ENRICH_ACCESS_TOKEN`，再运行 `wrangler deploy`。第三方 API 另需 `VOCAB_API_KEY` 和 `ENRICH_ALLOWED_HOSTS`。未配置 Key 时网页的核心学习功能仍可用。普通 Cloudflare 全球网络不能保证中国大陆持续可达；若要求有保障的中国大陆访问，需另行满足 Cloudflare China Network 服务与中国大陆域名备案条件。
+
+运行 `npm run export:offline` 会在项目上一级生成单文件 `jaja-geneva-vocab-offline.html`；双击即可在本机浏览器使用词表、练习、朗读、TXT 直接导入及备份。单文件模式不调用 AI 补全接口。
+
+微信小程序源码在 `wechat-mini/`，使用方法见 [小程序说明](wechat-mini/README.md)。内置 709 条词库并离线保存学习记录；DeepSeek 补全复用同一个受口令保护的服务端接口。
+
 应用用当前浏览器 `localStorage` 保存个人词库和进度，不会跨设备自动同步。请使用“导出备份 / 恢复 JSON 备份”迁移。旧版浏览器进度在同一站点来源下会自动追加 140 条主题词，不清空旧记录。仓库内的 `dist/vocab.js` 为原有 569 条词汇，`dist/extra-vocab.js` 为三组新增词汇；新增词汇有英文例句和中文释义，暂缺音标、词根及部分例句译文，不会用不准确的内容填充。
 
 ## 练习规则
@@ -28,4 +34,4 @@
 
 ## 开发与验证
 
-运行 `npm run check` 检查语法，运行 `npm test` 检查词库数量、批次、累计、导入、搜索、迁移和模拟 DeepSeek 返回。真实 API 调用需要你自己的密钥。`CHANGELOG.md` 记录主要行为变化；后续每次修改应作为独立 Git 提交保存。
+运行 `npm run check` 检查语法，运行 `npm test` 检查词库数量、批次、累计、导入、搜索、迁移、Cloudflare Worker 和微信小程序核心流程。真实 API 调用需要你自己的密钥。`CHANGELOG.md` 记录主要行为变化；后续每次修改应作为独立 Git 提交保存。
