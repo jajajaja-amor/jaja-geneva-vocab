@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {apiResponse,enrichPairs,validatePairs} from './enrich.mjs';
+assert.throws(()=>validatePairs([]));assert.throws(()=>validatePairs([{text:'中文',translation:'测试'}]));
+await assert.rejects(()=>enrichPairs([{text:'Delegate',translation:'代表'}],{key:''}),/尚未配置/);
+let sent;
+const fetcher=async(url,options)=>{sent={url,options};return{ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify({items:[{text:'Delegate',phonetic:'[ˈdelɪɡət]',roots:'deleg：委派',extension:'A representative.',example:'The delegate arrived.',exampleZh:'代表到了。'}]})}}]})};};
+const result=await enrichPairs([{text:'Delegate',translation:'代表'}],{key:'test-secret',fetcher});
+assert.equal(result[0].translation,'代表');assert.equal(result[0].exampleZh,'代表到了。');
+assert.equal(sent.url,'https://api.deepseek.com/chat/completions');assert.equal(sent.options.headers.Authorization,'Bearer test-secret');
+assert.equal(JSON.parse(sent.options.body).model,'deepseek-flash');
+await assert.rejects(()=>enrichPairs([{text:'Delegate',translation:'代表'}],{key:'x',fetcher:async()=>({ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'{"items":[]}'}}]})})}),/条数不匹配/);
+let response='';const fakeRes={statusCode:0,headers:{},setHeader(k,v){this.headers[k]=v;},end(v){response=v;}};
+await apiResponse({method:'POST',headers:{host:'localhost:4173'},body:{items:[{text:'Delegate',translation:'代表'}]}},fakeRes);
+assert.equal(fakeRes.statusCode,401);assert.match(response,/访问口令/);
+console.log('PASS: optional DeepSeek configuration, request format, enrichment mapping and invalid-response rejection.');
