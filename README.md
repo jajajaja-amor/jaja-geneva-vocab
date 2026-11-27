@@ -24,6 +24,8 @@ Cloudflare 版本已部署到 https://jaja-geneva-vocab.jingyachen0508.workers.d
 
 运行 `npm run export:offline` 会在项目上一级生成单文件 `jaja-geneva-vocab-offline.html`；双击即可在本机浏览器使用词表、练习、朗读、TXT 直接导入及备份。单文件模式不调用 AI 补全接口。
 
+运行 `npm run export:transfer` 会在项目上一级生成 `jaja-geneva-vocab-transfer.json`。它包含 709 条词汇索引、原样网页源码、可选 API 服务端源码和给其他 AI 的重建说明。可将这个文件交给 WorkBuddy 等工具，请它按 `files` 字段恢复项目并部署到适合中国大陆访问的环境。此交接包不含密钥或浏览器中的个人学习进度；进度需另从网页“导出备份”。
+
 微信小程序源码在 `wechat-mini/`，使用方法见 [小程序说明](wechat-mini/README.md)。内置 709 条词库并离线保存学习记录；DeepSeek 补全复用同一个受口令保护的服务端接口。
 
 应用用当前浏览器 `localStorage` 保存个人词库和进度，不会跨设备自动同步。请使用“导出备份 / 恢复 JSON 备份”迁移。旧版浏览器进度在同一站点来源下会自动追加 140 条主题词，不清空旧记录。仓库内的 `dist/vocab.js` 为原有 569 条词汇，`dist/extra-vocab.js` 为三组新增词汇；新增词汇有英文例句和中文释义，暂缺音标、词根及部分例句译文，不会用不准确的内容填充。
